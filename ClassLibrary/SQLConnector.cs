@@ -46,13 +46,13 @@ namespace ClassLibrary
 
     public class DataMapper
     {
-        // To Use please create a database called KiddEsports and paste the connection string in the forms (Please note there are conection strings on most files)
+      
 
         public void InitializeDatabase()
         {
             try
             {
-            
+                
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -63,16 +63,17 @@ namespace ClassLibrary
                     int databaseCount = (int)checkDatabaseCommand.ExecuteScalar();
 
                     bool databaseExists = (databaseCount > 0);
-                    string pass = GeneratePassword(12);
+
 
                     // Check if user exists
                     string checkUserQuery = "IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = 'ClassLibrary') BEGIN SELECT 0; END ELSE BEGIN SELECT 1; END;";
                     SqlCommand checkUserCommand = new SqlCommand(checkUserQuery, connection);
                     int userExists = (int)checkUserCommand.ExecuteScalar();
-
+                    string pass = "KiddEsportsAdmin143@";
                     if (userExists == 0)
                     {
                         // Create the login
+
                         string createUserQuery = $"CREATE LOGIN ClassLibrary WITH PASSWORD = '{pass}';";
                         SqlCommand createUserCommand = new SqlCommand(createUserQuery, connection);
                         createUserCommand.ExecuteNonQuery();
@@ -90,14 +91,18 @@ namespace ClassLibrary
                         grantPermissionsCommand.ExecuteNonQuery();
                     }
 
+
+
+
                     // Extract server name from the existing connection string
                     string serverName = new SqlConnectionStringBuilder(connectionString).DataSource;
                     string NewconnectionString = Properties.Settings.Default.ConnectionString;
 
                     // Update the connection string in properties
-                    NewconnectionString = $"Data Source={serverName};Initial Catalog=KiddEsports;User ID=ClassLibrary;Password={pass};";
-                    Properties.Settings.Default.ConnectionString = NewconnectionString;
-                    Properties.Settings.Default.Save();
+                    //NewconnectionString = $"Data Source=localhost;Initial Catalog=KiddEsports;User ID=ClassLibrary;Password={pass};";
+                    //Properties.Settings.Default.ConnectionString = NewconnectionString;
+                    //Properties.Settings.Default.Save();
+
 
                     string createDatabaseScript = @"
                 IF NOT EXISTS (
@@ -174,28 +179,7 @@ namespace ClassLibrary
 
 
 
-        public static string GeneratePassword(int length)
-        {
-            const string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-_=+";
-
-            // Create a secure random number generator
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                byte[] randomBytes = new byte[length];
-                rng.GetBytes(randomBytes);
-
-                char[] chars = new char[length];
-
-                // Convert random bytes to characters from validChars
-                for (int i = 0; i < length; i++)
-                {
-                    int index = randomBytes[i] % validChars.Length;
-                    chars[i] = validChars[index];
-                }
-
-                return new string(chars);
-            }
-        }
+        
         // Connection String
         private string connectionString;
 

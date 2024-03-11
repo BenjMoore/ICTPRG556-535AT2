@@ -1,1 +1,0 @@
-Data Source=DESKTOP-SQGL7BR\SQLEXPRESS;Initial Catalog=KiddEsports1;Integrated Security=True;TrustServerCertificate=True

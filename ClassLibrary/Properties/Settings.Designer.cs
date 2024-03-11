@@ -25,17 +25,6 @@ namespace ClassLibrary.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-SQGL7BR\\SQLEXPRESS;Initial Catalog=KiddEsports;Integrated Sec" +
-            "urity=True;TrustServerCertificate=True")]
-        public string KiddEsportsConnection {
-            get {
-                return ((string)(this["KiddEsportsConnection"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("White")]
         public global::System.Drawing.Color BackgroundColor {
             get {
@@ -54,14 +43,27 @@ namespace ClassLibrary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-SQGL7BR\\SQLEXPRESS;Initial Catalog=KiddEsports;Integrated Sec" +
-            "urity=True;TrustServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\\\SQLEXPRESS;Integrated Security=True;TrustServerCertificate" +
+            "=True")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));
             }
             set {
                 this["ConnectionString"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\\\SQLEXPRESS;Integrated Security=True;TrustServerCertificate" +
+            "=True")]
+        public string KiddEsportsConnection {
+            get {
+                return ((string)(this["KiddEsportsConnection"]));
+            }
+            set {
+                this["KiddEsportsConnection"] = value;
             }
         }
     }

@@ -178,10 +178,5 @@
       <Name>ClassLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="connectionstring.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
