@@ -30,7 +30,7 @@ namespace ICTPRG430AT2
             GamePlayedTableAdapter gameTableAdapter = new GamePlayedTableAdapter();
             TeamResultsTableAdapter teamResultsTableAdapter = new TeamResultsTableAdapter();
 
-            string connectionString = Properties.Settings.Default.ConnectionString;
+            string connectionString = "Data Source=localhost\\SQLEXPRESS;Integrated Security=True;TrustServerCertificate=True";
 
             DataMapper dataMapper = new DataMapper(connectionString);
 
@@ -41,7 +41,7 @@ namespace ICTPRG430AT2
             // Retrieve team information
 
 
-            int Teams = (int)teamInfoTableAdapter.GetTotalTeamRows();
+           int Teams = (int)teamInfoTableAdapter.GetTotalTeamRows();
             int Event = (int)eventTableAdapter.GetEventRows();
 
             int Game = (int)gameTableAdapter.GetGameRows();

@@ -26,8 +26,8 @@ namespace ICTPRG430AT2.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-SQGL7BR\\\\SQLEXPRESS;Initial Catalog=KiddEsports;Integrated Se" +
-            "curity=True;TrustServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\\\SQLEXPRESS;Integrated Security=True;TrustServerCertificate" +
+            "=True")]
         public string KiddEsportsDataBaseConn {
             get {
                 return ((string)(this["KiddEsportsDataBaseConn"]));
@@ -36,8 +36,8 @@ namespace ICTPRG430AT2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-SQGL7BR\\\\SQLEXPRESS;Initial Catalog=KiddEsports;Integrated Se" +
-            "curity=True;TrustServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\\\SQLEXPRESS;Integrated Security=True;TrustServerCertificate" +
+            "=True")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));
