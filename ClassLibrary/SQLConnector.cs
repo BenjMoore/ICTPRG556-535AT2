@@ -93,14 +93,7 @@ namespace ClassLibrary
 
 
 
-                    // Extract server name from the existing connection string
                   
-
-                    // Update the connection string in properties
-                    //NewconnectionString = $"Data Source=localhost;Initial Catalog=KiddEsports;User ID=ClassLibrary;Password={pass};";
-                    //Properties.Settings.Default.ConnectionString = NewconnectionString;
-                    //Properties.Settings.Default.Save();
-
 
                     string createDatabaseScript = @"
                 IF NOT EXISTS (
@@ -184,8 +177,7 @@ namespace ClassLibrary
 
 
         // Initialize counter with a starting value
-        int counter = 0;
-
+       
         public DataMapper(string connectionString)
         {
             this.connectionString = connectionString;
