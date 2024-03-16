@@ -2439,7 +2439,7 @@ SELECT EventName, EventLocation, EventDate, ID FROM Event WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ICTPRG430AT2.Properties.Settings.Default.KiddEsportsDataBaseConn;
+            this._connection.ConnectionString = Program.DataMapper.DboConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2827,7 +2827,7 @@ SELECT GameName, GameType, ID FROM GamePlayed WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ICTPRG430AT2.Properties.Settings.Default.KiddEsportsDataBaseConn;
+            this._connection.ConnectionString = Program.DataMapper.DboConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3200,7 +3200,7 @@ SELECT ID, TeamName, PrimaryContact, ContactEmail, Points FROM TeamInfo WHERE (I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ICTPRG430AT2.Properties.Settings.Default.KiddEsportsDataBaseConn;
+            this._connection.ConnectionString = Program.DataMapper.DboConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3634,7 +3634,7 @@ SELECT EventName, GamePlayed, Team, OpposingTeam, Result, ID FROM TeamResults WH
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ICTPRG430AT2.Properties.Settings.Default.KiddEsportsDataBaseConn;
+            this._connection.ConnectionString = Program.DataMapper.DboConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -16,16 +16,11 @@ namespace ICTPRG430AT2
     /// Represents the main form for managing events.
     /// </summary>
     public partial class Event : Form
-    {
-        private DataMapper dataMapper;
-        string connectionString = Properties.Settings.Default.ConnectionString;
-      
+    {      
         // Constructor for the Event form
         public Event()
         {
             InitializeComponent();
-            // Initialize a DataMapper instance with the connection string
-            dataMapper = new DataMapper(connectionString);
         }
 
         // Event handler for the form load event
@@ -51,7 +46,7 @@ namespace ICTPRG430AT2
 
             string query = "SELECT MAX(ID) FROM Event";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(Program.DataMapper.DboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 try
@@ -86,7 +81,7 @@ namespace ICTPRG430AT2
             string contactEmail = EventDateTXT.Text;
 
             // Call the AddEventInfo method in DataMapper to add the new event information
-            dataMapper.AddEventInfo(teamName, primaryContact, contactEmail);
+            Program.DataMapper.AddEventInfo(teamName, primaryContact, contactEmail);
             // Refresh the data in the event table
             this.eventTableAdapter.Fill(this.kiddEsportsData_View.Event);
 
@@ -103,7 +98,7 @@ namespace ICTPRG430AT2
             int id = Convert.ToInt32(DeleteID.Text);
 
             // Call the DeleteEventInfo method in DataMapper to delete the event information
-            dataMapper.DeleteEventInfo(id);
+            Program.DataMapper.DeleteEventInfo(id);
             // Refresh the data in the event table
             this.eventTableAdapter.Fill(this.kiddEsportsData_View.Event);
 
@@ -124,7 +119,7 @@ namespace ICTPRG430AT2
             };
 
             // Call the SaveUpdatedEventInfo method in DataMapper to update the event information
-            dataMapper.SaveUpdatedEventInfo(updatedEventData);
+            Program.DataMapper.SaveUpdatedEventInfo(updatedEventData);
             // Refresh the data in the event table
             ReturnName.ResetText();
             ReturnLocation.ResetText();
@@ -150,7 +145,7 @@ namespace ICTPRG430AT2
             string searchTerm = SearchTextBox.Text;
 
             // Call the SearchEventsByName method in DataMapper to search for events by name
-            List<EventDTO> searchResults = dataMapper.SearchEventsByName(searchTerm);
+            List<EventDTO> searchResults = Program.DataMapper.SearchEventsByName(searchTerm);
 
             // Display the search results in the DataGridView
             dataGridView1.DataSource = searchResults;

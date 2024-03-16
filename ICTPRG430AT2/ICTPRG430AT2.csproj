@@ -96,12 +96,6 @@
     <Compile Include="Results.Designer.cs">
       <DependentUpon>Results.cs</DependentUpon>
     </Compile>
-    <Compile Include="TakeSQL.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TakeSQL.Designer.cs">
-      <DependentUpon>TakeSQL.cs</DependentUpon>
-    </Compile>
     <Compile Include="Teams.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,9 +123,6 @@
     </Compile>
     <EmbeddedResource Include="Results.resx">
       <DependentUpon>Results.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TakeSQL.resx">
-      <DependentUpon>TakeSQL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Teams.resx">
       <DependentUpon>Teams.cs</DependentUpon>

@@ -14,12 +14,10 @@ namespace ICTPRG430AT2
 {
     public partial class Results : Form
     {
-        private DataMapper dataMapper;
-        string connectionString = Properties.Settings.Default.ConnectionString;
+        // Constructor
         public Results()
         {
             InitializeComponent();
-            dataMapper = new DataMapper(connectionString);
         }
 
         private void Results_Load(object sender, EventArgs e)
@@ -74,7 +72,7 @@ namespace ICTPRG430AT2
 
         private void AlphabeticalSortBTN_Click(object sender, EventArgs e)
         {
-            List<ResultDTO> sortedTeams = dataMapper.SortResultsByEventNameAscending();
+            List<ResultDTO> sortedTeams = Program.DataMapper.SortResultsByEventNameAscending();
 
             // Update your DataGridView or any other control to display sortedTeams
             // For example:
@@ -91,7 +89,7 @@ namespace ICTPRG430AT2
             string result = Resulttxt.Text;
 
             // Call the update method
-            dataMapper.AddResultInfo(eventName, gamePlayed, team, opposingTeam, result);
+            Program.DataMapper.AddResultInfo(eventName, gamePlayed, team, opposingTeam, result);
             this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
 
             EventNametxt.ResetText();
@@ -108,7 +106,7 @@ namespace ICTPRG430AT2
             int id = Convert.ToInt32(DeleteID.Text);
 
             // Call the delete method
-            dataMapper.DeleteResultInfo(id);
+            Program.DataMapper.DeleteResultInfo(id);
             this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
 
             DeleteID.ResetText();
@@ -133,7 +131,7 @@ namespace ICTPRG430AT2
             ReturnResult.ResetText();
             ReturnID.ResetText();
             // Call the SaveUpdatedResultInfo method to update the result information
-            dataMapper.SaveUpdatedResultInfo(updatedResultData);
+            Program.DataMapper.SaveUpdatedResultInfo(updatedResultData);
             this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
         }
 
@@ -142,7 +140,7 @@ namespace ICTPRG430AT2
             string searchTerm = SearchTxtResults.Text; // Get the search term from the text box
 
             // Call the SearchEventsByName method from the DataMapper class
-            List<ResultDTO> searchResults = dataMapper.SearchResultsByEventName(searchTerm);
+            List<ResultDTO> searchResults = Program.DataMapper.SearchResultsByEventName(searchTerm);
             SearchTxtResults.ResetText();
             // Display the search results in your UI
             // For example, you can populate a DataGridView with the search results
@@ -153,7 +151,7 @@ namespace ICTPRG430AT2
         private void SortByEventResults_Click(object sender, EventArgs e)
         {
             // Retrieve sorted results by event name in ascending order
-            List<ResultDTO> sortedResults = dataMapper.SortResultsByEventNameAscending();
+            List<ResultDTO> sortedResults = Program.DataMapper.SortResultsByEventNameAscending();
 
             // Bind the sorted results to a dataGridView1 for display
             dataGridView1.DataSource = sortedResults;
@@ -163,7 +161,7 @@ namespace ICTPRG430AT2
         private void SortByTeamNameResults_Click(object sender, EventArgs e)
         {
             // Retrieve sorted results by team name in ascending order
-            List<ResultDTO> sortedResults = dataMapper.SortResultsByTeamNameAscending();
+            List<ResultDTO> sortedResults = Program.DataMapper.SortResultsByTeamNameAscending();
 
             // Bind the sorted results to a dataGridView1 for display
             dataGridView1.DataSource = sortedResults;
@@ -173,10 +171,10 @@ namespace ICTPRG430AT2
         private void ExportBTNResults_Click(object sender, EventArgs e)
         {
             // Retrieve sorted results by event name in ascending order
-            List<ResultDTO> sortedResults = dataMapper.SortResultsByEventNameAscending();
+            List<ResultDTO> sortedResults = Program.DataMapper.SortResultsByEventNameAscending();
 
             // Export the sorted results to a CSV file named "SortedResultsByEventName.csv"
-            dataMapper.ExportResultsToCSV(sortedResults, "SortedResultsByEventName.csv");
+            Program.DataMapper.ExportResultsToCSV(sortedResults, "SortedResultsByEventName.csv");
             MessageBox.Show($"Teams exported to CSV successfully");
         }
 
@@ -184,10 +182,10 @@ namespace ICTPRG430AT2
         private void ExportTeamName_Click(object sender, EventArgs e)
         {
             // Retrieve sorted results by team name in ascending order
-            List<ResultDTO> sortedResults = dataMapper.SortResultsByTeamNameAscending();
+            List<ResultDTO> sortedResults = Program.DataMapper.SortResultsByTeamNameAscending();
 
             // Export the sorted results to a CSV file named "SortedResultsByTeamName.csv"
-            dataMapper.ExportResultsToCSV(sortedResults, "SortedResultsByTeamName.csv");
+            Program.DataMapper.ExportResultsToCSV(sortedResults, "SortedResultsByTeamName.csv");
             MessageBox.Show($"Teams exported to CSV successfully");
         }
 

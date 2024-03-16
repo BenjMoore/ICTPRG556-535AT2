@@ -12,8 +12,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
-    <StartProgram>D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\bin\Debug\ICTPRG430AT2.exe</StartProgram>
+    <StartProgram>C:\Users\caleb\Desktop\BenCrap\ICTPRG430AT2\bin\Debug\ICTPRG430AT2.exe</StartProgram>
     <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
     <EnableSQLServerDebugging>true</EnableSQLServerDebugging>
+    <StartWorkingDirectory>C:\Users\caleb\Desktop\BenCrap\ICTPRG430AT2\</StartWorkingDirectory>
   </PropertyGroup>
 </Project>

@@ -14,19 +14,11 @@ namespace ICTPRG430AT2
 {
     public partial class Teams : Form
     {
-        // DataMapper instance to handle database operations
-        private DataMapper dataMapper;
-        // Connection string for database connection
-        string connectionString = Properties.Settings.Default.ConnectionString;
-
         // Constructor
         public Teams()
         {
             // Initialize form components
             InitializeComponent();
-            // Initialize DataMapper with the provided connection string
-
-            dataMapper = new DataMapper(connectionString);
         }
 
       
@@ -104,9 +96,7 @@ namespace ICTPRG430AT2
 
         // Button click event handler for adding a new team
         private void AddNewTeamBTN_Click(object sender, EventArgs e)
-        {
-            // Generate a new team ID
-           
+        {           
             // Retrieve values from WinForms controls
             string teamName = TeamNameTxt.Text;
             string primaryContact = PrimaryContactTxt.Text;
@@ -114,7 +104,7 @@ namespace ICTPRG430AT2
             string points = PointsTxt.Text;
 
             // Call the AddTeamInfo method in DataMapper to add the new team
-            dataMapper.AddTeamInfo(teamName, primaryContact, contactEmail, points);
+            Program.DataMapper.AddTeamInfo(teamName, primaryContact, contactEmail, points);
             // Refresh the TeamInfo DataGridView to reflect the changes
             this.teamInfoTableAdapter.Fill(this.kiddEsportsData.TeamInfo);
 
@@ -131,7 +121,7 @@ namespace ICTPRG430AT2
             // Retrieve the ID of the team to delete
             int id = Convert.ToInt32(DeleteID.Text);
             // Call the DeleteTeamInfo method in DataMapper to delete the team
-            dataMapper.DeleteTeamInfo(id);
+            Program.DataMapper.DeleteTeamInfo(id);
             // Clear the DeleteID field after deleting the team
             DeleteID.ResetText();
             // Refresh the TeamInfo DataGridView to reflect the changes
@@ -142,7 +132,7 @@ namespace ICTPRG430AT2
         private void PointsSortBTN_Click(object sender, EventArgs e)
         {
             // Call the SortTeamsByPoints method in DataMapper to sort teams by points
-            List<TeamDTO> sortedTeams = dataMapper.SortTeamsByPoints();
+            List<TeamDTO> sortedTeams = Program.DataMapper.SortTeamsByPoints();
             // Set the DataSource of the DataGridView to display the sorted teams
             dataGridView1.DataSource = sortedTeams;
         }
@@ -151,7 +141,7 @@ namespace ICTPRG430AT2
         private void AlphabeticalSortBTN_Click(object sender, EventArgs e)
         {
             // Call the SortTeamsAlphabetically method in DataMapper to sort teams alphabetically
-            List<TeamDTO> sortedTeams = dataMapper.SortTeamsAlphabetically();
+            List<TeamDTO> sortedTeams = Program.DataMapper.SortTeamsAlphabetically();
             // Set the DataSource of the DataGridView to display the sorted teams
             dataGridView1.DataSource = sortedTeams;
         }
@@ -171,7 +161,7 @@ namespace ICTPRG430AT2
                 Points = Convert.ToInt32(ReturnPoints.Text)
             };
             // Call the SaveUpdatedTeamInfo method in DataMapper to update the team information
-            dataMapper.SaveUpdatedTeamInfo(updatedTeamData);
+            Program.DataMapper.SaveUpdatedTeamInfo(updatedTeamData);
             // Refresh the TeamInfo DataGridView to reflect the changes
             this.teamInfoTableAdapter.Fill(this.kiddEsportsData.TeamInfo);
             // Clear input fields after updating team information
@@ -190,7 +180,7 @@ namespace ICTPRG430AT2
                 string searchTerm = SearchTextBox.Text; // Get the search term from the text box
 
                 // Call the SearchEventsByName method from the DataMapper class
-                List<TeamDTO> searchResults = dataMapper.SearchTeamsByName(searchTerm);
+                List<TeamDTO> searchResults = Program.DataMapper.SearchTeamsByName(searchTerm);
 
                 // Display the search results in your UI
                 // For example, you can populate a DataGridView with the search results
@@ -201,7 +191,7 @@ namespace ICTPRG430AT2
 
         private void ExportByPoints_Click(object sender, EventArgs e)
         {
-            dataMapper.ExportTeamsToCSV(dataMapper.SortTeamsByPoints(), "SortedTeamsByPoints.csv");
+            Program.DataMapper.ExportTeamsToCSV(Program.DataMapper.SortTeamsByPoints(), "SortedTeamsByPoints.csv");
         }
     }
 

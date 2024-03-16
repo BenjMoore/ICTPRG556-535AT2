@@ -12,3 +12,10 @@ D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\obj\Debug\ClassLibrary.csproj.Assembl
 D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\obj\Debug\ClassLibrary.csproj.CoreCompileInputs.cache
 D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\obj\Debug\ClassLibrary.dll
 D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\obj\Debug\ClassLibrary.pdb
+C:\Users\caleb\Desktop\BenCrap\ClassLibrary\obj\Debug\ClassLibrary.csproj.AssemblyReference.cache
+C:\Users\caleb\Desktop\BenCrap\ClassLibrary\obj\Debug\ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\caleb\Desktop\BenCrap\ClassLibrary\obj\Debug\ClassLibrary.dll
+C:\Users\caleb\Desktop\BenCrap\ClassLibrary\obj\Debug\ClassLibrary.pdb
+C:\Users\caleb\Desktop\BenCrap\ClassLibrary\bin\Debug\ClassLibrary.dll.config
+C:\Users\caleb\Desktop\BenCrap\ClassLibrary\bin\Debug\ClassLibrary.dll
+C:\Users\caleb\Desktop\BenCrap\ClassLibrary\bin\Debug\ClassLibrary.pdb

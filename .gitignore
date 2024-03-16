@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ICTPRG556/.vs/ICTPRG556/v16
+/SetupDB/obj/Release/net8.0
+/.vs/BenCrap/v16
+/.vs

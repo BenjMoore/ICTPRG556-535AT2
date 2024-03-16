@@ -21,13 +21,8 @@ namespace ICTPRG430AT2
       
         // Constructor for the Menu form
         public Menu()
-        {
-          
-          dataMapper = new DataMapper(Properties.Settings.Default.ConnectionString);
-          dataMapper.InitializeDatabase();
+        { 
           InitializeComponent();
-            // Initialize a DataMapper instance with the connection string and initialize the database
-            
         }
 
         // Event handler for the form load event

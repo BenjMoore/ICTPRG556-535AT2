@@ -5,6 +5,7 @@ using System.ComponentModel.Design;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
@@ -46,18 +47,19 @@ namespace ClassLibrary
 
     public class DataMapper
     {
-      
+        public string ConnectionString;
+        private string dboConnectionString;
+        public string DboConnectionString {get { return dboConnectionString; }}
 
         public void InitializeDatabase()
         {
             try
-            {
-                
-                using (SqlConnection connection = new SqlConnection(connectionString))
+            {                
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     connection.Open();
                     // Check if database exists
-                    string checkDatabaseQuery = "SELECT COUNT(*) FROM sys.databases WHERE name = 'KiddEsports'";
+                    string checkDatabaseQuery = "SELECT COUNT(*) FROM sys.databases WHERE name = 'KiddEports'";
                     SqlCommand checkDatabaseCommand = new SqlCommand(checkDatabaseQuery, connection);
                     int databaseCount = (int)checkDatabaseCommand.ExecuteScalar();
 
@@ -88,25 +90,20 @@ namespace ClassLibrary
                     END";
                         SqlCommand grantPermissionsCommand = new SqlCommand(grantPermissionsQuery, connection);
                         grantPermissionsCommand.ExecuteNonQuery();
-                    }
-
-
-
-
-                  
+                    }                  
 
                     string createDatabaseScript = @"
                 IF NOT EXISTS (
                     SELECT name
                     FROM sys.databases
-                    WHERE name = 'KiddEsports'
+                    WHERE name = 'KiddEports'
                 )
                 BEGIN
-                    CREATE DATABASE KiddEsports;
+                    CREATE DATABASE KiddEports;
                 END";
 
                     string createTablesScript = @"
-                USE KiddEsports;
+                USE KiddEports;
 
                 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'TeamInfo')
                 BEGIN
@@ -168,20 +165,14 @@ namespace ClassLibrary
         }
 
 
-
-
-
-        
-        // Connection String
-        private string connectionString;
-
-
-        // Initialize counter with a starting value
-       
-        public DataMapper(string connectionString)
+        // Initialize counter with a starting value       
+        public DataMapper()
         {
-            this.connectionString = connectionString;
+            this.ConnectionString = Properties.Settings.Default.ConnectionString;
+            this.dboConnectionString = Properties.Settings.Default.KiddEsportsConnection;
+            InitializeDatabase();
         }
+
         /// <summary>
         /// Team Data
         /// </summary>
@@ -197,7 +188,7 @@ namespace ClassLibrary
             string query = "INSERT INTO TeamInfo (TeamName, PrimaryContact, ContactEmail, Points) VALUES ( @TeamName, @PrimaryContact, @ContactEmail, @Points)";
 
             // Establish a connection to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 // Add parameters to the query to prevent SQL injection attacks
@@ -232,7 +223,7 @@ namespace ClassLibrary
             string query = "DELETE FROM TeamInfo WHERE ID = @ID";
 
             // Establish a connection to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 // Add parameter to the query to specify the ID of the team to delete
@@ -266,7 +257,7 @@ namespace ClassLibrary
             string query = "UPDATE TeamInfo SET TeamName = @TeamName, PrimaryContact = @PrimaryContact, ContactEmail = @ContactEmail, Points = @Points WHERE ID = @ID";
 
             // Establish a connection to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 // Add parameters to the query to specify the updated team information
@@ -306,7 +297,7 @@ namespace ClassLibrary
             string query = "SELECT COUNT(*) FROM TeamData";
 
             // Establish a connection to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 try
@@ -357,7 +348,7 @@ namespace ClassLibrary
             string query = "SELECT * FROM TeamInfo ORDER BY Points DESC";
 
             // Establish a connection to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 try
@@ -401,7 +392,7 @@ namespace ClassLibrary
 
             string query = "SELECT * FROM TeamInfo ORDER BY TeamName ASC";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 try
@@ -439,7 +430,7 @@ namespace ClassLibrary
 
             string query = "SELECT * FROM TeamInfo WHERE TeamName LIKE @SearchTerm";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
@@ -530,7 +521,7 @@ namespace ClassLibrary
 
 
             // Establish a connection to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 // Add parameters to the query to prevent SQL injection attacks
@@ -568,7 +559,7 @@ namespace ClassLibrary
             string query = "SELECT * FROM TeamResults ORDER BY EventName ASC";
 
             // Establish a connection to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 try
@@ -616,7 +607,7 @@ namespace ClassLibrary
             string query = "SELECT * FROM TeamResults ORDER BY Team ASC";
 
             // Establish a connection to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 try
@@ -693,7 +684,7 @@ namespace ClassLibrary
             string query = "DELETE FROM TeamResults WHERE ID = @ID";
 
             // Establish a connection to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 // Add parameter to the query to specify the ID of the result to delete
@@ -725,7 +716,7 @@ namespace ClassLibrary
         {
             string query = "UPDATE TeamResults SET EventName = @EventName, GamePlayed = @GamePlayed, Team = @Team, OpposingTeam = @OpposingTeam, Result = @Result WHERE ID = @ID";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@EventName", result.EventName);
@@ -779,7 +770,7 @@ namespace ClassLibrary
 
             string query = "SELECT * FROM TeamResults WHERE EventName LIKE @EventName";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@EventName", "%" + eventName + "%"); // Use LIKE operator for partial matches
@@ -821,7 +812,7 @@ namespace ClassLibrary
 
             string query = "SELECT COUNT(*) FROM TeamResults";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 try
@@ -851,7 +842,7 @@ namespace ClassLibrary
             string query = "INSERT INTO Event (EventName, EventLocation, EventDate) VALUES (@EventName, @EventLocation, @EventDate)";
 
             // Establish database connection and execute the command
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 // Add parameters to the query
@@ -883,7 +874,7 @@ namespace ClassLibrary
             string query = "DELETE FROM Event WHERE ID = @ID";
 
             // Establish database connection and execute the command
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 // Add parameter to the query
@@ -915,7 +906,7 @@ namespace ClassLibrary
             string query = "UPDATE Event SET EventName = @EventName, EventLocation = @EventLocation, EventDate = @EventDate WHERE ID = @ID";
 
             // Establish database connection and execute the command
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 // Add parameters to the query
@@ -952,7 +943,7 @@ namespace ClassLibrary
             string query = "SELECT COUNT(*) FROM Event";
 
             // Establish database connection and execute the command
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 try
@@ -1002,7 +993,7 @@ namespace ClassLibrary
 
             string query = "SELECT * FROM Event ORDER BY EventDate ASC";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 try
@@ -1039,7 +1030,7 @@ namespace ClassLibrary
 
             string query = "SELECT * FROM Event WHERE EventName LIKE @SearchTerm";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
@@ -1081,7 +1072,7 @@ namespace ClassLibrary
         public void AddGameInfo(string gameName, string gameType)
         {
             string query = "INSERT INTO GamePlayed (GameName, GameType) VALUES (@GameName, @GameType)";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
 
@@ -1134,7 +1125,7 @@ namespace ClassLibrary
         {
             string query = "DELETE FROM GamePlayed WHERE ID = @ID";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@ID", id);
@@ -1159,7 +1150,7 @@ namespace ClassLibrary
         {
             string query = "UPDATE GamePlayed SET GameName = @GameName, GameType = @GameType WHERE ID = @ID";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@GameName", game.GameName);
@@ -1196,7 +1187,7 @@ namespace ClassLibrary
 
 
             // Establish a connection to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 // Add parameters to the query to prevent SQL injection attacks
@@ -1231,7 +1222,7 @@ namespace ClassLibrary
             string query = "UPDATE TeamInfo SET Points = Points + @Points WHERE TeamName = @Team";
 
             // Establish a connection to the database
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 // Add parameters to the query

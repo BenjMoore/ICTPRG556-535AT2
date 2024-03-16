@@ -16,16 +16,9 @@ namespace ICTPRG430AT2
 {
     public partial class NewGame : Form
     {
-        // DataMapper instance to handle database operations
-        private DataMapper dataMapper;
-        // Connection string for database connection
-        string connectionString = Properties.Settings.Default.ConnectionString;
-
         // Constructor
         public NewGame()
         {
-            // Initialize DataMapper with the provided connection string
-            dataMapper = new DataMapper(connectionString);
             // Initialize form components
             InitializeComponent();
         }
@@ -66,15 +59,15 @@ namespace ICTPRG430AT2
             // Retrieve the entered game name
             string gameName = NewGameNameTXT.Text;
             // Add the new game information to the database
-            dataMapper.AddGameInfo(gameName, gameType);
+            Program.DataMapper.AddGameInfo(gameName, gameType);
             // Refresh the GamesPlayed DataGridView to reflect the changes
             this.gamesPlayedTableAdapter.Fill(this.kiddEsportsData.GamePlayed);
 
             // Retrieve the selected teams and winner, and the event name
-            string team = TeamComboBox.SelectedValue.ToString();
-            string opposingTeam = OpposingTeamComboBox.SelectedValue.ToString();
-            string winner = WinnerComboBox.SelectedValue.ToString();
-            string eventName = NewGameEventDropdown.SelectedValue.ToString();
+            string team = TeamComboBox.SelectedValue != null? TeamComboBox.SelectedValue.ToString() : string.Empty;
+            string opposingTeam = OpposingTeamComboBox.SelectedValue != null? OpposingTeamComboBox.SelectedValue.ToString() : string.Empty;
+            string winner = WinnerComboBox.SelectedValue != null? WinnerComboBox.SelectedValue.ToString() : string.Empty;
+            string eventName = NewGameEventDropdown.SelectedValue != null? NewGameEventDropdown.SelectedValue.ToString() : string.Empty;
             string result = "Draw";
             string opposingresult = "Draw";
             int points = 0; // Initialize points for the winning team
@@ -104,14 +97,14 @@ namespace ICTPRG430AT2
             }
 
             // Add the game result to the database for both teams
-            dataMapper.AddGameResult(team, opposingTeam, result, eventName, gameName);
-            dataMapper.AddGameResult(opposingTeam, team, opposingresult, eventName, gameName);
+            Program.DataMapper.AddGameResult(team, opposingTeam, result, eventName, gameName);
+            Program.DataMapper.AddGameResult(opposingTeam, team, opposingresult, eventName, gameName);
             // Refresh the TeamResults DataGridView to reflect the changes
             this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
 
             // Update team points in the database
-            dataMapper.UpdateTeamPoints(team, points);
-            dataMapper.UpdateTeamPoints(opposingTeam, opposingpoints);
+            Program.DataMapper.UpdateTeamPoints(team, points);
+            Program.DataMapper.UpdateTeamPoints(opposingTeam, opposingpoints);
 
             // Refresh the TeamInfo DataGridView to reflect the changes
             this.teamInfoTableAdapter.Fill(this.kiddEsportsData.TeamInfo);
@@ -128,8 +121,12 @@ namespace ICTPRG430AT2
         // Button click event handler for updating a game
         private void UpdateBTN_Click(object sender, EventArgs e)
         {
+            var gameIdToUpdate = new int();
+            var updateIdString = UpdateIDCombobox.SelectedValue != null? UpdateIDCombobox.SelectedValue.ToString() : string.Empty;
+
+
             // Retrieve the game ID to update
-            int gameIdToUpdate = Convert.ToInt32(UpdateIDCombobox.SelectedValue.ToString());
+            int.TryParse(updateIdString, out gameIdToUpdate);
             // Create a GamesPlayedDTO object with updated game information
             GamesPlayedDTO updatedGameData = new GamesPlayedDTO
             {
@@ -139,7 +136,7 @@ namespace ICTPRG430AT2
             };
 
             // Update the game information in the database
-            dataMapper.SaveUpdatedGamesPlayedInfo(updatedGameData);
+            Program.DataMapper.SaveUpdatedGamesPlayedInfo(updatedGameData);
 
             // Refresh the GamesPlayed DataGridView to reflect the changes
             this.gamesPlayedTableAdapter.Fill(this.kiddEsportsData.GamePlayed);
@@ -149,9 +146,12 @@ namespace ICTPRG430AT2
         private void GameDeleteBTN_Click(object sender, EventArgs e)
         {
             // Retrieve the game ID to delete
-            int id = Convert.ToInt32(DeleteGameID.Text);
+            int.TryParse(DeleteGameID.Text, out int id);
+
+            if (id == 0) return;
+
             // Delete the game information from the database
-            dataMapper.DeleteGamesPlayedInfo(id);
+            Program.DataMapper.DeleteGamesPlayedInfo(id);
             // Refresh the GamesPlayed DataGridView to reflect the changes
             this.gamesPlayedTableAdapter.Fill(this.kiddEsportsData.GamePlayed);
         }
@@ -169,7 +169,7 @@ namespace ICTPRG430AT2
             // SQL query to get the maximum game ID from the database
             string query = $"SELECT MAX({columnName}) FROM GamePlayed";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(Program.DataMapper.DboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 try
