@@ -1,0 +1,14 @@
+D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\ClassLibrary\bin\Debug\ClassLibrary.dll.config
+D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\ClassLibrary\bin\Debug\ClassLibrary.dll
+D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\ClassLibrary\bin\Debug\ClassLibrary.pdb
+D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\ClassLibrary\obj\Debug\ClassLibrary.csproj.AssemblyReference.cache
+D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\ClassLibrary\obj\Debug\ClassLibrary.csproj.CoreCompileInputs.cache
+D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\ClassLibrary\obj\Debug\ClassLibrary.dll
+D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\ClassLibrary\obj\Debug\ClassLibrary.pdb
+D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\bin\Debug\ClassLibrary.dll.config
+D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\bin\Debug\ClassLibrary.dll
+D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\bin\Debug\ClassLibrary.pdb
+D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\obj\Debug\ClassLibrary.csproj.AssemblyReference.cache
+D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\obj\Debug\ClassLibrary.csproj.CoreCompileInputs.cache
+D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\obj\Debug\ClassLibrary.dll
+D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\obj\Debug\ClassLibrary.pdb
