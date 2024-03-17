@@ -5,10 +5,12 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClassLibrary;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClassLibrary
 {
@@ -18,10 +20,25 @@ namespace ClassLibrary
         public Results()
         {
             InitializeComponent();
+
+            ResultsCombo.Items.Add("Win"); // Add Win / Loss Options
+            ResultsCombo.Items.Add("Loss");
+            // Set default selection
+            ResultsCombo.SelectedIndex = 0;
+            Result.Items.Add("Win"); // Add Win / Loss Options
+            Result.Items.Add("Loss");
+            // Set default selection
+            Result.SelectedIndex = 0;
         }
 
         private void Results_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'kiddEsportsData_View.TeamInfo' table. You can move, or remove it, as needed.
+            this.teamInfoTableAdapter.Fill(this.kiddEsportsData_View.TeamInfo);
+            // TODO: This line of code loads data into the 'kiddEsportsData_View.GamePlayed' table. You can move, or remove it, as needed.
+            this.gamePlayedTableAdapter.Fill(this.kiddEsportsData_View.GamePlayed);
+            // TODO: This line of code loads data into the 'kiddEsportsData_View.Event' table. You can move, or remove it, as needed.
+            this.eventTableAdapter.Fill(this.kiddEsportsData_View.Event);
 
             this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
 
@@ -81,30 +98,59 @@ namespace ClassLibrary
 
         private void AddNewTeamBTN_Click(object sender, EventArgs e)
         {
+            int points = 0;
+            int oppositPoints = 0;
             // Get values from your WinForms controls
-            string eventName = EventNametxt.Text;
-            string gamePlayed = GamePlayedtxt.Text;
-            string team = Teamtxt.Text;
-            string opposingTeam = OpposingTeamtxt.Text;
-            string result = Resulttxt.Text;
+            string eventName = EventName.SelectedValue != null ? EventName.SelectedValue.ToString() : string.Empty;
+            string gamePlayed = GamePlayed.SelectedValue != null ? GamePlayed.SelectedValue.ToString() : string.Empty;
+            string team = Team.SelectedValue != null ? Team.SelectedValue.ToString() : string.Empty;
+            string opposingTeam = OpposingTeam.SelectedValue != null ? OpposingTeam.SelectedValue.ToString() : string.Empty;
+            string result = Result.SelectedItem != null ? Result.SelectedItem.ToString() : string.Empty;
+            if (opposingTeam == team)
+            {
+                MessageBox.Show("Competing Teams Can Not Be The Same.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            string oppositeResult = result == "Win" ? "Loss" : "Win";
+            if (oppositeResult == "Win")
+            {
+                oppositPoints = 2;
+                points = -2;
+            }
+            if(oppositeResult == "Loss")
+            {
+                oppositPoints = -2;
+                points = 2;
+            }
+            else
+            {
+                return;
+            }
             // Call the update method
             Program.DataMapper.AddResultInfo(eventName, gamePlayed, team, opposingTeam, result);
-            this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
+            Program.DataMapper.UpdateTeamPoints(team, points);
+            Program.DataMapper.UpdateTeamPoints(opposingTeam, oppositPoints);
+            // Add the opposite result for the opposing team
 
-            EventNametxt.ResetText();
-            GamePlayedtxt.ResetText();
-            Teamtxt.ResetText();
-            OpposingTeamtxt.ResetText();
-            Resulttxt.ResetText();
+            Program.DataMapper.AddResultInfo(eventName, gamePlayed, opposingTeam, team, oppositeResult);
+
+            // Refresh the team results table
+            this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
         }
+
 
 
 
         private void DeleteBTN_Click(object sender, EventArgs e)
         {
+           
+            if (string.IsNullOrWhiteSpace(DeleteID.Text))
+            {
+                MessageBox.Show("Please provide an Result ID to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method early
+            }
             int id = Convert.ToInt32(DeleteID.Text);
-
             // Call the delete method
             Program.DataMapper.DeleteResultInfo(id);
             this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
@@ -114,22 +160,28 @@ namespace ClassLibrary
 
         private void UpdateBTN_Click(object sender, EventArgs e)
         {
-            int resultIdToUpdate = Convert.ToInt32(ReturnID.Text);
+
+            string resultIdToUpdate = IDCombo.SelectedValue != null ? IDCombo.SelectedValue.ToString() : string.Empty;
+            int resultID = Convert.ToInt32(resultIdToUpdate);
+
+            // Error Handling 
+            string eventName = EventNameCombo.SelectedValue != null ? EventNameCombo.SelectedValue.ToString() : string.Empty;
+            string gamePlayed = GamePlayedCombo.SelectedValue != null ? GamePlayedCombo.SelectedValue.ToString() : string.Empty;
+            string team = TeamNameCombo.SelectedValue != null ? TeamNameCombo.SelectedValue.ToString() : string.Empty;
+          
+            string opposingTeam = OpposingTeamCombo.SelectedValue != null ? OpposingTeamCombo.SelectedValue.ToString() : string.Empty;
+            string result = ResultsCombo.SelectedItem != null ? ResultsCombo.SelectedItem.ToString() : string.Empty;
+
             ResultDTO updatedResultData = new ResultDTO
             {
-                ID = resultIdToUpdate,
-                EventName = ReturnEventName.Text,
-                GamePlayed = ReturnGamePlayed.Text,
-                Team = ReturnTeam.Text,
-                OpposingTeam = ReturnOpposingTeam.Text,
-                Result = ReturnResult.Text
-            };
-            ReturnEventName.ResetText();
-            ReturnGamePlayed.ResetText();
-            ReturnTeam.ResetText();
-            ReturnOpposingTeam.ResetText();
-            ReturnResult.ResetText();
-            ReturnID.ResetText();
+                ID = resultID,
+                EventName = eventName,
+                GamePlayed = gamePlayed,
+                Team = team,
+                OpposingTeam = opposingTeam,
+                Result = result
+            };           
+           
             // Call the SaveUpdatedResultInfo method to update the result information
             Program.DataMapper.SaveUpdatedResultInfo(updatedResultData);
             this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
@@ -175,7 +227,7 @@ namespace ClassLibrary
 
             // Export the sorted results to a CSV file named "SortedResultsByEventName.csv"
             Program.DataMapper.ExportResultsToCSV(sortedResults, "SortedResultsByEventName.csv");
-            MessageBox.Show($"Teams exported to CSV successfully");
+            MessageBox.Show("Export Completed to desktop", "Notice!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // This method is triggered when the user clicks a button to export sorted results by team name to a CSV file.
@@ -186,7 +238,7 @@ namespace ClassLibrary
 
             // Export the sorted results to a CSV file named "SortedResultsByTeamName.csv"
             Program.DataMapper.ExportResultsToCSV(sortedResults, "SortedResultsByTeamName.csv");
-            MessageBox.Show($"Teams exported to CSV successfully");
+            MessageBox.Show("Export Completed to desktop", "Notice!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
     }

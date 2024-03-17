@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -98,10 +99,20 @@ namespace ClassLibrary
         private void AddNewTeamBTN_Click(object sender, EventArgs e)
         {
             // Retrieve values from WinForms controls
-            string teamName = TeamNameTxt.Text;
-            string primaryContact = PrimaryContactTxt.Text;
-            string contactEmail = ContactEmail.Text;
-            string points = PointsTxt.Text;
+            string teamName = TeamNameTxt.Text.Trim();
+            string primaryContact = PrimaryContactTxt.Text.Trim();
+            string contactEmail = ContactEmail.Text.Trim();
+            string points = PointsTxt.Text.Trim();
+
+            // Check if any of the fields are empty
+            if (string.IsNullOrWhiteSpace(teamName) ||
+                string.IsNullOrWhiteSpace(primaryContact) ||
+                string.IsNullOrWhiteSpace(contactEmail) ||
+                string.IsNullOrWhiteSpace(points))
+            {
+                MessageBox.Show("Please fill in all fields before adding a new team.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method early
+            }
 
             // Call the AddTeamInfo method in DataMapper to add the new team
             Program.DataMapper.AddTeamInfo(teamName, primaryContact, contactEmail, points);
@@ -115,13 +126,28 @@ namespace ClassLibrary
             PointsTxt.ResetText();
         }
 
+
         // Button click event handler for deleting a team
         private void DeleteBTN_Click(object sender, EventArgs e)
         {
             // Retrieve the ID of the team to delete
-            int id = Convert.ToInt32(DeleteID.Text);
+           
+            if (string.IsNullOrWhiteSpace(DeleteID.Text))
+            {
+                MessageBox.Show("Please provide an Event ID to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method early
+            }
+
+            // Get the event ID, name, location, and date from text boxes
+            int IdToDelete;
+            if (!int.TryParse(DeleteID.Text, out IdToDelete))
+            {
+                MessageBox.Show("Invalid Event ID format. Please enter a valid integer value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method early
+            }
+
             // Call the DeleteTeamInfo method in DataMapper to delete the team
-            Program.DataMapper.DeleteTeamInfo(id);
+            Program.DataMapper.DeleteTeamInfo(IdToDelete);
             // Clear the DeleteID field after deleting the team
             DeleteID.ResetText();
             // Refresh the TeamInfo DataGridView to reflect the changes
@@ -150,11 +176,40 @@ namespace ClassLibrary
         private void UpdateBTN_Click(object sender, EventArgs e)
         {
             // Retrieve the ID of the team to update
-            int idToUpdate = Convert.ToInt32(ReturnID.Text);
+            
+
+            if (string.IsNullOrWhiteSpace(ReturnID.Text))
+            {
+                MessageBox.Show("Please provide an Event ID to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method early
+            }
+
+            // Get the event ID, name, location, and date from text boxes
+            int IdToUpdate;
+            if (!int.TryParse(ReturnID.Text, out IdToUpdate))
+            {
+                MessageBox.Show("Invalid Event ID format. Please enter a valid integer value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method early
+            }
+            // Check if any of the fields are empty
+            string Name = ReturnName.Text.Trim();
+            string Contact = ReturnContact.Text.Trim();
+            string Email = ReturnEmail.Text.Trim();
+            string Points = ReturnPoints.Text.Trim();
+           
+
+            if (string.IsNullOrWhiteSpace(Name) ||
+                string.IsNullOrWhiteSpace(Contact) ||
+                string.IsNullOrWhiteSpace(Email) ||
+                string.IsNullOrWhiteSpace(Points))
+            {
+                MessageBox.Show("Please fill in all fields before adding a new team.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method early
+            }
             // Create a new TeamDTO object with updated values
             TeamDTO updatedTeamData = new TeamDTO
             {
-                ID = idToUpdate,
+                ID = IdToUpdate,
                 TeamName = ReturnName.Text,
                 PrimaryContact = ReturnContact.Text,
                 ContactEmail = ReturnEmail.Text,
@@ -192,6 +247,7 @@ namespace ClassLibrary
         private void ExportByPoints_Click(object sender, EventArgs e)
         {
             Program.DataMapper.ExportTeamsToCSV(Program.DataMapper.SortTeamsByPoints(), "SortedTeamsByPoints.csv");
+            MessageBox.Show("Export Completed to desktop", "Notice!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 

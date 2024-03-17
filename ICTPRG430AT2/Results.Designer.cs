@@ -47,48 +47,61 @@
             this.button5 = new System.Windows.Forms.Button();
             this.Homebtn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Result = new System.Windows.Forms.ComboBox();
+            this.OpposingTeam = new System.Windows.Forms.ComboBox();
+            this.teamInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.kiddEsportsData_View = new ICTPRG430AT2.KiddEsportsData_View();
+            this.GamePlayed = new System.Windows.Forms.ComboBox();
+            this.gamePlayedBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Team = new System.Windows.Forms.ComboBox();
+            this.EventName = new System.Windows.Forms.ComboBox();
+            this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label14 = new System.Windows.Forms.Label();
-            this.Resulttxt = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.GamePlayedtxt = new System.Windows.Forms.TextBox();
-            this.Teamtxt = new System.Windows.Forms.TextBox();
-            this.OpposingTeamtxt = new System.Windows.Forms.TextBox();
             this.AddNewTeamBTN = new System.Windows.Forms.Button();
-            this.EventNametxt = new System.Windows.Forms.TextBox();
             this.DeleteBTN = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.DeleteID = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.IDCombo = new System.Windows.Forms.ComboBox();
+            this.ResultsCombo = new System.Windows.Forms.ComboBox();
+            this.OpposingTeamCombo = new System.Windows.Forms.ComboBox();
+            this.TeamNameCombo = new System.Windows.Forms.ComboBox();
+            this.GamePlayedCombo = new System.Windows.Forms.ComboBox();
+            this.EventNameCombo = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.ReturnID = new System.Windows.Forms.TextBox();
             this.UpdateBTN = new System.Windows.Forms.Button();
             this.SearchBTN = new System.Windows.Forms.Button();
             this.SearchTxtResults = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.ReturnResult = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.ReturnGamePlayed = new System.Windows.Forms.TextBox();
-            this.ReturnTeam = new System.Windows.Forms.TextBox();
-            this.ReturnOpposingTeam = new System.Windows.Forms.TextBox();
-            this.ReturnEventName = new System.Windows.Forms.TextBox();
+            this.teamInfoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.SortByEventResults = new System.Windows.Forms.Button();
             this.SortByTeamNameResults = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.ExportBTNResults = new System.Windows.Forms.Button();
             this.ExportTeamName = new System.Windows.Forms.Button();
+            this.eventTableAdapter = new ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.EventTableAdapter();
+            this.gamePlayedTableAdapter = new ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.GamePlayedTableAdapter();
+            this.teamInfoTableAdapter = new ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.TeamInfoTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamResultsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData_View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gamePlayedBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -144,6 +157,7 @@
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
             this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
             this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // teamResultsBindingSource
             // 
@@ -230,43 +244,113 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.Result);
+            this.panel2.Controls.Add(this.OpposingTeam);
+            this.panel2.Controls.Add(this.GamePlayed);
+            this.panel2.Controls.Add(this.Team);
+            this.panel2.Controls.Add(this.EventName);
             this.panel2.Controls.Add(this.label14);
-            this.panel2.Controls.Add(this.Resulttxt);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.GamePlayedtxt);
-            this.panel2.Controls.Add(this.Teamtxt);
-            this.panel2.Controls.Add(this.OpposingTeamtxt);
             this.panel2.Controls.Add(this.AddNewTeamBTN);
-            this.panel2.Controls.Add(this.EventNametxt);
             this.panel2.Location = new System.Drawing.Point(958, 175);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(294, 355);
             this.panel2.TabIndex = 28;
             // 
+            // Result
+            // 
+            this.Result.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Result.FormattingEnabled = true;
+            this.Result.Location = new System.Drawing.Point(78, 279);
+            this.Result.Name = "Result";
+            this.Result.Size = new System.Drawing.Size(121, 21);
+            this.Result.TabIndex = 29;
+            // 
+            // OpposingTeam
+            // 
+            this.OpposingTeam.DataSource = this.teamInfoBindingSource1;
+            this.OpposingTeam.DisplayMember = "TeamName";
+            this.OpposingTeam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.OpposingTeam.FormattingEnabled = true;
+            this.OpposingTeam.Location = new System.Drawing.Point(78, 238);
+            this.OpposingTeam.Name = "OpposingTeam";
+            this.OpposingTeam.Size = new System.Drawing.Size(121, 21);
+            this.OpposingTeam.TabIndex = 28;
+            this.OpposingTeam.ValueMember = "TeamName";
+            // 
+            // teamInfoBindingSource
+            // 
+            this.teamInfoBindingSource.DataMember = "TeamInfo";
+            this.teamInfoBindingSource.DataSource = this.kiddEsportsData_View;
+            // 
+            // kiddEsportsData_View
+            // 
+            this.kiddEsportsData_View.DataSetName = "KiddEsportsData_View";
+            this.kiddEsportsData_View.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // GamePlayed
+            // 
+            this.GamePlayed.DataSource = this.gamePlayedBindingSource;
+            this.GamePlayed.DisplayMember = "GameName";
+            this.GamePlayed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GamePlayed.FormattingEnabled = true;
+            this.GamePlayed.Location = new System.Drawing.Point(78, 150);
+            this.GamePlayed.Name = "GamePlayed";
+            this.GamePlayed.Size = new System.Drawing.Size(121, 21);
+            this.GamePlayed.TabIndex = 27;
+            this.GamePlayed.ValueMember = "GameName";
+            // 
+            // gamePlayedBindingSource
+            // 
+            this.gamePlayedBindingSource.DataMember = "GamePlayed";
+            this.gamePlayedBindingSource.DataSource = this.kiddEsportsData_View;
+            // 
+            // Team
+            // 
+            this.Team.DataSource = this.teamInfoBindingSource;
+            this.Team.DisplayMember = "TeamName";
+            this.Team.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Team.FormattingEnabled = true;
+            this.Team.Location = new System.Drawing.Point(78, 193);
+            this.Team.Name = "Team";
+            this.Team.Size = new System.Drawing.Size(121, 21);
+            this.Team.TabIndex = 26;
+            this.Team.ValueMember = "TeamName";
+            // 
+            // EventName
+            // 
+            this.EventName.DataSource = this.eventBindingSource;
+            this.EventName.DisplayMember = "EventName";
+            this.EventName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.EventName.FormattingEnabled = true;
+            this.EventName.Location = new System.Drawing.Point(78, 110);
+            this.EventName.Name = "EventName";
+            this.EventName.Size = new System.Drawing.Size(121, 21);
+            this.EventName.TabIndex = 25;
+            this.EventName.ValueMember = "EventName";
+            // 
+            // eventBindingSource
+            // 
+            this.eventBindingSource.DataMember = "Event";
+            this.eventBindingSource.DataSource = this.kiddEsportsData_View;
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(45, 262);
+            this.label14.Location = new System.Drawing.Point(75, 262);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(37, 13);
             this.label14.TabIndex = 24;
             this.label14.Text = "Result";
             // 
-            // Resulttxt
-            // 
-            this.Resulttxt.Location = new System.Drawing.Point(48, 278);
-            this.Resulttxt.Name = "Resulttxt";
-            this.Resulttxt.Size = new System.Drawing.Size(200, 20);
-            this.Resulttxt.TabIndex = 23;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(45, 222);
+            this.label8.Location = new System.Drawing.Point(75, 222);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(82, 13);
             this.label8.TabIndex = 22;
@@ -275,7 +359,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(45, 177);
+            this.label7.Location = new System.Drawing.Point(75, 177);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(34, 13);
             this.label7.TabIndex = 21;
@@ -284,7 +368,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(45, 134);
+            this.label6.Location = new System.Drawing.Point(75, 134);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(70, 13);
             this.label6.TabIndex = 20;
@@ -293,7 +377,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(45, 90);
+            this.label5.Location = new System.Drawing.Point(75, 90);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 13);
             this.label5.TabIndex = 19;
@@ -309,27 +393,6 @@
             this.label4.TabIndex = 18;
             this.label4.Text = "Add New Result";
             // 
-            // GamePlayedtxt
-            // 
-            this.GamePlayedtxt.Location = new System.Drawing.Point(48, 148);
-            this.GamePlayedtxt.Name = "GamePlayedtxt";
-            this.GamePlayedtxt.Size = new System.Drawing.Size(200, 20);
-            this.GamePlayedtxt.TabIndex = 14;
-            // 
-            // Teamtxt
-            // 
-            this.Teamtxt.Location = new System.Drawing.Point(48, 193);
-            this.Teamtxt.Name = "Teamtxt";
-            this.Teamtxt.Size = new System.Drawing.Size(200, 20);
-            this.Teamtxt.TabIndex = 15;
-            // 
-            // OpposingTeamtxt
-            // 
-            this.OpposingTeamtxt.Location = new System.Drawing.Point(48, 238);
-            this.OpposingTeamtxt.Name = "OpposingTeamtxt";
-            this.OpposingTeamtxt.Size = new System.Drawing.Size(200, 20);
-            this.OpposingTeamtxt.TabIndex = 16;
-            // 
             // AddNewTeamBTN
             // 
             this.AddNewTeamBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -340,14 +403,6 @@
             this.AddNewTeamBTN.Text = "Add ";
             this.AddNewTeamBTN.UseVisualStyleBackColor = true;
             this.AddNewTeamBTN.Click += new System.EventHandler(this.AddNewTeamBTN_Click);
-            // 
-            // EventNametxt
-            // 
-            this.EventNametxt.BackColor = System.Drawing.Color.White;
-            this.EventNametxt.Location = new System.Drawing.Point(48, 106);
-            this.EventNametxt.Name = "EventNametxt";
-            this.EventNametxt.Size = new System.Drawing.Size(200, 20);
-            this.EventNametxt.TabIndex = 13;
             // 
             // DeleteBTN
             // 
@@ -378,41 +433,103 @@
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.IDCombo);
+            this.panel4.Controls.Add(this.ResultsCombo);
+            this.panel4.Controls.Add(this.OpposingTeamCombo);
+            this.panel4.Controls.Add(this.TeamNameCombo);
+            this.panel4.Controls.Add(this.GamePlayedCombo);
+            this.panel4.Controls.Add(this.EventNameCombo);
             this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.ReturnID);
             this.panel4.Controls.Add(this.UpdateBTN);
             this.panel4.Controls.Add(this.SearchBTN);
             this.panel4.Controls.Add(this.SearchTxtResults);
             this.panel4.Controls.Add(this.label15);
-            this.panel4.Controls.Add(this.ReturnResult);
             this.panel4.Controls.Add(this.label16);
             this.panel4.Controls.Add(this.label17);
             this.panel4.Controls.Add(this.label18);
             this.panel4.Controls.Add(this.label19);
-            this.panel4.Controls.Add(this.ReturnGamePlayed);
-            this.panel4.Controls.Add(this.ReturnTeam);
-            this.panel4.Controls.Add(this.ReturnOpposingTeam);
-            this.panel4.Controls.Add(this.ReturnEventName);
             this.panel4.Location = new System.Drawing.Point(6, 342);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(294, 355);
             this.panel4.TabIndex = 29;
             // 
+            // IDCombo
+            // 
+            this.IDCombo.DataSource = this.teamResultsBindingSource;
+            this.IDCombo.DisplayMember = "ID";
+            this.IDCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.IDCombo.FormattingEnabled = true;
+            this.IDCombo.Location = new System.Drawing.Point(64, 317);
+            this.IDCombo.Name = "IDCombo";
+            this.IDCombo.Size = new System.Drawing.Size(63, 21);
+            this.IDCombo.TabIndex = 43;
+            this.IDCombo.ValueMember = "ID";
+            // 
+            // ResultsCombo
+            // 
+            this.ResultsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ResultsCombo.FormattingEnabled = true;
+            this.ResultsCombo.Location = new System.Drawing.Point(48, 278);
+            this.ResultsCombo.Name = "ResultsCombo";
+            this.ResultsCombo.Size = new System.Drawing.Size(79, 21);
+            this.ResultsCombo.TabIndex = 42;
+            // 
+            // OpposingTeamCombo
+            // 
+            this.OpposingTeamCombo.DataSource = this.teamResultsBindingSource;
+            this.OpposingTeamCombo.DisplayMember = "OpposingTeam";
+            this.OpposingTeamCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.OpposingTeamCombo.FormattingEnabled = true;
+            this.OpposingTeamCombo.Location = new System.Drawing.Point(48, 238);
+            this.OpposingTeamCombo.Name = "OpposingTeamCombo";
+            this.OpposingTeamCombo.Size = new System.Drawing.Size(121, 21);
+            this.OpposingTeamCombo.TabIndex = 41;
+            this.OpposingTeamCombo.ValueMember = "OpposingTeam";
+            // 
+            // TeamNameCombo
+            // 
+            this.TeamNameCombo.DataSource = this.teamResultsBindingSource;
+            this.TeamNameCombo.DisplayMember = "Team";
+            this.TeamNameCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TeamNameCombo.FormattingEnabled = true;
+            this.TeamNameCombo.Location = new System.Drawing.Point(48, 193);
+            this.TeamNameCombo.Name = "TeamNameCombo";
+            this.TeamNameCombo.Size = new System.Drawing.Size(121, 21);
+            this.TeamNameCombo.TabIndex = 40;
+            this.TeamNameCombo.ValueMember = "Team";
+            // 
+            // GamePlayedCombo
+            // 
+            this.GamePlayedCombo.DataSource = this.teamResultsBindingSource;
+            this.GamePlayedCombo.DisplayMember = "GamePlayed";
+            this.GamePlayedCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GamePlayedCombo.FormattingEnabled = true;
+            this.GamePlayedCombo.Location = new System.Drawing.Point(48, 154);
+            this.GamePlayedCombo.Name = "GamePlayedCombo";
+            this.GamePlayedCombo.Size = new System.Drawing.Size(121, 21);
+            this.GamePlayedCombo.TabIndex = 39;
+            this.GamePlayedCombo.ValueMember = "GamePlayed";
+            // 
+            // EventNameCombo
+            // 
+            this.EventNameCombo.DataSource = this.teamResultsBindingSource;
+            this.EventNameCombo.DisplayMember = "EventName";
+            this.EventNameCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.EventNameCombo.FormattingEnabled = true;
+            this.EventNameCombo.Location = new System.Drawing.Point(48, 107);
+            this.EventNameCombo.Name = "EventNameCombo";
+            this.EventNameCombo.Size = new System.Drawing.Size(121, 21);
+            this.EventNameCombo.TabIndex = 38;
+            this.EventNameCombo.ValueMember = "EventName";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(61, 321);
+            this.label3.Location = new System.Drawing.Point(40, 321);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(18, 13);
             this.label3.TabIndex = 37;
             this.label3.Text = "ID";
-            // 
-            // ReturnID
-            // 
-            this.ReturnID.Location = new System.Drawing.Point(89, 318);
-            this.ReturnID.Name = "ReturnID";
-            this.ReturnID.Size = new System.Drawing.Size(59, 20);
-            this.ReturnID.TabIndex = 36;
             // 
             // UpdateBTN
             // 
@@ -450,13 +567,6 @@
             this.label15.TabIndex = 24;
             this.label15.Text = "Result";
             // 
-            // ReturnResult
-            // 
-            this.ReturnResult.Location = new System.Drawing.Point(48, 278);
-            this.ReturnResult.Name = "ReturnResult";
-            this.ReturnResult.Size = new System.Drawing.Size(200, 20);
-            this.ReturnResult.TabIndex = 23;
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -493,34 +603,10 @@
             this.label19.TabIndex = 19;
             this.label19.Text = "Event Name";
             // 
-            // ReturnGamePlayed
+            // teamInfoBindingSource1
             // 
-            this.ReturnGamePlayed.Location = new System.Drawing.Point(48, 148);
-            this.ReturnGamePlayed.Name = "ReturnGamePlayed";
-            this.ReturnGamePlayed.Size = new System.Drawing.Size(200, 20);
-            this.ReturnGamePlayed.TabIndex = 14;
-            // 
-            // ReturnTeam
-            // 
-            this.ReturnTeam.Location = new System.Drawing.Point(48, 193);
-            this.ReturnTeam.Name = "ReturnTeam";
-            this.ReturnTeam.Size = new System.Drawing.Size(200, 20);
-            this.ReturnTeam.TabIndex = 15;
-            // 
-            // ReturnOpposingTeam
-            // 
-            this.ReturnOpposingTeam.Location = new System.Drawing.Point(48, 238);
-            this.ReturnOpposingTeam.Name = "ReturnOpposingTeam";
-            this.ReturnOpposingTeam.Size = new System.Drawing.Size(200, 20);
-            this.ReturnOpposingTeam.TabIndex = 16;
-            // 
-            // ReturnEventName
-            // 
-            this.ReturnEventName.BackColor = System.Drawing.Color.White;
-            this.ReturnEventName.Location = new System.Drawing.Point(48, 106);
-            this.ReturnEventName.Name = "ReturnEventName";
-            this.ReturnEventName.Size = new System.Drawing.Size(200, 20);
-            this.ReturnEventName.TabIndex = 13;
+            this.teamInfoBindingSource1.DataMember = "TeamInfo";
+            this.teamInfoBindingSource1.DataSource = this.kiddEsportsData_View;
             // 
             // SortByEventResults
             // 
@@ -572,6 +658,18 @@
             this.ExportTeamName.UseVisualStyleBackColor = true;
             this.ExportTeamName.Click += new System.EventHandler(this.ExportTeamName_Click);
             // 
+            // eventTableAdapter
+            // 
+            this.eventTableAdapter.ClearBeforeFill = true;
+            // 
+            // gamePlayedTableAdapter
+            // 
+            this.gamePlayedTableAdapter.ClearBeforeFill = true;
+            // 
+            // teamInfoTableAdapter
+            // 
+            this.teamInfoTableAdapter.ClearBeforeFill = true;
+            // 
             // Results
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -603,8 +701,13 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData_View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gamePlayedBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -635,36 +738,44 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox GamePlayedtxt;
-        private System.Windows.Forms.TextBox Teamtxt;
-        private System.Windows.Forms.TextBox OpposingTeamtxt;
         private System.Windows.Forms.Button AddNewTeamBTN;
-        private System.Windows.Forms.TextBox EventNametxt;
         private System.Windows.Forms.Button DeleteBTN;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox DeleteID;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox Resulttxt;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button SearchBTN;
         private System.Windows.Forms.TextBox SearchTxtResults;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox ReturnResult;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox ReturnGamePlayed;
-        private System.Windows.Forms.TextBox ReturnTeam;
-        private System.Windows.Forms.TextBox ReturnOpposingTeam;
-        private System.Windows.Forms.TextBox ReturnEventName;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox ReturnID;
         private System.Windows.Forms.Button UpdateBTN;
         private System.Windows.Forms.Button SortByEventResults;
         private System.Windows.Forms.Button SortByTeamNameResults;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button ExportBTNResults;
         private System.Windows.Forms.Button ExportTeamName;
+        private System.Windows.Forms.ComboBox OpposingTeam;
+        private System.Windows.Forms.ComboBox GamePlayed;
+        private System.Windows.Forms.ComboBox Team;
+        private System.Windows.Forms.ComboBox EventName;
+        private ICTPRG430AT2.KiddEsportsData_View kiddEsportsData_View;
+        private System.Windows.Forms.BindingSource eventBindingSource;
+        private ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.EventTableAdapter eventTableAdapter;
+        private System.Windows.Forms.BindingSource gamePlayedBindingSource;
+        private ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.GamePlayedTableAdapter gamePlayedTableAdapter;
+        private System.Windows.Forms.BindingSource teamInfoBindingSource;
+        private ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.TeamInfoTableAdapter teamInfoTableAdapter;
+        private System.Windows.Forms.ComboBox Result;
+        private System.Windows.Forms.ComboBox ResultsCombo;
+        private System.Windows.Forms.ComboBox OpposingTeamCombo;
+        private System.Windows.Forms.ComboBox TeamNameCombo;
+        private System.Windows.Forms.ComboBox GamePlayedCombo;
+        private System.Windows.Forms.ComboBox EventNameCombo;
+        private System.Windows.Forms.BindingSource teamInfoBindingSource1;
+        private System.Windows.Forms.ComboBox IDCombo;
     }
 }

@@ -6,9 +6,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace ClassLibrary
 {
@@ -80,6 +82,13 @@ namespace ClassLibrary
             string primaryContact = EventLocationTXT.Text;
             string contactEmail = EventDateTXT.Text;
 
+            if (string.IsNullOrWhiteSpace(teamName) ||
+            string.IsNullOrWhiteSpace(primaryContact) ||
+                string.IsNullOrWhiteSpace(contactEmail) )
+            {
+                MessageBox.Show("Please fill in all fields before adding a new team.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method early
+            }
             // Call the AddEventInfo method in DataMapper to add the new event information
             Program.DataMapper.AddEventInfo(teamName, primaryContact, contactEmail);
             // Refresh the data in the event table
@@ -95,10 +104,25 @@ namespace ClassLibrary
         private void DeteleBTN_Click(object sender, EventArgs e)
         {
             // Get the event ID to delete from the text box
-            int id = Convert.ToInt32(DeleteID.Text);
+           
+            if (string.IsNullOrWhiteSpace(DeleteID.Text))
+            {
+                MessageBox.Show("Please provide an Event ID to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method early
+            }
+
+            // Get the event ID, name, location, and date from text boxes
+            int eventIdToUpdate;
+            if (!int.TryParse(DeleteID.Text, out eventIdToUpdate))
+            {
+                MessageBox.Show("Invalid Event ID format. Please enter a valid integer value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method early
+            }
 
             // Call the DeleteEventInfo method in DataMapper to delete the event information
-            Program.DataMapper.DeleteEventInfo(id);
+
+            Program.DataMapper.DeleteEventInfo(eventIdToUpdate);
+
             // Refresh the data in the event table
             this.eventTableAdapter.Fill(this.kiddEsportsData_View.Event);
 
@@ -109,7 +133,33 @@ namespace ClassLibrary
         private void UpdateBTN_Click_1(object sender, EventArgs e)
         {
             // Get the event ID, name, location, and date from text boxes
-            int eventIdToUpdate = Convert.ToInt32(ReturnID.Text);
+           
+             if (string.IsNullOrWhiteSpace(ReturnID.Text))
+            {
+                MessageBox.Show("Please provide an Event ID to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method early
+            }
+
+            // Get the event ID, name, location, and date from text boxes
+            int eventIdToUpdate;
+            if (!int.TryParse(ReturnID.Text, out eventIdToUpdate))
+            {
+                MessageBox.Show("Invalid Event ID format. Please enter a valid integer value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method early
+            }
+            string Name = ReturnName.Text.Trim();
+            string Location = ReturnLocation.Text.Trim();
+            string Date = ReturnDate.Text.Trim();
+           
+
+            if (string.IsNullOrWhiteSpace(Name) ||
+            string.IsNullOrWhiteSpace(Location) ||
+                string.IsNullOrWhiteSpace(Date))
+            {
+                MessageBox.Show("Please fill in all fields before adding a new team.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method early
+            }
+
             EventDTO updatedEventData = new EventDTO
             {
                 ID = eventIdToUpdate,

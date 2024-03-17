@@ -21,6 +21,11 @@ namespace ClassLibrary
         {
             // Initialize form components
             InitializeComponent();
+            GameType.Items.Add("Solos"); // Add Game Type Options
+            GameType.Items.Add("Duos");
+            GameType.Items.Add("Squads");
+            // Set default selection
+            GameType.SelectedIndex = 0;
         }
 
         // Form Load event handler
@@ -55,13 +60,42 @@ namespace ClassLibrary
             // Generate a new game ID
             int ID = GetNewGameID();
             // Retrieve the selected game type
-            string gameType = NewGameTypeDropdown.Text;
+            string gameType = GameType.SelectedItem != null ? GameType.SelectedItem.ToString() : string.Empty;
             // Retrieve the entered game name
             string gameName = NewGameNameTXT.Text;
+            string EventName = NewGameEventDropdown.SelectedValue != null ? NewGameEventDropdown.SelectedItem.ToString() : string.Empty;
+
+            // Error Handling
+
+            if (string.IsNullOrWhiteSpace(gameType) ||
+                string.IsNullOrWhiteSpace(gameName) ||
+                string.IsNullOrWhiteSpace(EventName)) // If Empty
+            {
+                MessageBox.Show("Please fill in all fields before adding a new team.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; 
+            }
+
+            if (TeamComboBox.SelectedValue == OpposingTeamComboBox.SelectedValue)  // If same teams versing
+            {
+                MessageBox.Show("Competing Teams Can Not Be The Same.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (TeamComboBox.SelectedValue != WinnerComboBox.SelectedValue) // if winner not competing
+            {
+                if (OpposingTeamComboBox.SelectedValue != WinnerComboBox.SelectedValue)
+                {
+                    MessageBox.Show("Winner is not competing!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             // Add the new game information to the database
             Program.DataMapper.AddGameInfo(gameName, gameType);
             // Refresh the GamesPlayed DataGridView to reflect the changes
             this.gamesPlayedTableAdapter.Fill(this.kiddEsportsData.GamePlayed);
+
+          
 
             // Retrieve the selected teams and winner, and the event name
             string team = TeamComboBox.SelectedValue != null ? TeamComboBox.SelectedValue.ToString() : string.Empty;
@@ -72,6 +106,7 @@ namespace ClassLibrary
             string opposingresult = "Draw";
             int points = 0; // Initialize points for the winning team
             int opposingpoints = 0; // Initialize points for the opposing team
+
             if (DrawCheckBox.Checked)
             {
                 result = "Draw";
@@ -87,15 +122,17 @@ namespace ClassLibrary
                     result = "Win";
                     opposingresult = "Loss";
                     points = 2; // Winning team gets 2 points
+                    opposingpoints = -2;
                 }
                 else if (opposingTeam == winner)
                 {
                     result = "Loss";
-                    opposingpoints = 2; // Opposing team gets 2 points
+                    opposingpoints = -2; // Opposing team gets 2 points
                     opposingresult = "Win";
                 }
             }
 
+            
             // Add the game result to the database for both teams
             Program.DataMapper.AddGameResult(team, opposingTeam, result, eventName, gameName);
             Program.DataMapper.AddGameResult(opposingTeam, team, opposingresult, eventName, gameName);
@@ -110,7 +147,7 @@ namespace ClassLibrary
             this.teamInfoTableAdapter.Fill(this.kiddEsportsData.TeamInfo);
 
             // Clear input fields after updating team information
-            NewGameTypeDropdown.ResetText();
+           
             NewGameNameTXT.ResetText();
             TeamComboBox.SelectedIndex = -1;
             OpposingTeamComboBox.SelectedIndex = -1;
@@ -125,8 +162,20 @@ namespace ClassLibrary
             var updateIdString = UpdateIDCombobox.SelectedValue != null ? UpdateIDCombobox.SelectedValue.ToString() : string.Empty;
 
 
+            string GameName = UpdateGameNameTXT.Text;
+            string GameType = UpdateGameTypeTXT.Text;
+           
+
+            if (string.IsNullOrWhiteSpace(GameName) ||
+            string.IsNullOrWhiteSpace(GameType))
+            {
+                MessageBox.Show("Please fill in all fields before adding a new team.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method early
+            }
+
             // Retrieve the game ID to update
             int.TryParse(updateIdString, out gameIdToUpdate);
+
             // Create a GamesPlayedDTO object with updated game information
             GamesPlayedDTO updatedGameData = new GamesPlayedDTO
             {
@@ -149,11 +198,13 @@ namespace ClassLibrary
             int.TryParse(DeleteGameID.Text, out int id);
 
             if (id == 0) return;
-
+            
+          
             // Delete the game information from the database
             Program.DataMapper.DeleteGamesPlayedInfo(id);
             // Refresh the GamesPlayed DataGridView to reflect the changes
             this.gamesPlayedTableAdapter.Fill(this.kiddEsportsData.GamePlayed);
+            DeleteGameID.ResetText();
         }
 
         // Method to get a new game ID

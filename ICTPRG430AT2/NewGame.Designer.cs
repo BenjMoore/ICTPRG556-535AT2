@@ -61,9 +61,9 @@
             this.DrawCheckBox = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.NewGameTypeDropdown = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.NewGameEventDropdown = new System.Windows.Forms.ComboBox();
+            this.eventsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.NewGameNameTXT = new System.Windows.Forms.TextBox();
             this.WinnerComboBox = new System.Windows.Forms.ComboBox();
@@ -90,7 +90,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.GameDeleteBTN = new System.Windows.Forms.Button();
             this.eventBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.eventsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.GameType = new System.Windows.Forms.ComboBox();
+            this.teamInfoBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource)).BeginInit();
@@ -103,18 +104,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.gamePlayedBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gamesPlayedBindingSource1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamResultsBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eventsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // TeamComboBox
             // 
-            this.TeamComboBox.DataSource = this.teamInfoBindingSource1;
+            this.TeamComboBox.DataSource = this.teamInfoBindingSource2;
             this.TeamComboBox.DisplayMember = "TeamName";
+            this.TeamComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TeamComboBox.FormattingEnabled = true;
             this.TeamComboBox.Location = new System.Drawing.Point(168, 83);
             this.TeamComboBox.Name = "TeamComboBox";
@@ -136,6 +139,7 @@
             // 
             this.OpposingTeamComboBox.DataSource = this.teamInfoBindingSource;
             this.OpposingTeamComboBox.DisplayMember = "TeamName";
+            this.OpposingTeamComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.OpposingTeamComboBox.FormattingEnabled = true;
             this.OpposingTeamComboBox.Location = new System.Drawing.Point(697, 83);
             this.OpposingTeamComboBox.Name = "OpposingTeamComboBox";
@@ -333,10 +337,10 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.GameType);
             this.panel2.Controls.Add(this.DrawCheckBox);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.NewGameTypeDropdown);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.NewGameEventDropdown);
             this.panel2.Controls.Add(this.label8);
@@ -379,13 +383,6 @@
             this.label7.TabIndex = 21;
             this.label7.Text = "Game Type";
             // 
-            // NewGameTypeDropdown
-            // 
-            this.NewGameTypeDropdown.Location = new System.Drawing.Point(26, 158);
-            this.NewGameTypeDropdown.Name = "NewGameTypeDropdown";
-            this.NewGameTypeDropdown.Size = new System.Drawing.Size(158, 20);
-            this.NewGameTypeDropdown.TabIndex = 20;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -400,12 +397,18 @@
             // 
             this.NewGameEventDropdown.DataSource = this.eventsBindingSource1;
             this.NewGameEventDropdown.DisplayMember = "EventName";
+            this.NewGameEventDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.NewGameEventDropdown.FormattingEnabled = true;
             this.NewGameEventDropdown.Location = new System.Drawing.Point(26, 58);
             this.NewGameEventDropdown.Name = "NewGameEventDropdown";
             this.NewGameEventDropdown.Size = new System.Drawing.Size(158, 21);
             this.NewGameEventDropdown.TabIndex = 18;
             this.NewGameEventDropdown.ValueMember = "EventName";
+            // 
+            // eventsBindingSource1
+            // 
+            this.eventsBindingSource1.DataMember = "Events";
+            this.eventsBindingSource1.DataSource = this.kiddEsportsDataBindingSource;
             // 
             // label8
             // 
@@ -426,8 +429,9 @@
             // 
             // WinnerComboBox
             // 
-            this.WinnerComboBox.DataSource = this.teamInfoBindingSource;
+            this.WinnerComboBox.DataSource = this.teamInfoBindingSource1;
             this.WinnerComboBox.DisplayMember = "TeamName";
+            this.WinnerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.WinnerComboBox.FormattingEnabled = true;
             this.WinnerComboBox.Location = new System.Drawing.Point(26, 213);
             this.WinnerComboBox.Name = "WinnerComboBox";
@@ -579,6 +583,7 @@
             // 
             this.UpdateIDCombobox.DataSource = this.gamePlayedBindingSource;
             this.UpdateIDCombobox.DisplayMember = "ID";
+            this.UpdateIDCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UpdateIDCombobox.FormattingEnabled = true;
             this.UpdateIDCombobox.Location = new System.Drawing.Point(33, 59);
             this.UpdateIDCombobox.Name = "UpdateIDCombobox";
@@ -628,10 +633,19 @@
             this.eventBindingSource1.DataMember = "Event";
             this.eventBindingSource1.DataSource = this.kiddEsportsDataBindingSource;
             // 
-            // eventsBindingSource1
+            // GameType
             // 
-            this.eventsBindingSource1.DataMember = "Events";
-            this.eventsBindingSource1.DataSource = this.kiddEsportsDataBindingSource;
+            this.GameType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GameType.FormattingEnabled = true;
+            this.GameType.Location = new System.Drawing.Point(25, 163);
+            this.GameType.Name = "GameType";
+            this.GameType.Size = new System.Drawing.Size(90, 21);
+            this.GameType.TabIndex = 24;
+            // 
+            // teamInfoBindingSource2
+            // 
+            this.teamInfoBindingSource2.DataMember = "TeamInfo";
+            this.teamInfoBindingSource2.DataSource = this.kiddEsportsDataBindingSource;
             // 
             // NewGame
             // 
@@ -668,13 +682,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.gamesPlayedBindingSource1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventsBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamResultsBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eventsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -736,7 +751,6 @@
         private System.Windows.Forms.Button UpdateBTN;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox NewGameTypeDropdown;
         private System.Windows.Forms.TextBox DeleteGameID;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button GameDeleteBTN;
@@ -744,5 +758,7 @@
         private System.Windows.Forms.CheckBox DrawCheckBox;
         private System.Windows.Forms.BindingSource eventBindingSource1;
         private System.Windows.Forms.BindingSource eventsBindingSource1;
+        private System.Windows.Forms.ComboBox GameType;
+        private System.Windows.Forms.BindingSource teamInfoBindingSource2;
     }
 }
