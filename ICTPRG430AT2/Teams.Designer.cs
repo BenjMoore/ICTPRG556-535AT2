@@ -31,11 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.Homebtn = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.teamNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.primaryContactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactEmailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pointsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.teamInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.kiddEsportsDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.kiddEsportsData = new ClassLibrary.KiddEsportsDataSet();
@@ -78,6 +73,11 @@
             this.ReturnEmail = new System.Windows.Forms.TextBox();
             this.ReturnContact = new System.Windows.Forms.TextBox();
             this.ExportByPoints = new System.Windows.Forms.Button();
+            this.TeamNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrimaryContactColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ContactEmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PointsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsDataBindingSource)).BeginInit();
@@ -104,11 +104,11 @@
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.teamNameDataGridViewTextBoxColumn,
-            this.primaryContactDataGridViewTextBoxColumn,
-            this.contactEmailDataGridViewTextBoxColumn,
-            this.pointsDataGridViewTextBoxColumn,
-            this.iDDataGridViewTextBoxColumn});
+            this.TeamNameColumn,
+            this.PrimaryContactColumn,
+            this.ContactEmailColumn,
+            this.PointsColumn,
+            this.IDColumn});
             this.dataGridView1.DataSource = this.teamInfoBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
@@ -116,41 +116,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(543, 524);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // teamNameDataGridViewTextBoxColumn
-            // 
-            this.teamNameDataGridViewTextBoxColumn.DataPropertyName = "TeamName";
-            this.teamNameDataGridViewTextBoxColumn.HeaderText = "TeamName";
-            this.teamNameDataGridViewTextBoxColumn.Name = "teamNameDataGridViewTextBoxColumn";
-            this.teamNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // primaryContactDataGridViewTextBoxColumn
-            // 
-            this.primaryContactDataGridViewTextBoxColumn.DataPropertyName = "PrimaryContact";
-            this.primaryContactDataGridViewTextBoxColumn.HeaderText = "PrimaryContact";
-            this.primaryContactDataGridViewTextBoxColumn.Name = "primaryContactDataGridViewTextBoxColumn";
-            this.primaryContactDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // contactEmailDataGridViewTextBoxColumn
-            // 
-            this.contactEmailDataGridViewTextBoxColumn.DataPropertyName = "ContactEmail";
-            this.contactEmailDataGridViewTextBoxColumn.HeaderText = "ContactEmail";
-            this.contactEmailDataGridViewTextBoxColumn.Name = "contactEmailDataGridViewTextBoxColumn";
-            this.contactEmailDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // pointsDataGridViewTextBoxColumn
-            // 
-            this.pointsDataGridViewTextBoxColumn.DataPropertyName = "Points";
-            this.pointsDataGridViewTextBoxColumn.HeaderText = "Points";
-            this.pointsDataGridViewTextBoxColumn.Name = "pointsDataGridViewTextBoxColumn";
-            this.pointsDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // teamInfoBindingSource
             // 
@@ -525,6 +490,37 @@
             this.ExportByPoints.UseVisualStyleBackColor = true;
             this.ExportByPoints.Click += new System.EventHandler(this.ExportByPoints_Click);
             // 
+            // TeamNameColumn
+            // 
+            this.TeamNameColumn.DataPropertyName = "TeamName";
+            this.TeamNameColumn.HeaderText = "TeamName";
+            this.TeamNameColumn.Name = "TeamNameColumn";
+            // 
+            // PrimaryContactColumn
+            // 
+            this.PrimaryContactColumn.DataPropertyName = "PrimaryContact";
+            this.PrimaryContactColumn.HeaderText = "PrimaryContact";
+            this.PrimaryContactColumn.Name = "PrimaryContactColumn";
+            // 
+            // ContactEmailColumn
+            // 
+            this.ContactEmailColumn.DataPropertyName = "ContactEmail";
+            this.ContactEmailColumn.HeaderText = "ContactEmail";
+            this.ContactEmailColumn.Name = "ContactEmailColumn";
+            // 
+            // PointsColumn
+            // 
+            this.PointsColumn.DataPropertyName = "Points";
+            this.PointsColumn.HeaderText = "Points";
+            this.PointsColumn.Name = "PointsColumn";
+            // 
+            // IDColumn
+            // 
+            this.IDColumn.DataPropertyName = "ID";
+            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.Name = "IDColumn";
+            this.IDColumn.ReadOnly = true;
+            // 
             // Teams
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -575,11 +571,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.BindingSource teamInfoBindingSource;
         private ClassLibrary.KiddEsportsDataSetTableAdapters.TeamInfoTableAdapter teamInfoTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn teamNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn primaryContactDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contactEmailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pointsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
@@ -617,5 +608,10 @@
         private System.Windows.Forms.TextBox ReturnName;
         private System.Windows.Forms.Button ExportByPoints;
         private System.Windows.Forms.Button UpdateBTN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TeamNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrimaryContactColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ContactEmailColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PointsColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
     }
 }

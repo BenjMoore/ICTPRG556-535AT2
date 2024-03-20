@@ -26,6 +26,7 @@ namespace ClassLibrary
             GameType.Items.Add("Squads");
             // Set default selection
             GameType.SelectedIndex = 0;
+            dataGridView1.CellClick += dataGridView1_CellClick;
         }
 
         // Form Load event handler
@@ -53,7 +54,21 @@ namespace ClassLibrary
             // Show the Menu form
             form2.Show();
         }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if a row is selected
+            if (e.RowIndex >= 0)
+            {
+                // Get the selected row
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
+                // Populate the update section with data from the selected row
+                UpdateIDCombobox.SelectedValue = row.Cells["IDColumn"].Value.ToString();
+                UpdateGameNameTXT.Text = row.Cells["GameNameColumn"].Value.ToString();
+                UpdateGameTypeTXT.Text = row.Cells["GameTypeColumn"].Value.ToString();
+              
+            }
+        }
         // Button click event handler for adding a new game
         private void NewGameBTN_Click(object sender, EventArgs e)
         {

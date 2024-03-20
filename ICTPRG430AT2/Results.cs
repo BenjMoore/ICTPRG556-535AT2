@@ -21,14 +21,13 @@ namespace ClassLibrary
         {
             InitializeComponent();
 
-            ResultsCombo.Items.Add("Win"); // Add Win / Loss Options
-            ResultsCombo.Items.Add("Loss");
+            
+            //Result.Items.Add("Win"); // Add Win / Loss Options
+          //  Result.Items.Add("Loss");
+            //Result.Items.Add("Draw");
             // Set default selection
-            ResultsCombo.SelectedIndex = 0;
-            Result.Items.Add("Win"); // Add Win / Loss Options
-            Result.Items.Add("Loss");
-            // Set default selection
-            Result.SelectedIndex = 0;
+           // Result.SelectedIndex = 0;
+            dataGridView1.CellClick += dataGridView1_CellClick;
         }
 
         private void Results_Load(object sender, EventArgs e)
@@ -95,7 +94,7 @@ namespace ClassLibrary
             // For example:
             dataGridView1.DataSource = sortedTeams;
         }
-
+        /*
         private void AddNewTeamBTN_Click(object sender, EventArgs e)
         {
             int points = 0;
@@ -138,9 +137,27 @@ namespace ClassLibrary
             // Refresh the team results table
             this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
         }
+        */
 
 
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if a row is selected
+            if (e.RowIndex >= 0)
+            {
+                // Get the selected row
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
+                // Populate the update section with data from the selected row
+                IDTXT.Text = row.Cells["IDColumn"].Value.ToString();
+                EventNameTXT.Text = row.Cells["EventNameColumn"].Value.ToString();
+                GamePlayedTXT.Text = row.Cells["GamePlayedColumn"].Value.ToString();
+                TeamTXT.Text = row.Cells["TeamColumn"].Value.ToString();
+                OpposingTeamTXT.Text = row.Cells["OpposingTeamColumn"].Value.ToString();
+                ResultTXT.Text = row.Cells["ResultColumn"].Value.ToString();
+
+            }
+        }
 
         private void DeleteBTN_Click(object sender, EventArgs e)
         {
@@ -160,31 +177,38 @@ namespace ClassLibrary
 
         private void UpdateBTN_Click(object sender, EventArgs e)
         {
-
-            string resultIdToUpdate = IDCombo.SelectedValue != null ? IDCombo.SelectedValue.ToString() : string.Empty;
-            int resultID = Convert.ToInt32(resultIdToUpdate);
-
-            // Error Handling 
-            string eventName = EventNameCombo.SelectedValue != null ? EventNameCombo.SelectedValue.ToString() : string.Empty;
-            string gamePlayed = GamePlayedCombo.SelectedValue != null ? GamePlayedCombo.SelectedValue.ToString() : string.Empty;
-            string team = TeamNameCombo.SelectedValue != null ? TeamNameCombo.SelectedValue.ToString() : string.Empty;
-          
-            string opposingTeam = OpposingTeamCombo.SelectedValue != null ? OpposingTeamCombo.SelectedValue.ToString() : string.Empty;
-            string result = ResultsCombo.SelectedItem != null ? ResultsCombo.SelectedItem.ToString() : string.Empty;
-
-            ResultDTO updatedResultData = new ResultDTO
+            try
             {
-                ID = resultID,
-                EventName = eventName,
-                GamePlayed = gamePlayed,
-                Team = team,
-                OpposingTeam = opposingTeam,
-                Result = result
-            };           
-           
-            // Call the SaveUpdatedResultInfo method to update the result information
-            Program.DataMapper.SaveUpdatedResultInfo(updatedResultData);
-            this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
+                string resultIdToUpdate = IDTXT.Text != null ? IDTXT.Text.ToString() : string.Empty;
+                int resultID = Convert.ToInt32(resultIdToUpdate);
+
+                // Error Handling 
+                string eventName = EventNameTXT.Text != null ? EventNameTXT.Text.ToString() : string.Empty;
+                string gamePlayed = GamePlayedTXT.Text != null ? GamePlayedTXT.Text.ToString() : string.Empty;
+                string team = TeamTXT.Text != null ? TeamTXT.Text.ToString() : string.Empty;
+
+                string opposingTeam = OpposingTeamTXT.Text != null ? OpposingTeamTXT.Text.ToString() : string.Empty;
+                string result = ResultTXT.Text != null ? ResultTXT.Text.ToString() : string.Empty;
+
+                ResultDTO updatedResultData = new ResultDTO
+                {
+                    ID = resultID,
+                    EventName = eventName,
+                    GamePlayed = gamePlayed,
+                    Team = team,
+                    OpposingTeam = opposingTeam,
+                    Result = result
+                };
+
+                // Call the SaveUpdatedResultInfo method to update the result information
+                Program.DataMapper.SaveUpdatedResultInfo(updatedResultData);
+                this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Error: Wrong Input, Ensure input is a whole number", $"Error: {ex}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         private void SearchBTN_Click(object sender, EventArgs e)

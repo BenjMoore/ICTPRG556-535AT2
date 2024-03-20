@@ -23,6 +23,7 @@ namespace ClassLibrary
         public Event()
         {
             InitializeComponent();
+            dataGridView1.CellClick += dataGridView1_CellClick;
         }
 
         // Event handler for the form load event
@@ -187,6 +188,22 @@ namespace ClassLibrary
 
             this.eventTableAdapter.Fill(this.kiddEsportsData_View.Event);
 
+        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if a row is selected
+            if (e.RowIndex >= 0)
+            {
+                // Get the selected row
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                // Populate the update section with data from the selected row
+                ReturnID.Text = row.Cells["IDColumn"].Value.ToString();
+                ReturnName.Text = row.Cells["EventNameColumn"].Value.ToString();
+                ReturnLocation.Text = row.Cells["EventLocationColumn"].Value.ToString();
+                ReturnDate.Text = row.Cells["EventDateColumn"].Value.ToString();
+               
+            }
         }
 
         private void SearchBTN_Click(object sender, EventArgs e)

@@ -30,8 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.TeamComboBox = new System.Windows.Forms.ComboBox();
-            this.teamInfoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.teamInfoBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.kiddEsportsDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.kiddEsportsData = new ClassLibrary.KiddEsportsDataSet();
+            this.teamInfoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.OpposingTeamComboBox = new System.Windows.Forms.ComboBox();
             this.teamInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
@@ -40,7 +42,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.gamesPlayedBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gamesPlayedTableAdapter = new ClassLibrary.KiddEsportsDataSetTableAdapters.GamePlayedTableAdapter();
-            this.kiddEsportsDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.eventsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.eventsTableAdapter = new ClassLibrary.KiddEsportsDataSetTableAdapters.EventsTableAdapter();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -49,15 +50,13 @@
             this.pointsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.gameNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gameTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gamePlayedBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gamesPlayedBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.teamInfoTableAdapter = new ClassLibrary.KiddEsportsDataSetTableAdapters.TeamInfoTableAdapter();
             this.button4 = new System.Windows.Forms.Button();
             this.NewGameBTN = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.GameType = new System.Windows.Forms.ComboBox();
             this.DrawCheckBox = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -90,13 +89,15 @@
             this.label13 = new System.Windows.Forms.Label();
             this.GameDeleteBTN = new System.Windows.Forms.Button();
             this.eventBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.GameType = new System.Windows.Forms.ComboBox();
-            this.teamInfoBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource1)).BeginInit();
+            this.GameNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GameTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsDataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gamesPlayedBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsDataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventsBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -110,7 +111,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.teamResultsBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // TeamComboBox
@@ -125,15 +125,25 @@
             this.TeamComboBox.TabIndex = 0;
             this.TeamComboBox.ValueMember = "TeamName";
             // 
-            // teamInfoBindingSource1
+            // teamInfoBindingSource2
             // 
-            this.teamInfoBindingSource1.DataMember = "TeamInfo";
-            this.teamInfoBindingSource1.DataSource = this.kiddEsportsData;
+            this.teamInfoBindingSource2.DataMember = "TeamInfo";
+            this.teamInfoBindingSource2.DataSource = this.kiddEsportsDataBindingSource;
+            // 
+            // kiddEsportsDataBindingSource
+            // 
+            this.kiddEsportsDataBindingSource.DataSource = this.kiddEsportsData;
+            this.kiddEsportsDataBindingSource.Position = 0;
             // 
             // kiddEsportsData
             // 
             this.kiddEsportsData.DataSetName = "KiddEsportsData";
             this.kiddEsportsData.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // teamInfoBindingSource1
+            // 
+            this.teamInfoBindingSource1.DataMember = "TeamInfo";
+            this.teamInfoBindingSource1.DataSource = this.kiddEsportsData;
             // 
             // OpposingTeamComboBox
             // 
@@ -201,11 +211,6 @@
             // 
             this.gamesPlayedTableAdapter.ClearBeforeFill = true;
             // 
-            // kiddEsportsDataBindingSource
-            // 
-            this.kiddEsportsDataBindingSource.DataSource = this.kiddEsportsData;
-            this.kiddEsportsDataBindingSource.Position = 0;
-            // 
             // eventsBindingSource
             // 
             this.eventsBindingSource.DataMember = "Events";
@@ -269,36 +274,15 @@
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.gameNameDataGridViewTextBoxColumn,
-            this.gameTypeDataGridViewTextBoxColumn,
-            this.iDDataGridViewTextBoxColumn});
+            this.GameNameColumn,
+            this.GameTypeColumn,
+            this.IDColumn});
             this.dataGridView1.DataSource = this.gamePlayedBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(515, 194);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // gameNameDataGridViewTextBoxColumn
-            // 
-            this.gameNameDataGridViewTextBoxColumn.DataPropertyName = "GameName";
-            this.gameNameDataGridViewTextBoxColumn.HeaderText = "GameName";
-            this.gameNameDataGridViewTextBoxColumn.Name = "gameNameDataGridViewTextBoxColumn";
-            this.gameNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // gameTypeDataGridViewTextBoxColumn
-            // 
-            this.gameTypeDataGridViewTextBoxColumn.DataPropertyName = "GameType";
-            this.gameTypeDataGridViewTextBoxColumn.HeaderText = "GameType";
-            this.gameTypeDataGridViewTextBoxColumn.Name = "gameTypeDataGridViewTextBoxColumn";
-            this.gameTypeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // gamePlayedBindingSource
             // 
@@ -352,6 +336,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(215, 331);
             this.panel2.TabIndex = 12;
+            // 
+            // GameType
+            // 
+            this.GameType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GameType.FormattingEnabled = true;
+            this.GameType.Location = new System.Drawing.Point(25, 163);
+            this.GameType.Name = "GameType";
+            this.GameType.Size = new System.Drawing.Size(90, 21);
+            this.GameType.TabIndex = 24;
             // 
             // DrawCheckBox
             // 
@@ -456,6 +449,8 @@
             // 
             // dataGridView3
             // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
             this.dataGridView3.AutoGenerateColumns = false;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -467,6 +462,7 @@
             this.dataGridView3.DataSource = this.teamResultsBindingSource;
             this.dataGridView3.Location = new System.Drawing.Point(12, 135);
             this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
             this.dataGridView3.Size = new System.Drawing.Size(572, 331);
             this.dataGridView3.TabIndex = 14;
             // 
@@ -475,30 +471,35 @@
             this.eventNameDataGridViewTextBoxColumn.DataPropertyName = "EventName";
             this.eventNameDataGridViewTextBoxColumn.HeaderText = "EventName";
             this.eventNameDataGridViewTextBoxColumn.Name = "eventNameDataGridViewTextBoxColumn";
+            this.eventNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // gamePlayedDataGridViewTextBoxColumn
             // 
             this.gamePlayedDataGridViewTextBoxColumn.DataPropertyName = "GamePlayed";
             this.gamePlayedDataGridViewTextBoxColumn.HeaderText = "GamePlayed";
             this.gamePlayedDataGridViewTextBoxColumn.Name = "gamePlayedDataGridViewTextBoxColumn";
+            this.gamePlayedDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // teamDataGridViewTextBoxColumn
             // 
             this.teamDataGridViewTextBoxColumn.DataPropertyName = "Team";
             this.teamDataGridViewTextBoxColumn.HeaderText = "Team";
             this.teamDataGridViewTextBoxColumn.Name = "teamDataGridViewTextBoxColumn";
+            this.teamDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // opposingTeamDataGridViewTextBoxColumn
             // 
             this.opposingTeamDataGridViewTextBoxColumn.DataPropertyName = "OpposingTeam";
             this.opposingTeamDataGridViewTextBoxColumn.HeaderText = "OpposingTeam";
             this.opposingTeamDataGridViewTextBoxColumn.Name = "opposingTeamDataGridViewTextBoxColumn";
+            this.opposingTeamDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // resultDataGridViewTextBoxColumn
             // 
             this.resultDataGridViewTextBoxColumn.DataPropertyName = "Result";
             this.resultDataGridViewTextBoxColumn.HeaderText = "Result";
             this.resultDataGridViewTextBoxColumn.Name = "resultDataGridViewTextBoxColumn";
+            this.resultDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // teamResultsBindingSource
             // 
@@ -633,19 +634,26 @@
             this.eventBindingSource1.DataMember = "Event";
             this.eventBindingSource1.DataSource = this.kiddEsportsDataBindingSource;
             // 
-            // GameType
+            // GameNameColumn
             // 
-            this.GameType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.GameType.FormattingEnabled = true;
-            this.GameType.Location = new System.Drawing.Point(25, 163);
-            this.GameType.Name = "GameType";
-            this.GameType.Size = new System.Drawing.Size(90, 21);
-            this.GameType.TabIndex = 24;
+            this.GameNameColumn.DataPropertyName = "GameName";
+            this.GameNameColumn.HeaderText = "GameName";
+            this.GameNameColumn.Name = "GameNameColumn";
+            this.GameNameColumn.ReadOnly = true;
             // 
-            // teamInfoBindingSource2
+            // GameTypeColumn
             // 
-            this.teamInfoBindingSource2.DataMember = "TeamInfo";
-            this.teamInfoBindingSource2.DataSource = this.kiddEsportsDataBindingSource;
+            this.GameTypeColumn.DataPropertyName = "GameType";
+            this.GameTypeColumn.HeaderText = "GameType";
+            this.GameTypeColumn.Name = "GameTypeColumn";
+            this.GameTypeColumn.ReadOnly = true;
+            // 
+            // IDColumn
+            // 
+            this.IDColumn.DataPropertyName = "ID";
+            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.Name = "IDColumn";
+            this.IDColumn.ReadOnly = true;
             // 
             // NewGame
             // 
@@ -669,11 +677,12 @@
             this.Name = "NewGame";
             this.Text = "NewGame";
             this.Load += new System.EventHandler(this.NewGame_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsDataBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gamesPlayedBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsDataBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventsBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -689,7 +698,6 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -712,9 +720,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gameNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gameTypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource gamesPlayedBindingSource1;
         private System.Windows.Forms.BindingSource teamInfoBindingSource;
         private ClassLibrary.KiddEsportsDataSetTableAdapters.TeamInfoTableAdapter teamInfoTableAdapter;
@@ -760,5 +765,8 @@
         private System.Windows.Forms.BindingSource eventsBindingSource1;
         private System.Windows.Forms.ComboBox GameType;
         private System.Windows.Forms.BindingSource teamInfoBindingSource2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GameNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GameTypeColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
     }
 }

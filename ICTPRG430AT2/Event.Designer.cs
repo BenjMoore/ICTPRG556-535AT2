@@ -32,13 +32,7 @@ namespace ClassLibrary
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.eventNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eventLocationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eventDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.kiddEsportsDataViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.kiddEsportsData_View = new ICTPRG430AT2.KiddEsportsData_View();
             this.panel2 = new System.Windows.Forms.Panel();
             this.AddEventBTN = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -62,7 +56,6 @@ namespace ClassLibrary
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.DeleteID = new System.Windows.Forms.TextBox();
-            this.eventTableAdapter = new ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.EventTableAdapter();
             this.SearchBTN = new System.Windows.Forms.Button();
             this.HomeBTN = new System.Windows.Forms.Button();
             this.EventBTN = new System.Windows.Forms.Button();
@@ -70,68 +63,43 @@ namespace ClassLibrary
             this.TeamsBTN = new System.Windows.Forms.Button();
             this.ResultsBTN = new System.Windows.Forms.Button();
             this.DeteleBTN = new System.Windows.Forms.Button();
+            this.EventNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventLocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kiddEsportsDataViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.kiddEsportsData_View = new ICTPRG430AT2.KiddEsportsData_View();
+            this.eventTableAdapter = new ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.EventTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsDataViewBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData_View)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsDataViewBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData_View)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.eventNameDataGridViewTextBoxColumn,
-            this.eventLocationDataGridViewTextBoxColumn,
-            this.eventDateDataGridViewTextBoxColumn,
-            this.iDDataGridViewTextBoxColumn});
+            this.EventNameColumn,
+            this.EventLocationColumn,
+            this.EventDateColumn,
+            this.IDColumn});
             this.dataGridView1.DataSource = this.eventBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(390, 84);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(507, 631);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // eventNameDataGridViewTextBoxColumn
-            // 
-            this.eventNameDataGridViewTextBoxColumn.DataPropertyName = "EventName";
-            this.eventNameDataGridViewTextBoxColumn.HeaderText = "EventName";
-            this.eventNameDataGridViewTextBoxColumn.Name = "eventNameDataGridViewTextBoxColumn";
-            // 
-            // eventLocationDataGridViewTextBoxColumn
-            // 
-            this.eventLocationDataGridViewTextBoxColumn.DataPropertyName = "EventLocation";
-            this.eventLocationDataGridViewTextBoxColumn.HeaderText = "EventLocation";
-            this.eventLocationDataGridViewTextBoxColumn.Name = "eventLocationDataGridViewTextBoxColumn";
-            // 
-            // eventDateDataGridViewTextBoxColumn
-            // 
-            this.eventDateDataGridViewTextBoxColumn.DataPropertyName = "EventDate";
-            this.eventDateDataGridViewTextBoxColumn.HeaderText = "EventDate";
-            this.eventDateDataGridViewTextBoxColumn.Name = "eventDateDataGridViewTextBoxColumn";
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // eventBindingSource
             // 
             this.eventBindingSource.DataMember = "Event";
             this.eventBindingSource.DataSource = this.kiddEsportsDataViewBindingSource;
-            // 
-            // kiddEsportsDataViewBindingSource
-            // 
-            this.kiddEsportsDataViewBindingSource.DataSource = this.kiddEsportsData_View;
-            this.kiddEsportsDataViewBindingSource.Position = 0;
-            // 
-            // kiddEsportsData_View
-            // 
-            this.kiddEsportsData_View.DataSetName = "KiddEsportsData_View";
-            this.kiddEsportsData_View.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // panel2
             // 
@@ -343,10 +311,6 @@ namespace ClassLibrary
             this.DeleteID.Size = new System.Drawing.Size(56, 20);
             this.DeleteID.TabIndex = 37;
             // 
-            // eventTableAdapter
-            // 
-            this.eventTableAdapter.ClearBeforeFill = true;
-            // 
             // SearchBTN
             // 
             this.SearchBTN.Location = new System.Drawing.Point(73, 439);
@@ -417,6 +381,48 @@ namespace ClassLibrary
             this.DeteleBTN.UseVisualStyleBackColor = true;
             this.DeteleBTN.Click += new System.EventHandler(this.DeteleBTN_Click);
             // 
+            // EventNameColumn
+            // 
+            this.EventNameColumn.DataPropertyName = "EventName";
+            this.EventNameColumn.HeaderText = "EventName";
+            this.EventNameColumn.Name = "EventNameColumn";
+            this.EventNameColumn.ReadOnly = true;
+            // 
+            // EventLocationColumn
+            // 
+            this.EventLocationColumn.DataPropertyName = "EventLocation";
+            this.EventLocationColumn.HeaderText = "EventLocation";
+            this.EventLocationColumn.Name = "EventLocationColumn";
+            this.EventLocationColumn.ReadOnly = true;
+            // 
+            // EventDateColumn
+            // 
+            this.EventDateColumn.DataPropertyName = "EventDate";
+            this.EventDateColumn.HeaderText = "EventDate";
+            this.EventDateColumn.Name = "EventDateColumn";
+            this.EventDateColumn.ReadOnly = true;
+            // 
+            // IDColumn
+            // 
+            this.IDColumn.DataPropertyName = "ID";
+            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.Name = "IDColumn";
+            this.IDColumn.ReadOnly = true;
+            // 
+            // kiddEsportsDataViewBindingSource
+            // 
+            this.kiddEsportsDataViewBindingSource.DataSource = this.kiddEsportsData_View;
+            this.kiddEsportsDataViewBindingSource.Position = 0;
+            // 
+            // kiddEsportsData_View
+            // 
+            this.kiddEsportsData_View.DataSetName = "KiddEsportsData_View";
+            this.kiddEsportsData_View.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // eventTableAdapter
+            // 
+            this.eventTableAdapter.ClearBeforeFill = true;
+            // 
             // Event
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -441,12 +447,12 @@ namespace ClassLibrary
             this.Load += new System.EventHandler(this.Event_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsDataViewBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData_View)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsDataViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData_View)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -480,10 +486,6 @@ namespace ClassLibrary
         private KiddEsportsData_View kiddEsportsData_View;
         private System.Windows.Forms.BindingSource eventBindingSource;
         private ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.EventTableAdapter eventTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn eventNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn eventLocationDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn eventDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button SearchBTN;
         private System.Windows.Forms.Button HomeBTN;
         private System.Windows.Forms.Button EventBTN;
@@ -493,5 +495,9 @@ namespace ClassLibrary
         private System.Windows.Forms.Button AddEventBTN;
         private System.Windows.Forms.Button UpdateBTN;
         private System.Windows.Forms.Button DeteleBTN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EventNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EventLocationColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EventDateColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
     }
 }

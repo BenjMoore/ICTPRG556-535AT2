@@ -20,6 +20,7 @@ namespace ClassLibrary
         {
             // Initialize form components
             InitializeComponent();
+            dataGridView1.CellClick += dataGridView1_CellClick;
         }
 
 
@@ -113,7 +114,12 @@ namespace ClassLibrary
                 MessageBox.Show("Please fill in all fields before adding a new team.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Exit the method early
             }
-
+            int pointsOut;
+            if (!int.TryParse(points, out pointsOut))
+            {
+                MessageBox.Show("Invalid Event ID format. Please enter a valid integer value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method early
+            }
             // Call the AddTeamInfo method in DataMapper to add the new team
             Program.DataMapper.AddTeamInfo(teamName, primaryContact, contactEmail, points);
             // Refresh the TeamInfo DataGridView to reflect the changes
@@ -170,6 +176,24 @@ namespace ClassLibrary
             List<TeamDTO> sortedTeams = Program.DataMapper.SortTeamsAlphabetically();
             // Set the DataSource of the DataGridView to display the sorted teams
             dataGridView1.DataSource = sortedTeams;
+        }
+
+        // DataGridView CellClick event handler
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if a row is selected
+            if (e.RowIndex >= 0)
+            {
+                // Get the selected row
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                // Populate the update section with data from the selected row
+                ReturnID.Text = row.Cells["IDColumn"].Value.ToString(); 
+                ReturnName.Text = row.Cells["TeamNameColumn"].Value.ToString(); 
+                ReturnContact.Text = row.Cells["PrimaryContactColumn"].Value.ToString(); 
+                ReturnEmail.Text = row.Cells["ContactEmailColumn"].Value.ToString(); 
+                ReturnPoints.Text = row.Cells["PointsColumn"].Value.ToString(); 
+            }
         }
 
         // Button click event handler for updating team information
