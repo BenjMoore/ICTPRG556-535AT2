@@ -27,7 +27,6 @@ D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\obj\Debug\ICTPRG430AT2.csproj.Assembl
 D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\obj\Debug\ICTPRG430AT2.Properties.Resources.resources
 D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\obj\Debug\ICTPRG430AT2.csproj.GenerateResource.cache
 D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\obj\Debug\ICTPRG430AT2.csproj.CoreCompileInputs.cache
-D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\obj\Debug\ICTPRG430AT2.csproj.CopyComplete
 D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\obj\Debug\ICTPRG430AT2.exe
 D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\obj\Debug\ICTPRG430AT2.pdb
 D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\obj\Debug\ClassLibrary.Event.resources
@@ -35,3 +34,4 @@ D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\obj\Debug\ClassLibrary.Menu.resources
 D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\obj\Debug\ClassLibrary.NewGame.resources
 D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\obj\Debug\ClassLibrary.Results.resources
 D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\obj\Debug\ClassLibrary.Teams.resources
+D:\Git Repos\ICTPRG556-535AT2\ICTPRG430AT2\obj\Debug\ICTPRG43.E3D55EA1.Up2Date

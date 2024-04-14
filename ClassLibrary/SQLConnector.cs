@@ -59,7 +59,7 @@ namespace ClassLibrary
                 {
                     connection.Open();
                     // Check if database exists
-                    string checkDatabaseQuery = "SELECT COUNT(*) FROM sys.databases WHERE name = 'KiddEports'";
+                    string checkDatabaseQuery = "SELECT COUNT(*) FROM sys.databases WHERE name = 'KiddEsports'";
                     SqlCommand checkDatabaseCommand = new SqlCommand(checkDatabaseQuery, connection);
                     int databaseCount = (int)checkDatabaseCommand.ExecuteScalar();
 
@@ -96,56 +96,67 @@ namespace ClassLibrary
                 IF NOT EXISTS (
                     SELECT name
                     FROM sys.databases
-                    WHERE name = 'KiddEports'
+                    WHERE name = 'KiddEsports'
                 )
                 BEGIN
-                    CREATE DATABASE KiddEports;
+                    CREATE DATABASE KiddEsports;
                 END";
 
                     string createTablesScript = @"
-                USE KiddEports;
+               
+USE KiddEsports;
+IF NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = 'ClassLibrary')
+BEGIN
+    CREATE USER ClassLibrary FOR LOGIN ClassLibrary;
+    ALTER ROLE db_datareader ADD MEMBER ClassLibrary;
+    ALTER ROLE db_datawriter ADD MEMBER ClassLibrary;
+END;
 
-                IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'TeamInfo')
-                BEGIN
-                    CREATE TABLE TeamInfo (
-                        ID INT PRIMARY KEY IDENTITY(1,1),
-                        TeamName VARCHAR(50),
-                        PrimaryContact VARCHAR(50),
-                        ContactEmail VARCHAR(50),
-                        Points INT
-                    );
-                END
+-- Create Tables
+USE KiddEsports;
 
-                IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'TeamResults')
-                BEGIN
-                    CREATE TABLE TeamResults (
-                        ID INT PRIMARY KEY IDENTITY(1,1),
-                        EventName VARCHAR(50),
-                        GamePlayed VARCHAR(50),
-                        Team VARCHAR(50),
-                        OpposingTeam VARCHAR(50),
-                        Result VARCHAR(50)
-                    );
-                END
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'TeamInfo')
+BEGIN
+    CREATE TABLE TeamInfo (
+        ID INT PRIMARY KEY IDENTITY(1,1),
+        TeamName VARCHAR(50),
+        PrimaryContact VARCHAR(50),
+        ContactEmail VARCHAR(50),
+        Points INT
+    );
+END;
 
-                IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Event')
-                BEGIN
-                    CREATE TABLE Event (
-                        ID INT PRIMARY KEY IDENTITY(1,1),
-                        EventName VARCHAR(50),
-                        EventLocation VARCHAR(50),
-                        EventDate VARCHAR(50)
-                    );
-                END
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'TeamResults')
+BEGIN
+    CREATE TABLE TeamResults (
+        ID INT PRIMARY KEY IDENTITY(1,1),
+        EventName VARCHAR(50),
+        GamePlayed VARCHAR(50),
+        Team VARCHAR(50),
+        OpposingTeam VARCHAR(50),
+        Result VARCHAR(50)
+    );
+END;
 
-                IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'GamePlayed')
-                BEGIN
-                    CREATE TABLE GamePlayed (
-                        ID INT PRIMARY KEY IDENTITY(1,1),
-                        GameName VARCHAR(50),
-                        GameType VARCHAR(50)
-                    );
-                END";
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Event')
+BEGIN
+    CREATE TABLE Event (
+        ID INT PRIMARY KEY IDENTITY(1,1),
+        EventName VARCHAR(50),
+        EventLocation VARCHAR(50),
+        EventDate VARCHAR(50)
+    );
+END;
+
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'GamePlayed')
+BEGIN
+    CREATE TABLE GamePlayed (
+        ID INT PRIMARY KEY IDENTITY(1,1),
+        GameName VARCHAR(50),
+        GameType VARCHAR(50)
+    );
+END;
+";
 
                     // Execute the create database script
                     SqlCommand createDatabaseCommand = new SqlCommand(createDatabaseScript, connection);

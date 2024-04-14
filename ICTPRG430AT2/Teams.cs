@@ -130,6 +130,7 @@ namespace ClassLibrary
             PrimaryContactTxt.ResetText();
             ContactEmail.ResetText();
             PointsTxt.ResetText();
+
         }
 
 

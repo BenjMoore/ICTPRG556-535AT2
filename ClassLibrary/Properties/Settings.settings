@@ -12,7 +12,7 @@
       <Value Profile="(Default)">Data Source=localhost;Integrated Security=True;TrustServerCertificate=True</Value>
     </Setting>
     <Setting Name="KiddEsportsConnection" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=localhost;Initial Catalog=KiddEports;Integrated Security=True;TrustServerCertificate=True</Value>
+      <Value Profile="(Default)">Data Source=localhost;Initial Catalog=KiddEsports;Integrated Security=True;TrustServerCertificate=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
