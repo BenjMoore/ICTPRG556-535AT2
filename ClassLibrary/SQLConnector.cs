@@ -64,13 +64,12 @@ namespace ClassLibrary
                     int databaseCount = (int)checkDatabaseCommand.ExecuteScalar();
 
                     bool databaseExists = (databaseCount > 0);
-
-
+                 
                     // Check if user exists
                     string checkUserQuery = "IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = 'ClassLibrary') BEGIN SELECT 0; END ELSE BEGIN SELECT 1; END;";
                     SqlCommand checkUserCommand = new SqlCommand(checkUserQuery, connection);
                     int userExists = (int)checkUserCommand.ExecuteScalar();
-                    string pass = "KiddEsportsAdmin143@";
+                    string pass = "KiddEsportsAdmin143";
                     if (userExists == 0)
                     {
                         // Create the login
@@ -87,6 +86,8 @@ namespace ClassLibrary
                         CREATE USER ClassLibrary FOR LOGIN ClassLibrary;
                         ALTER ROLE db_datareader ADD MEMBER ClassLibrary;
                         ALTER ROLE db_datawriter ADD MEMBER ClassLibrary;
+                        ALTER ROLE db_accessadmin ADD MEMBER ClassLibrary;
+                       ALTER ROLE db_securityadmin ADD MEMBER ClassLibrary;
                     END";
                         SqlCommand grantPermissionsCommand = new SqlCommand(grantPermissionsQuery, connection);
                         grantPermissionsCommand.ExecuteNonQuery();
@@ -110,6 +111,8 @@ BEGIN
     CREATE USER ClassLibrary FOR LOGIN ClassLibrary;
     ALTER ROLE db_datareader ADD MEMBER ClassLibrary;
     ALTER ROLE db_datawriter ADD MEMBER ClassLibrary;
+    ALTER ROLE db_accessadmin ADD MEMBER ClassLibrary;
+    ALTER ROLE db_securityadmin ADD MEMBER ClassLibrary;
 END;
 
 -- Create Tables
