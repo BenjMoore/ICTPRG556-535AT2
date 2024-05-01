@@ -40,7 +40,6 @@ namespace ClassLibrary
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.EventLocationTXT = new System.Windows.Forms.TextBox();
-            this.EventDateTXT = new System.Windows.Forms.TextBox();
             this.EventNameTXT = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.UpdateBTN = new System.Windows.Forms.Button();
@@ -63,19 +62,17 @@ namespace ClassLibrary
             this.TeamsBTN = new System.Windows.Forms.Button();
             this.ResultsBTN = new System.Windows.Forms.Button();
             this.DeteleBTN = new System.Windows.Forms.Button();
+            this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.EventNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EventLocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EventDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kiddEsportsDataViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.kiddEsportsData_View = new ICTPRG430AT2.KiddEsportsData_View();
-            this.eventTableAdapter = new ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.EventTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsDataViewBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData_View)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -90,10 +87,10 @@ namespace ClassLibrary
             this.EventDateColumn,
             this.IDColumn});
             this.dataGridView1.DataSource = this.eventBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(390, 84);
+            this.dataGridView1.Location = new System.Drawing.Point(283, 84);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(507, 631);
+            this.dataGridView1.Size = new System.Drawing.Size(681, 631);
             this.dataGridView1.TabIndex = 0;
             // 
             // eventBindingSource
@@ -104,13 +101,13 @@ namespace ClassLibrary
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.DateTimePicker);
             this.panel2.Controls.Add(this.AddEventBTN);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.EventLocationTXT);
-            this.panel2.Controls.Add(this.EventDateTXT);
             this.panel2.Controls.Add(this.EventNameTXT);
             this.panel2.Location = new System.Drawing.Point(970, 226);
             this.panel2.Name = "panel2";
@@ -131,7 +128,7 @@ namespace ClassLibrary
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(45, 177);
+            this.label7.Location = new System.Drawing.Point(45, 173);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 13);
             this.label7.TabIndex = 21;
@@ -171,13 +168,6 @@ namespace ClassLibrary
             this.EventLocationTXT.Name = "EventLocationTXT";
             this.EventLocationTXT.Size = new System.Drawing.Size(200, 20);
             this.EventLocationTXT.TabIndex = 14;
-            // 
-            // EventDateTXT
-            // 
-            this.EventDateTXT.Location = new System.Drawing.Point(48, 193);
-            this.EventDateTXT.Name = "EventDateTXT";
-            this.EventDateTXT.Size = new System.Drawing.Size(200, 20);
-            this.EventDateTXT.TabIndex = 15;
             // 
             // EventNameTXT
             // 
@@ -259,6 +249,7 @@ namespace ClassLibrary
             // 
             // ReturnID
             // 
+            this.ReturnID.Enabled = false;
             this.ReturnID.Location = new System.Drawing.Point(44, 172);
             this.ReturnID.Name = "ReturnID";
             this.ReturnID.Size = new System.Drawing.Size(40, 20);
@@ -298,7 +289,7 @@ namespace ClassLibrary
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(390, 724);
+            this.label4.Location = new System.Drawing.Point(293, 724);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(21, 13);
             this.label4.TabIndex = 38;
@@ -306,7 +297,7 @@ namespace ClassLibrary
             // 
             // DeleteID
             // 
-            this.DeleteID.Location = new System.Drawing.Point(417, 721);
+            this.DeleteID.Location = new System.Drawing.Point(320, 721);
             this.DeleteID.Name = "DeleteID";
             this.DeleteID.Size = new System.Drawing.Size(56, 20);
             this.DeleteID.TabIndex = 37;
@@ -373,13 +364,20 @@ namespace ClassLibrary
             // DeteleBTN
             // 
             this.DeteleBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeteleBTN.Location = new System.Drawing.Point(479, 719);
+            this.DeteleBTN.Location = new System.Drawing.Point(382, 719);
             this.DeteleBTN.Name = "DeteleBTN";
             this.DeteleBTN.Size = new System.Drawing.Size(75, 23);
             this.DeteleBTN.TabIndex = 46;
             this.DeteleBTN.Text = "Delete";
             this.DeteleBTN.UseVisualStyleBackColor = true;
             this.DeteleBTN.Click += new System.EventHandler(this.DeteleBTN_Click);
+            // 
+            // DateTimePicker
+            // 
+            this.DateTimePicker.Location = new System.Drawing.Point(48, 189);
+            this.DateTimePicker.Name = "DateTimePicker";
+            this.DateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.DateTimePicker.TabIndex = 23;
             // 
             // EventNameColumn
             // 
@@ -401,6 +399,7 @@ namespace ClassLibrary
             this.EventDateColumn.HeaderText = "EventDate";
             this.EventDateColumn.Name = "EventDateColumn";
             this.EventDateColumn.ReadOnly = true;
+            this.EventDateColumn.Width = 200;
             // 
             // IDColumn
             // 
@@ -467,7 +466,6 @@ namespace ClassLibrary
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox EventLocationTXT;
-        private System.Windows.Forms.TextBox EventDateTXT;
         private System.Windows.Forms.TextBox EventNameTXT;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label13;
@@ -483,9 +481,7 @@ namespace ClassLibrary
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox DeleteID;
         private System.Windows.Forms.BindingSource kiddEsportsDataViewBindingSource;
-        private KiddEsportsData_View kiddEsportsData_View;
         private System.Windows.Forms.BindingSource eventBindingSource;
-        private ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.EventTableAdapter eventTableAdapter;
         private System.Windows.Forms.Button SearchBTN;
         private System.Windows.Forms.Button HomeBTN;
         private System.Windows.Forms.Button EventBTN;
@@ -495,6 +491,7 @@ namespace ClassLibrary
         private System.Windows.Forms.Button AddEventBTN;
         private System.Windows.Forms.Button UpdateBTN;
         private System.Windows.Forms.Button DeteleBTN;
+        private System.Windows.Forms.DateTimePicker DateTimePicker;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventLocationColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventDateColumn;

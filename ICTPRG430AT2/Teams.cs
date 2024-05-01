@@ -130,6 +130,7 @@ namespace ClassLibrary
             PrimaryContactTxt.ResetText();
             ContactEmail.ResetText();
             PointsTxt.ResetText();
+            this.teamInfoTableAdapter.Fill(this.kiddEsportsData.TeamInfo);
 
         }
 
@@ -138,27 +139,31 @@ namespace ClassLibrary
         private void DeleteBTN_Click(object sender, EventArgs e)
         {
             // Retrieve the ID of the team to delete
-           
-            if (string.IsNullOrWhiteSpace(DeleteID.Text))
-            {
-                MessageBox.Show("Please provide an Event ID to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Exit the method early
-            }
+            int id = Convert.ToInt32(DeleteID.Text);
 
-            // Get the event ID, name, location, and date from text boxes
-            int IdToDelete;
-            if (!int.TryParse(DeleteID.Text, out IdToDelete))
-            {
-                MessageBox.Show("Invalid Event ID format. Please enter a valid integer value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Exit the method early
-            }
+            TeamDTO team = Program.DataMapper.GetTeamByID(id);
 
-            // Call the DeleteTeamInfo method in DataMapper to delete the team
-            Program.DataMapper.DeleteTeamInfo(IdToDelete);
-            // Clear the DeleteID field after deleting the team
-            DeleteID.ResetText();
-            // Refresh the TeamInfo DataGridView to reflect the changes
-            this.teamInfoTableAdapter.Fill(this.kiddEsportsData.TeamInfo);
+            int size = Program.DataMapper.GetRowCount();
+
+            string deluser = team.TeamName;
+
+            int x = 0;
+            while (x != size) {
+                ResultDTO result = Program.DataMapper.GetResultByTeamName(team.TeamName);
+                if (result.OpposingTeam == deluser || result.Team == deluser)
+                {
+                    // Delete the result information
+                    Program.DataMapper.DeleteGamesPlayedInfo(result.GamePlayed);
+                    Program.DataMapper.DeleteResultinfo(result.ID);
+                    Program.DataMapper.DeleteTeamInfo(id);
+
+                }
+                // Clear the DeleteID field after deleting the team
+                DeleteID.ResetText();
+                // Refresh the TeamInfo DataGridView to reflect the changes
+                this.teamInfoTableAdapter.Fill(this.kiddEsportsData.TeamInfo);
+                x++;
+            }
         }
 
         // Button click event handler for sorting teams by points

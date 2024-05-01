@@ -10,3 +10,10 @@ namespace ClassLibrary
     {
     }
 }
+
+namespace ClassLibrary.KiddEsportsDataSetTableAdapters {
+    
+    
+    public partial class TeamResultsTableAdapter {
+    }
+}

@@ -27,7 +27,7 @@ namespace ClassLibrary
         public string GamePlayed { get; set; }
         public string Team { get; set; }
         public string OpposingTeam { get; set; }
-        public string Result { get; set; }
+        public string Winner { get; set; }
         public int ID { get; set; }
     }
     public class EventDTO
@@ -105,61 +105,63 @@ namespace ClassLibrary
 
                     string createTablesScript = @"
                
-USE KiddEsports;
-IF NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = 'ClassLibrary')
-BEGIN
-    CREATE USER ClassLibrary FOR LOGIN ClassLibrary;
-    ALTER ROLE db_datareader ADD MEMBER ClassLibrary;
-    ALTER ROLE db_datawriter ADD MEMBER ClassLibrary;
-    ALTER ROLE db_accessadmin ADD MEMBER ClassLibrary;
-    ALTER ROLE db_securityadmin ADD MEMBER ClassLibrary;
-END;
+                USE KiddEsports;
+                IF NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = 'ClassLibrary')
+                BEGIN
+                    CREATE USER ClassLibrary FOR LOGIN ClassLibrary;
+                    ALTER ROLE db_datareader ADD MEMBER ClassLibrary;
+                    ALTER ROLE db_datawriter ADD MEMBER ClassLibrary;
+                    ALTER ROLE db_accessadmin ADD MEMBER ClassLibrary;
+                    ALTER ROLE db_securityadmin ADD MEMBER ClassLibrary;
+                END;
 
--- Create Tables
-USE KiddEsports;
+                -- Create Tables
+                USE KiddEsports;
 
-IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'TeamInfo')
-BEGIN
-    CREATE TABLE TeamInfo (
-        ID INT PRIMARY KEY IDENTITY(1,1),
-        TeamName VARCHAR(50),
-        PrimaryContact VARCHAR(50),
-        ContactEmail VARCHAR(50),
-        Points INT
-    );
-END;
+                IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'TeamInfo')
+                BEGIN
+                    CREATE TABLE TeamInfo (
+                        ID INT PRIMARY KEY IDENTITY(1,1),
+                        TeamName VARCHAR(50),
+                        PrimaryContact VARCHAR(50),
+                        ContactEmail VARCHAR(50),
+                        Points INT
+                    );
+                END;
 
-IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'TeamResults')
-BEGIN
-    CREATE TABLE TeamResults (
-        ID INT PRIMARY KEY IDENTITY(1,1),
-        EventName VARCHAR(50),
-        GamePlayed VARCHAR(50),
-        Team VARCHAR(50),
-        OpposingTeam VARCHAR(50),
-        Result VARCHAR(50)
-    );
-END;
+                IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'TeamResults')
+                BEGIN
+                    CREATE TABLE TeamResults (
+                        ID INT PRIMARY KEY IDENTITY(1,1),
+                        EventName VARCHAR(50),
+                        GamePlayed VARCHAR(50),
+                        Team VARCHAR(50),
+                        OpposingTeam VARCHAR(50),
+                        Result VARCHAR(50),
+                        GameID INT
+                    );
 
-IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Event')
-BEGIN
-    CREATE TABLE Event (
-        ID INT PRIMARY KEY IDENTITY(1,1),
-        EventName VARCHAR(50),
-        EventLocation VARCHAR(50),
-        EventDate VARCHAR(50)
-    );
-END;
+                END;
 
-IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'GamePlayed')
-BEGIN
-    CREATE TABLE GamePlayed (
-        ID INT PRIMARY KEY IDENTITY(1,1),
-        GameName VARCHAR(50),
-        GameType VARCHAR(50)
-    );
-END;
-";
+                IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Event')
+                BEGIN
+                    CREATE TABLE Event (
+                        ID INT PRIMARY KEY IDENTITY(1,1),
+                        EventName VARCHAR(50),
+                        EventLocation VARCHAR(50),
+                        EventDate VARCHAR(50)
+                    );
+                END;
+
+                IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'GamePlayed')
+                BEGIN
+                    CREATE TABLE GamePlayed (
+                        ID INT PRIMARY KEY IDENTITY(1,1),
+                        GameName VARCHAR(50),
+                        GameType VARCHAR(50)
+                    );
+                END;
+                ";
 
                     // Execute the create database script
                     SqlCommand createDatabaseCommand = new SqlCommand(createDatabaseScript, connection);
@@ -435,7 +437,7 @@ END;
                     Console.WriteLine("Error: " + ex.Message);
                 }
             }
-
+            
             return sortedTeams;
         }
         public List<TeamDTO> SearchTeamsByName(string searchTerm)
@@ -478,6 +480,50 @@ END;
 
             return searchResults;
         }
+
+        public string[] GetTeamNamesByGameID(int gameID)
+        {
+            List<string> teamNames = new List<string>();
+
+            string query = @"
+        SELECT TR.Team, TR.OpposingTeam 
+        FROM TeamResults TR
+        INNER JOIN GamePlayed GP ON TR.GameID = GP.ID
+        WHERE GP.ID = @GameID";
+
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@GameID", gameID);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            // Add team names to the list
+                            teamNames.Add(reader["Team"].ToString());
+                            teamNames.Add(reader["OpposingTeam"].ToString());
+                        }
+                    }
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return teamNames.ToArray();
+        }
+
+
+
         // Method to retrieve teams from the database (replace this with your database logic)
         public List<TeamDTO> GetTeamsFromDatabase()
         {
@@ -486,6 +532,54 @@ END;
             // Example:
             // teams = YourDataAccessLayer.GetTeamsFromDatabase();
             return teams;
+        }
+        public TeamDTO GetTeamByID(int teamID)
+        {
+            TeamDTO team = null;
+
+            // Construct the SQL query to retrieve team information by ID
+            string query = "SELECT * FROM TeamInfo WHERE ID = @TeamID";
+
+            // Establish a connection to the database
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                // Add parameter for the team ID
+                command.Parameters.AddWithValue("@TeamID", teamID);
+
+                try
+                {
+                    // Open the connection
+                    connection.Open();
+
+                    // Execute the query and get the result set
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Check if a row exists
+                    if (reader.Read())
+                    {
+                        // Map the team data to a TeamDTO object
+                        team = new TeamDTO
+                        {
+                            ID = Convert.ToInt32(reader["ID"]),
+                            TeamName = reader["TeamName"].ToString(),
+                            PrimaryContact = reader["PrimaryContact"].ToString(),
+                            ContactEmail = reader["ContactEmail"].ToString(),
+                            Points = Convert.ToInt32(reader["Points"])
+                        };
+                    }
+
+                    // Close the reader
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    // Display error message
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return team;
         }
 
         // Method to export teams to CSV
@@ -594,7 +688,7 @@ END;
                             GamePlayed = reader["GamePlayed"].ToString(),
                             Team = reader["Team"].ToString(),
                             OpposingTeam = reader["OpposingTeam"].ToString(),
-                            Result = reader["Result"].ToString()
+                            Winner = reader["Result"].ToString()
                         };
 
                         sortedResults.Add(result);
@@ -642,7 +736,7 @@ END;
                             GamePlayed = reader["GamePlayed"].ToString(),
                             Team = reader["Team"].ToString(),
                             OpposingTeam = reader["OpposingTeam"].ToString(),
-                            Result = reader["Result"].ToString()
+                            Winner = reader["Result"].ToString()
                         };
 
                         sortedResults.Add(result);
@@ -674,7 +768,7 @@ END;
                 // Append each result to the CSV content
                 foreach (ResultDTO result in results)
                 {
-                    csvContent.AppendLine($"{result.ID},{result.EventName},{result.GamePlayed},{result.Team},{result.OpposingTeam},{result.Result}");
+                    csvContent.AppendLine($"{result.ID},{result.EventName},{result.GamePlayed},{result.Team},{result.OpposingTeam},{result.Winner}");
                 }
 
                 // Define the path for the CSV file
@@ -691,17 +785,16 @@ END;
                 // Show error message if an exception occurs
             }
         }
-
-        public void DeleteResultInfo(int id)
+        public void DeleteResultinfo(int id)
         {
-            // Construct the SQL query to delete result information from the database
+            // Construct the SQL query to delete team information from the database
             string query = "DELETE FROM TeamResults WHERE ID = @ID";
 
             // Establish a connection to the database
             using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                // Add parameter to the query to specify the ID of the result to delete
+                // Add parameter to the query to specify the ID of the team to delete
                 command.Parameters.AddWithValue("@ID", id);
 
                 try
@@ -714,9 +807,9 @@ END;
 
                     // Check if any rows were affected
                     if (rowsAffected > 0)
-                        Console.WriteLine("Result information deleted successfully.");
+                        Console.WriteLine("Team information deleted successfully.");
                     else
-                        Console.WriteLine("No result information found with the given ID.");
+                        Console.WriteLine("No team information found with the given ID.");
                 }
                 catch (Exception ex)
                 {
@@ -724,6 +817,156 @@ END;
                     Console.WriteLine("Error: " + ex.Message);
                 }
             }
+        }
+
+        public ResultDTO GetResultByID(int resultID)
+        {
+            ResultDTO result = null;
+
+            // Construct the SQL query to retrieve result information by ID
+            string query = "SELECT * FROM TeamResults WHERE ID = @ResultID";
+
+            // Establish a connection to the database
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                // Add parameter for the result ID
+                command.Parameters.AddWithValue("@ResultID", resultID);
+
+                try
+                {
+                    // Open the connection
+                    connection.Open();
+
+                    // Execute the query and get the result set
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Check if a row exists
+                    if (reader.Read())
+                    {
+                        // Map the result data to a ResultDTO object
+                        result = new ResultDTO
+                        {
+                            ID = Convert.ToInt32(reader["ID"]),
+                            EventName = reader["EventName"].ToString(),
+                            GamePlayed = reader["GamePlayed"].ToString(),
+                            Team = reader["Team"].ToString(),
+                            OpposingTeam = reader["OpposingTeam"].ToString(),
+                            Winner = reader["Result"].ToString()
+                        };
+                    }
+
+                    // Close the reader
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    // Display error message
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return result;
+        }
+        public ResultDTO GetResultByGameName(string gameName)
+        {
+            ResultDTO result = null;
+
+            // Construct the SQL query to retrieve result information by game name
+            string query = "SELECT * FROM TeamResults WHERE GamePlayed = @GameName";
+
+            // Establish a connection to the database
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                // Add parameter for the game name
+                command.Parameters.AddWithValue("@GameName", gameName);
+
+                try
+                {
+                    // Open the connection
+                    connection.Open();
+
+                    // Execute the query and get the result set
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Check if a row exists
+                    if (reader.Read())
+                    {
+                        // Map the result data to a ResultDTO object
+                        result = new ResultDTO
+                        {
+                            ID = Convert.ToInt32(reader["ID"]),
+                            EventName = reader["EventName"].ToString(),
+                            GamePlayed = reader["GamePlayed"].ToString(),
+                            Team = reader["Team"].ToString(),
+                            OpposingTeam = reader["OpposingTeam"].ToString(),
+                            Winner = reader["Result"].ToString()
+                        };
+                    }
+
+                    // Close the reader
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    // Display error message
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return result;
+        }
+
+        public ResultDTO GetResultByTeamName(string teamName)
+        {
+            ResultDTO result = null;
+
+            // Construct the SQL query to retrieve result information by game name
+            string query = "SELECT * FROM TeamResults WHERE Team = @Teamname OR OpposingTeam = @Teamname";
+
+
+            // Establish a connection to the database
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                // Add parameter for the game name
+                command.Parameters.AddWithValue("@TeamName", teamName);
+
+                try
+                {
+                    // Open the connection
+                    connection.Open();
+
+                    // Execute the query and get the result set
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Check if a row exists
+                    if (reader.Read())
+                    {
+                        // Map the result data to a ResultDTO object
+                        result = new ResultDTO
+                        {
+                            ID = Convert.ToInt32(reader["ID"]),
+                            EventName = reader["EventName"].ToString(),
+                            GamePlayed = reader["GamePlayed"].ToString(),
+                            Team = reader["Team"].ToString(),
+                            OpposingTeam = reader["OpposingTeam"].ToString(),
+                            Winner = reader["Result"].ToString()
+                        };
+                    }
+
+                    // Close the reader
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    // Display error message
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return result;
         }
 
         public void SaveUpdatedResultInfo(ResultDTO result)
@@ -737,7 +980,7 @@ END;
                 command.Parameters.AddWithValue("@GamePlayed", result.GamePlayed);
                 command.Parameters.AddWithValue("@Team", result.Team);
                 command.Parameters.AddWithValue("@OpposingTeam", result.OpposingTeam);
-                command.Parameters.AddWithValue("@Result", result.Result);
+                command.Parameters.AddWithValue("@Result", result.Winner);
                 command.Parameters.AddWithValue("@ID", result.ID);
 
                 try
@@ -768,7 +1011,7 @@ END;
                     GamePlayed = row.GamePlayed,
                     Team = row.Team,
                     OpposingTeam = row.OpposingTeam,
-                    Result = row.Result,
+                    Winner = row.Result,
                     ID = Convert.ToInt32(row.ID)
                 };
 
@@ -803,7 +1046,7 @@ END;
                             GamePlayed = reader["GamePlayed"].ToString(),
                             Team = reader["Team"].ToString(),
                             OpposingTeam = reader["OpposingTeam"].ToString(),
-                            Result = reader["Result"].ToString()
+                            Winner = reader["Result"].ToString()
                         };
 
                         foundResults.Add(result);
@@ -1127,6 +1370,7 @@ END;
 
             return gameList;
         }
+
         ////////////
         /// <summary>
         /// NewGame
@@ -1134,15 +1378,82 @@ END;
         /// <param name="team"></param>
         /// <param name="opposingTeam"></param>
         /// <param name="winner"></param>
-
-        public void DeleteGamesPlayedInfo(int id)
+        public GamesPlayedDTO GetGameInfoByID(int gameID)
         {
-            string query = "DELETE FROM GamePlayed WHERE ID = @ID";
+            GamesPlayedDTO gameInfo = null;
+
+            string query = "SELECT * FROM GamePlayed WHERE ID = @GameID";
 
             using (SqlConnection connection = new SqlConnection(dboConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@ID", id);
+                command.Parameters.AddWithValue("@GameID", gameID);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        // Populate the game information from the database reader
+                        gameInfo = new GamesPlayedDTO
+                        {
+                            ID = Convert.ToInt32(reader["ID"]),
+                            GameName = reader["GameName"].ToString(),
+                            GameType = reader["GameType"].ToString()
+                        };
+                    }
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return gameInfo;
+        }
+        
+            public int GetRowCount()
+            {
+                int rowCount = 0;
+
+                // SQL query to count the number of rows in the results table
+                string query = "SELECT COUNT(*) FROM TeamResults";
+
+                // Establish a connection to the database
+                using (SqlConnection connection = new SqlConnection(dboConnectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        // Open the connection
+                        connection.Open();
+
+                        // Execute the query and retrieve the count
+                        rowCount = (int)command.ExecuteScalar();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exceptions
+                        Console.WriteLine("Error: " + ex.Message);
+                    }
+                }
+
+                return rowCount;
+            }
+        
+
+        public void DeleteGamesPlayedInfo(string gameName)
+        {
+            string query = "DELETE FROM GamePlayed WHERE GameName = @GameName";
+
+            using (SqlConnection connection = new SqlConnection(dboConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@GameName", gameName);
 
                 try
                 {
@@ -1151,7 +1462,7 @@ END;
                     if (rowsAffected > 0)
                         Console.WriteLine("Game information deleted successfully.");
                     else
-                        Console.WriteLine("No game information found with the given ID.");
+                        Console.WriteLine("No game information found with the given name.");
                 }
                 catch (Exception ex)
                 {
@@ -1159,6 +1470,7 @@ END;
                 }
             }
         }
+
 
         public void SaveUpdatedGamesPlayedInfo(GamesPlayedDTO game)
         {
@@ -1230,6 +1542,31 @@ END;
                 }
             }
         }
+        public void UpdateTeamPointsQuery(string team, int points, SqlConnection connection, SqlTransaction transaction)
+        {
+            // Construct the SQL query to update team points in the database
+            string query = "UPDATE TeamInfo SET Points = Points + @Points WHERE TeamName = @Team";
+
+            // Use the existing connection and transaction
+            using (SqlCommand command = new SqlCommand(query, connection, transaction))
+            {
+                // Add parameters to the query
+                command.Parameters.AddWithValue("@Points", points);
+                command.Parameters.AddWithValue("@Team", team);
+
+                try
+                {
+                    // Execute the query
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    // Display error message if an exception occurs
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+        }
+
         public void UpdateTeamPoints(string team, int points)
         {
             // Construct the SQL query to update team points in the database
@@ -1258,6 +1595,5 @@ END;
                 }
             }
         }
-
     }
 }

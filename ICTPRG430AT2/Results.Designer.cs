@@ -30,37 +30,26 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.EventNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GamePlayedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TeamColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OpposingTeamColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ResultColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.teamResultsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.kiddEsportsData = new ClassLibrary.KiddEsportsDataSet();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.teamResultsTableAdapter = new ClassLibrary.KiddEsportsDataSetTableAdapters.TeamResultsTableAdapter();
             this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.Homebtn = new System.Windows.Forms.Button();
-            this.teamInfoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.kiddEsportsData_View = new ICTPRG430AT2.KiddEsportsData_View();
-            this.gamePlayedBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.teamInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DeleteBTN = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.DeleteID = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.Result = new System.Windows.Forms.ComboBox();
+            this.OpposingTeam = new System.Windows.Forms.ComboBox();
+            this.teamInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Team = new System.Windows.Forms.ComboBox();
+            this.GamePlayed = new System.Windows.Forms.ComboBox();
+            this.gamePlayedBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.EventName = new System.Windows.Forms.ComboBox();
+            this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label4 = new System.Windows.Forms.Label();
             this.IDTXT = new System.Windows.Forms.TextBox();
-            this.ResultTXT = new System.Windows.Forms.TextBox();
-            this.OpposingTeamTXT = new System.Windows.Forms.TextBox();
-            this.TeamTXT = new System.Windows.Forms.TextBox();
-            this.GamePlayedTXT = new System.Windows.Forms.TextBox();
-            this.EventNameTXT = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.UpdateBTN = new System.Windows.Forms.Button();
             this.SearchBTN = new System.Windows.Forms.Button();
@@ -75,19 +64,24 @@
             this.label9 = new System.Windows.Forms.Label();
             this.ExportBTNResults = new System.Windows.Forms.Button();
             this.ExportTeamName = new System.Windows.Forms.Button();
-            this.eventTableAdapter = new ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.EventTableAdapter();
-            this.gamePlayedTableAdapter = new ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.GamePlayedTableAdapter();
-            this.teamInfoTableAdapter = new ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.TeamInfoTableAdapter();
+            this.teamResultsTableAdapter = new ClassLibrary.KiddEsportsDataSetTableAdapters.TeamResultsTableAdapter();
+            this.teamInfoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.EventNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GamePlayedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TeamColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OpposingTeamColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ResultColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamResultsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData_View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gamePlayedBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gamePlayedBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamResultsBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -111,48 +105,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(646, 564);
             this.dataGridView1.TabIndex = 0;
             // 
-            // EventNameColumn
-            // 
-            this.EventNameColumn.DataPropertyName = "EventName";
-            this.EventNameColumn.HeaderText = "EventName";
-            this.EventNameColumn.Name = "EventNameColumn";
-            this.EventNameColumn.ReadOnly = true;
-            // 
-            // GamePlayedColumn
-            // 
-            this.GamePlayedColumn.DataPropertyName = "GamePlayed";
-            this.GamePlayedColumn.HeaderText = "GamePlayed";
-            this.GamePlayedColumn.Name = "GamePlayedColumn";
-            this.GamePlayedColumn.ReadOnly = true;
-            // 
-            // TeamColumn
-            // 
-            this.TeamColumn.DataPropertyName = "Team";
-            this.TeamColumn.HeaderText = "Team";
-            this.TeamColumn.Name = "TeamColumn";
-            this.TeamColumn.ReadOnly = true;
-            // 
-            // OpposingTeamColumn
-            // 
-            this.OpposingTeamColumn.DataPropertyName = "OpposingTeam";
-            this.OpposingTeamColumn.HeaderText = "OpposingTeam";
-            this.OpposingTeamColumn.Name = "OpposingTeamColumn";
-            this.OpposingTeamColumn.ReadOnly = true;
-            // 
-            // ResultColumn
-            // 
-            this.ResultColumn.DataPropertyName = "Result";
-            this.ResultColumn.HeaderText = "Result";
-            this.ResultColumn.Name = "ResultColumn";
-            this.ResultColumn.ReadOnly = true;
-            // 
-            // IDColumn
-            // 
-            this.IDColumn.DataPropertyName = "ID";
-            this.IDColumn.HeaderText = "ID";
-            this.IDColumn.Name = "IDColumn";
-            this.IDColumn.ReadOnly = true;
-            // 
             // teamResultsBindingSource
             // 
             this.teamResultsBindingSource.DataMember = "TeamResults";
@@ -170,10 +122,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(646, 564);
             this.panel1.TabIndex = 1;
-            // 
-            // teamResultsTableAdapter
-            // 
-            this.teamResultsTableAdapter.ClearBeforeFill = true;
             // 
             // label2
             // 
@@ -235,66 +183,16 @@
             this.Homebtn.UseVisualStyleBackColor = true;
             this.Homebtn.Click += new System.EventHandler(this.Homebtn_Click);
             // 
-            // teamInfoBindingSource1
-            // 
-            this.teamInfoBindingSource1.DataMember = "TeamInfo";
-            this.teamInfoBindingSource1.DataSource = this.kiddEsportsData_View;
-            // 
-            // kiddEsportsData_View
-            // 
-            this.kiddEsportsData_View.DataSetName = "KiddEsportsData_View";
-            this.kiddEsportsData_View.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // gamePlayedBindingSource
-            // 
-            this.gamePlayedBindingSource.DataMember = "GamePlayed";
-            this.gamePlayedBindingSource.DataSource = this.kiddEsportsData_View;
-            // 
-            // teamInfoBindingSource
-            // 
-            this.teamInfoBindingSource.DataMember = "TeamInfo";
-            this.teamInfoBindingSource.DataSource = this.kiddEsportsData_View;
-            // 
-            // eventBindingSource
-            // 
-            this.eventBindingSource.DataMember = "Event";
-            this.eventBindingSource.DataSource = this.kiddEsportsData_View;
-            // 
-            // DeleteBTN
-            // 
-            this.DeleteBTN.Location = new System.Drawing.Point(397, 660);
-            this.DeleteBTN.Name = "DeleteBTN";
-            this.DeleteBTN.Size = new System.Drawing.Size(75, 21);
-            this.DeleteBTN.TabIndex = 36;
-            this.DeleteBTN.Text = "Delete";
-            this.DeleteBTN.UseVisualStyleBackColor = true;
-            this.DeleteBTN.Click += new System.EventHandler(this.DeleteBTN_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(308, 663);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(21, 13);
-            this.label1.TabIndex = 35;
-            this.label1.Text = "ID:";
-            // 
-            // DeleteID
-            // 
-            this.DeleteID.Location = new System.Drawing.Point(335, 660);
-            this.DeleteID.Name = "DeleteID";
-            this.DeleteID.Size = new System.Drawing.Size(56, 20);
-            this.DeleteID.TabIndex = 34;
-            // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.Result);
+            this.panel4.Controls.Add(this.OpposingTeam);
+            this.panel4.Controls.Add(this.Team);
+            this.panel4.Controls.Add(this.GamePlayed);
+            this.panel4.Controls.Add(this.EventName);
+            this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.IDTXT);
-            this.panel4.Controls.Add(this.ResultTXT);
-            this.panel4.Controls.Add(this.OpposingTeamTXT);
-            this.panel4.Controls.Add(this.TeamTXT);
-            this.panel4.Controls.Add(this.GamePlayedTXT);
-            this.panel4.Controls.Add(this.EventNameTXT);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.UpdateBTN);
             this.panel4.Controls.Add(this.SearchBTN);
@@ -309,47 +207,98 @@
             this.panel4.Size = new System.Drawing.Size(294, 355);
             this.panel4.TabIndex = 29;
             // 
+            // Result
+            // 
+            this.Result.DataSource = this.teamInfoBindingSource;
+            this.Result.DisplayMember = "TeamName";
+            this.Result.FormattingEnabled = true;
+            this.Result.Location = new System.Drawing.Point(95, 283);
+            this.Result.Name = "Result";
+            this.Result.Size = new System.Drawing.Size(121, 21);
+            this.Result.TabIndex = 49;
+            this.Result.ValueMember = "TeamName";
+            // 
+            // OpposingTeam
+            // 
+            this.OpposingTeam.DataSource = this.teamInfoBindingSource;
+            this.OpposingTeam.DisplayMember = "TeamName";
+            this.OpposingTeam.FormattingEnabled = true;
+            this.OpposingTeam.Location = new System.Drawing.Point(95, 243);
+            this.OpposingTeam.Name = "OpposingTeam";
+            this.OpposingTeam.Size = new System.Drawing.Size(121, 21);
+            this.OpposingTeam.TabIndex = 48;
+            this.OpposingTeam.ValueMember = "TeamName";
+            // 
+            // teamInfoBindingSource
+            // 
+            this.teamInfoBindingSource.DataMember = "TeamInfo";
+            this.teamInfoBindingSource.DataSource = this.kiddEsportsData_View;
+            // 
+            // kiddEsportsData_View
+            // 
+            this.kiddEsportsData_View.DataSetName = "KiddEsportsData_View";
+            this.kiddEsportsData_View.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // Team
+            // 
+            this.Team.DataSource = this.teamInfoBindingSource;
+            this.Team.DisplayMember = "TeamName";
+            this.Team.FormattingEnabled = true;
+            this.Team.Location = new System.Drawing.Point(95, 197);
+            this.Team.Name = "Team";
+            this.Team.Size = new System.Drawing.Size(121, 21);
+            this.Team.TabIndex = 47;
+            this.Team.ValueMember = "TeamName";
+            // 
+            // GamePlayed
+            // 
+            this.GamePlayed.DataSource = this.gamePlayedBindingSource;
+            this.GamePlayed.DisplayMember = "GameName";
+            this.GamePlayed.FormattingEnabled = true;
+            this.GamePlayed.Location = new System.Drawing.Point(95, 158);
+            this.GamePlayed.Name = "GamePlayed";
+            this.GamePlayed.Size = new System.Drawing.Size(121, 21);
+            this.GamePlayed.TabIndex = 46;
+            this.GamePlayed.ValueMember = "GameName";
+            // 
+            // gamePlayedBindingSource
+            // 
+            this.gamePlayedBindingSource.DataMember = "GamePlayed";
+            this.gamePlayedBindingSource.DataSource = this.kiddEsportsData_View;
+            // 
+            // EventName
+            // 
+            this.EventName.DataSource = this.eventBindingSource;
+            this.EventName.DisplayMember = "EventName";
+            this.EventName.FormattingEnabled = true;
+            this.EventName.Location = new System.Drawing.Point(95, 112);
+            this.EventName.Name = "EventName";
+            this.EventName.Size = new System.Drawing.Size(121, 21);
+            this.EventName.TabIndex = 45;
+            this.EventName.ValueMember = "EventName";
+            // 
+            // eventBindingSource
+            // 
+            this.eventBindingSource.DataMember = "Event";
+            this.eventBindingSource.DataSource = this.kiddEsportsData_View;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(122, 32);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(118, 13);
+            this.label4.TabIndex = 44;
+            this.label4.Text = "Search By Event Name";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
             // IDTXT
             // 
+            this.IDTXT.Enabled = false;
             this.IDTXT.Location = new System.Drawing.Point(64, 317);
             this.IDTXT.Name = "IDTXT";
             this.IDTXT.Size = new System.Drawing.Size(63, 20);
             this.IDTXT.TabIndex = 43;
-            // 
-            // ResultTXT
-            // 
-            this.ResultTXT.Location = new System.Drawing.Point(95, 283);
-            this.ResultTXT.Name = "ResultTXT";
-            this.ResultTXT.Size = new System.Drawing.Size(100, 20);
-            this.ResultTXT.TabIndex = 42;
-            // 
-            // OpposingTeamTXT
-            // 
-            this.OpposingTeamTXT.Location = new System.Drawing.Point(95, 243);
-            this.OpposingTeamTXT.Name = "OpposingTeamTXT";
-            this.OpposingTeamTXT.Size = new System.Drawing.Size(100, 20);
-            this.OpposingTeamTXT.TabIndex = 41;
-            // 
-            // TeamTXT
-            // 
-            this.TeamTXT.Location = new System.Drawing.Point(95, 198);
-            this.TeamTXT.Name = "TeamTXT";
-            this.TeamTXT.Size = new System.Drawing.Size(100, 20);
-            this.TeamTXT.TabIndex = 40;
-            // 
-            // GamePlayedTXT
-            // 
-            this.GamePlayedTXT.Location = new System.Drawing.Point(95, 160);
-            this.GamePlayedTXT.Name = "GamePlayedTXT";
-            this.GamePlayedTXT.Size = new System.Drawing.Size(100, 20);
-            this.GamePlayedTXT.TabIndex = 39;
-            // 
-            // EventNameTXT
-            // 
-            this.EventNameTXT.Location = new System.Drawing.Point(95, 117);
-            this.EventNameTXT.Name = "EventNameTXT";
-            this.EventNameTXT.Size = new System.Drawing.Size(100, 20);
-            this.EventNameTXT.TabIndex = 38;
             // 
             // label3
             // 
@@ -392,9 +341,9 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(92, 267);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(37, 13);
+            this.label15.Size = new System.Drawing.Size(41, 13);
             this.label15.TabIndex = 24;
-            this.label15.Text = "Result";
+            this.label15.Text = "Winner";
             // 
             // label16
             // 
@@ -482,6 +431,15 @@
             this.ExportTeamName.UseVisualStyleBackColor = true;
             this.ExportTeamName.Click += new System.EventHandler(this.ExportTeamName_Click);
             // 
+            // teamResultsTableAdapter
+            // 
+            this.teamResultsTableAdapter.ClearBeforeFill = true;
+            // 
+            // teamInfoBindingSource1
+            // 
+            this.teamInfoBindingSource1.DataMember = "TeamInfo";
+            this.teamInfoBindingSource1.DataSource = this.kiddEsportsData_View;
+            // 
             // eventTableAdapter
             // 
             this.eventTableAdapter.ClearBeforeFill = true;
@@ -494,6 +452,57 @@
             // 
             this.teamInfoTableAdapter.ClearBeforeFill = true;
             // 
+            // teamResultsBindingSource1
+            // 
+            this.teamResultsBindingSource1.DataMember = "TeamResults";
+            this.teamResultsBindingSource1.DataSource = this.kiddEsportsData_View;
+            // 
+            // teamResultsTableAdapter1
+            // 
+            this.teamResultsTableAdapter.ClearBeforeFill = true;
+            //                               
+            // EventNameColumn
+            // 
+            this.EventNameColumn.DataPropertyName = "EventName";
+            this.EventNameColumn.HeaderText = "EventName";
+            this.EventNameColumn.Name = "EventNameColumn";
+            this.EventNameColumn.ReadOnly = true;
+            // 
+            // GamePlayedColumn
+            // 
+            this.GamePlayedColumn.DataPropertyName = "GamePlayed";
+            this.GamePlayedColumn.HeaderText = "GamePlayed";
+            this.GamePlayedColumn.Name = "GamePlayedColumn";
+            this.GamePlayedColumn.ReadOnly = true;
+            // 
+            // TeamColumn
+            // 
+            this.TeamColumn.DataPropertyName = "Team";
+            this.TeamColumn.HeaderText = "Team";
+            this.TeamColumn.Name = "TeamColumn";
+            this.TeamColumn.ReadOnly = true;
+            // 
+            // OpposingTeamColumn
+            // 
+            this.OpposingTeamColumn.DataPropertyName = "OpposingTeam";
+            this.OpposingTeamColumn.HeaderText = "OpposingTeam";
+            this.OpposingTeamColumn.Name = "OpposingTeamColumn";
+            this.OpposingTeamColumn.ReadOnly = true;
+            // 
+            // ResultColumn
+            // 
+            this.ResultColumn.DataPropertyName = "Result";
+            this.ResultColumn.HeaderText = "Winner";
+            this.ResultColumn.Name = "ResultColumn";
+            this.ResultColumn.ReadOnly = true;
+            // 
+            // IDColumn
+            // 
+            this.IDColumn.DataPropertyName = "ID";
+            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.Name = "IDColumn";
+            this.IDColumn.ReadOnly = true;
+            // 
             // Results
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -505,9 +514,6 @@
             this.Controls.Add(this.SortByTeamNameResults);
             this.Controls.Add(this.SortByEventResults);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.DeleteBTN);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.DeleteID);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -522,13 +528,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.teamResultsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData_View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gamePlayedBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData_View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gamePlayedBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamResultsBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -547,9 +554,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button Homebtn;
-        private System.Windows.Forms.Button DeleteBTN;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox DeleteID;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button SearchBTN;
         private System.Windows.Forms.TextBox SearchTxtResults;
@@ -565,25 +569,23 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button ExportBTNResults;
         private System.Windows.Forms.Button ExportTeamName;
-        private ICTPRG430AT2.KiddEsportsData_View kiddEsportsData_View;
         private System.Windows.Forms.BindingSource eventBindingSource;
-        private ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.EventTableAdapter eventTableAdapter;
         private System.Windows.Forms.BindingSource gamePlayedBindingSource;
-        private ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.GamePlayedTableAdapter gamePlayedTableAdapter;
         private System.Windows.Forms.BindingSource teamInfoBindingSource;
-        private ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.TeamInfoTableAdapter teamInfoTableAdapter;
         private System.Windows.Forms.BindingSource teamInfoBindingSource1;
+        private System.Windows.Forms.TextBox IDTXT;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox Result;
+        private System.Windows.Forms.ComboBox OpposingTeam;
+        private System.Windows.Forms.ComboBox Team;
+        private System.Windows.Forms.ComboBox GamePlayed;
+        private System.Windows.Forms.ComboBox EventName;
+        private System.Windows.Forms.BindingSource teamResultsBindingSource1;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn GamePlayedColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn TeamColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn OpposingTeamColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ResultColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
-        private System.Windows.Forms.TextBox EventNameTXT;
-        private System.Windows.Forms.TextBox IDTXT;
-        private System.Windows.Forms.TextBox ResultTXT;
-        private System.Windows.Forms.TextBox OpposingTeamTXT;
-        private System.Windows.Forms.TextBox TeamTXT;
-        private System.Windows.Forms.TextBox GamePlayedTXT;
     }
 }

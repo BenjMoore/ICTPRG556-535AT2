@@ -31,6 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.Homebtn = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.TeamNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrimaryContactColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ContactEmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PointsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.teamInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.kiddEsportsDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.kiddEsportsData = new ClassLibrary.KiddEsportsDataSet();
@@ -73,11 +78,6 @@
             this.ReturnEmail = new System.Windows.Forms.TextBox();
             this.ReturnContact = new System.Windows.Forms.TextBox();
             this.ExportByPoints = new System.Windows.Forms.Button();
-            this.TeamNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrimaryContactColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ContactEmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PointsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsDataBindingSource)).BeginInit();
@@ -116,6 +116,41 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(543, 524);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // TeamNameColumn
+            // 
+            this.TeamNameColumn.DataPropertyName = "TeamName";
+            this.TeamNameColumn.HeaderText = "TeamName";
+            this.TeamNameColumn.Name = "TeamNameColumn";
+            this.TeamNameColumn.ReadOnly = true;
+            // 
+            // PrimaryContactColumn
+            // 
+            this.PrimaryContactColumn.DataPropertyName = "PrimaryContact";
+            this.PrimaryContactColumn.HeaderText = "PrimaryContact";
+            this.PrimaryContactColumn.Name = "PrimaryContactColumn";
+            this.PrimaryContactColumn.ReadOnly = true;
+            // 
+            // ContactEmailColumn
+            // 
+            this.ContactEmailColumn.DataPropertyName = "ContactEmail";
+            this.ContactEmailColumn.HeaderText = "ContactEmail";
+            this.ContactEmailColumn.Name = "ContactEmailColumn";
+            this.ContactEmailColumn.ReadOnly = true;
+            // 
+            // PointsColumn
+            // 
+            this.PointsColumn.DataPropertyName = "Points";
+            this.PointsColumn.HeaderText = "Points";
+            this.PointsColumn.Name = "PointsColumn";
+            this.PointsColumn.ReadOnly = true;
+            // 
+            // IDColumn
+            // 
+            this.IDColumn.DataPropertyName = "ID";
+            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.Name = "IDColumn";
+            this.IDColumn.ReadOnly = true;
             // 
             // teamInfoBindingSource
             // 
@@ -454,10 +489,12 @@
             // 
             // ReturnID
             // 
+            this.ReturnID.Enabled = false;
             this.ReturnID.Location = new System.Drawing.Point(69, 195);
             this.ReturnID.Name = "ReturnID";
             this.ReturnID.Size = new System.Drawing.Size(40, 20);
             this.ReturnID.TabIndex = 3;
+            this.ReturnID.UseWaitCursor = true;
             // 
             // ReturnPoints
             // 
@@ -489,37 +526,6 @@
             this.ExportByPoints.Text = "Export - Points";
             this.ExportByPoints.UseVisualStyleBackColor = true;
             this.ExportByPoints.Click += new System.EventHandler(this.ExportByPoints_Click);
-            // 
-            // TeamNameColumn
-            // 
-            this.TeamNameColumn.DataPropertyName = "TeamName";
-            this.TeamNameColumn.HeaderText = "TeamName";
-            this.TeamNameColumn.Name = "TeamNameColumn";
-            // 
-            // PrimaryContactColumn
-            // 
-            this.PrimaryContactColumn.DataPropertyName = "PrimaryContact";
-            this.PrimaryContactColumn.HeaderText = "PrimaryContact";
-            this.PrimaryContactColumn.Name = "PrimaryContactColumn";
-            // 
-            // ContactEmailColumn
-            // 
-            this.ContactEmailColumn.DataPropertyName = "ContactEmail";
-            this.ContactEmailColumn.HeaderText = "ContactEmail";
-            this.ContactEmailColumn.Name = "ContactEmailColumn";
-            // 
-            // PointsColumn
-            // 
-            this.PointsColumn.DataPropertyName = "Points";
-            this.PointsColumn.HeaderText = "Points";
-            this.PointsColumn.Name = "PointsColumn";
-            // 
-            // IDColumn
-            // 
-            this.IDColumn.DataPropertyName = "ID";
-            this.IDColumn.HeaderText = "ID";
-            this.IDColumn.Name = "IDColumn";
-            this.IDColumn.ReadOnly = true;
             // 
             // Teams
             // 

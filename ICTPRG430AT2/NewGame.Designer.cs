@@ -50,6 +50,9 @@
             this.pointsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.GameNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GameTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gamePlayedBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gamesPlayedBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.teamInfoTableAdapter = new ClassLibrary.KiddEsportsDataSetTableAdapters.TeamInfoTableAdapter();
@@ -69,6 +72,7 @@
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eventNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gamePlayedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.teamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,15 +87,20 @@
             this.UpdateGameTypeTXT = new System.Windows.Forms.TextBox();
             this.UpdateGameNameTXT = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.UpdateIDCombobox = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.DeleteGameID = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.GameDeleteBTN = new System.Windows.Forms.Button();
             this.eventBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.GameNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GameTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label15 = new System.Windows.Forms.Label();
+            this.DeleteResultBTN = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.DeleteResultID = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.IDtxt = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsDataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData)).BeginInit();
@@ -119,7 +128,7 @@
             this.TeamComboBox.DisplayMember = "TeamName";
             this.TeamComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TeamComboBox.FormattingEnabled = true;
-            this.TeamComboBox.Location = new System.Drawing.Point(168, 83);
+            this.TeamComboBox.Location = new System.Drawing.Point(168, 82);
             this.TeamComboBox.Name = "TeamComboBox";
             this.TeamComboBox.Size = new System.Drawing.Size(209, 21);
             this.TeamComboBox.TabIndex = 0;
@@ -284,6 +293,27 @@
             this.dataGridView1.Size = new System.Drawing.Size(515, 194);
             this.dataGridView1.TabIndex = 0;
             // 
+            // GameNameColumn
+            // 
+            this.GameNameColumn.DataPropertyName = "GameName";
+            this.GameNameColumn.HeaderText = "GameName";
+            this.GameNameColumn.Name = "GameNameColumn";
+            this.GameNameColumn.ReadOnly = true;
+            // 
+            // GameTypeColumn
+            // 
+            this.GameTypeColumn.DataPropertyName = "GameType";
+            this.GameTypeColumn.HeaderText = "GameType";
+            this.GameTypeColumn.Name = "GameTypeColumn";
+            this.GameTypeColumn.ReadOnly = true;
+            // 
+            // IDColumn
+            // 
+            this.IDColumn.DataPropertyName = "ID";
+            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.Name = "IDColumn";
+            this.IDColumn.ReadOnly = true;
+            // 
             // gamePlayedBindingSource
             // 
             this.gamePlayedBindingSource.DataMember = "GamePlayed";
@@ -355,6 +385,7 @@
             this.DrawCheckBox.TabIndex = 23;
             this.DrawCheckBox.Text = "Draw?";
             this.DrawCheckBox.UseVisualStyleBackColor = true;
+            this.DrawCheckBox.CheckedChanged += new System.EventHandler(this.DrawCheckBox_CheckedChanged);
             // 
             // label9
             // 
@@ -454,6 +485,7 @@
             this.dataGridView3.AutoGenerateColumns = false;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
             this.eventNameDataGridViewTextBoxColumn,
             this.gamePlayedDataGridViewTextBoxColumn,
             this.teamDataGridViewTextBoxColumn,
@@ -465,6 +497,14 @@
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.Size = new System.Drawing.Size(572, 331);
             this.dataGridView3.TabIndex = 14;
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 25;
             // 
             // eventNameDataGridViewTextBoxColumn
             // 
@@ -497,7 +537,7 @@
             // resultDataGridViewTextBoxColumn
             // 
             this.resultDataGridViewTextBoxColumn.DataPropertyName = "Result";
-            this.resultDataGridViewTextBoxColumn.HeaderText = "Result";
+            this.resultDataGridViewTextBoxColumn.HeaderText = "Winner";
             this.resultDataGridViewTextBoxColumn.Name = "resultDataGridViewTextBoxColumn";
             this.resultDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -513,13 +553,14 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.label19);
+            this.panel3.Controls.Add(this.IDtxt);
             this.panel3.Controls.Add(this.UpdateBTN);
             this.panel3.Controls.Add(this.label14);
             this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.UpdateGameTypeTXT);
             this.panel3.Controls.Add(this.UpdateGameNameTXT);
             this.panel3.Controls.Add(this.label11);
-            this.panel3.Controls.Add(this.UpdateIDCombobox);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Location = new System.Drawing.Point(847, 135);
             this.panel3.Name = "panel3";
@@ -574,23 +615,11 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(5, 59);
+            this.label11.Location = new System.Drawing.Point(5, 77);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(22, 16);
             this.label11.TabIndex = 20;
             this.label11.Text = "ID";
-            // 
-            // UpdateIDCombobox
-            // 
-            this.UpdateIDCombobox.DataSource = this.gamePlayedBindingSource;
-            this.UpdateIDCombobox.DisplayMember = "ID";
-            this.UpdateIDCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.UpdateIDCombobox.FormattingEnabled = true;
-            this.UpdateIDCombobox.Location = new System.Drawing.Point(33, 59);
-            this.UpdateIDCombobox.Name = "UpdateIDCombobox";
-            this.UpdateIDCombobox.Size = new System.Drawing.Size(55, 21);
-            this.UpdateIDCombobox.TabIndex = 19;
-            this.UpdateIDCombobox.ValueMember = "ID";
             // 
             // label10
             // 
@@ -604,24 +633,24 @@
             // 
             // DeleteGameID
             // 
-            this.DeleteGameID.Location = new System.Drawing.Point(38, 697);
+            this.DeleteGameID.Location = new System.Drawing.Point(98, 693);
             this.DeleteGameID.Name = "DeleteGameID";
-            this.DeleteGameID.Size = new System.Drawing.Size(46, 20);
+            this.DeleteGameID.Size = new System.Drawing.Size(72, 20);
             this.DeleteGameID.TabIndex = 16;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(12, 700);
+            this.label13.Location = new System.Drawing.Point(95, 715);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(20, 13);
+            this.label13.Size = new System.Drawing.Size(75, 13);
             this.label13.TabIndex = 17;
-            this.label13.Text = "ID";
+            this.label13.Text = "Game Name";
             // 
             // GameDeleteBTN
             // 
-            this.GameDeleteBTN.Location = new System.Drawing.Point(90, 695);
+            this.GameDeleteBTN.Location = new System.Drawing.Point(176, 693);
             this.GameDeleteBTN.Name = "GameDeleteBTN";
             this.GameDeleteBTN.Size = new System.Drawing.Size(60, 23);
             this.GameDeleteBTN.TabIndex = 18;
@@ -634,32 +663,103 @@
             this.eventBindingSource1.DataMember = "Event";
             this.eventBindingSource1.DataSource = this.kiddEsportsDataBindingSource;
             // 
-            // GameNameColumn
+            // label15
             // 
-            this.GameNameColumn.DataPropertyName = "GameName";
-            this.GameNameColumn.HeaderText = "GameName";
-            this.GameNameColumn.Name = "GameNameColumn";
-            this.GameNameColumn.ReadOnly = true;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(12, 696);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(80, 13);
+            this.label15.TabIndex = 19;
+            this.label15.Text = "Delete Game";
+            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
-            // GameTypeColumn
+            // DeleteResultBTN
             // 
-            this.GameTypeColumn.DataPropertyName = "GameType";
-            this.GameTypeColumn.HeaderText = "GameType";
-            this.GameTypeColumn.Name = "GameTypeColumn";
-            this.GameTypeColumn.ReadOnly = true;
+            this.DeleteResultBTN.Location = new System.Drawing.Point(161, 109);
+            this.DeleteResultBTN.Name = "DeleteResultBTN";
+            this.DeleteResultBTN.Size = new System.Drawing.Size(75, 21);
+            this.DeleteResultBTN.TabIndex = 39;
+            this.DeleteResultBTN.Text = "Delete";
+            this.DeleteResultBTN.UseVisualStyleBackColor = true;
+            this.DeleteResultBTN.Click += new System.EventHandler(this.DeleteResultBTN_Click);
             // 
-            // IDColumn
+            // label16
             // 
-            this.IDColumn.DataPropertyName = "ID";
-            this.IDColumn.HeaderText = "ID";
-            this.IDColumn.Name = "IDColumn";
-            this.IDColumn.ReadOnly = true;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(96, 93);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(21, 13);
+            this.label16.TabIndex = 38;
+            this.label16.Text = "ID:";
+            // 
+            // DeleteResultID
+            // 
+            this.DeleteResultID.Location = new System.Drawing.Point(99, 109);
+            this.DeleteResultID.Name = "DeleteResultID";
+            this.DeleteResultID.Size = new System.Drawing.Size(56, 20);
+            this.DeleteResultID.TabIndex = 37;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(9, 112);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(84, 13);
+            this.label17.TabIndex = 40;
+            this.label17.Text = "Delete Result";
+            // 
+            // IDtxt
+            // 
+            this.IDtxt.Enabled = false;
+            this.IDtxt.Location = new System.Drawing.Point(82, 76);
+            this.IDtxt.Name = "IDtxt";
+            this.IDtxt.Size = new System.Drawing.Size(100, 20);
+            this.IDtxt.TabIndex = 27;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(49, 30);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(142, 13);
+            this.label19.TabIndex = 28;
+            this.label19.Text = "Select a game from the table";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(12, 477);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(39, 13);
+            this.label20.TabIndex = 42;
+            this.label20.Text = "Game";
+            this.label20.Click += new System.EventHandler(this.label20_Click);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(525, 477);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(44, 13);
+            this.label21.TabIndex = 43;
+            this.label21.Text = "Teams";
             // 
             // NewGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1090, 737);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.DeleteResultBTN);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.DeleteResultID);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.GameDeleteBTN);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.DeleteGameID);
@@ -735,11 +835,6 @@
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.BindingSource teamResultsBindingSource;
         private ClassLibrary.KiddEsportsDataSetTableAdapters.TeamResultsTableAdapter teamResultsTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn eventNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gamePlayedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn teamDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn opposingTeamDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn resultDataGridViewTextBoxColumn;
         private System.Windows.Forms.TextBox NewGameNameTXT;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
@@ -751,7 +846,6 @@
         private System.Windows.Forms.TextBox UpdateGameTypeTXT;
         private System.Windows.Forms.TextBox UpdateGameNameTXT;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox UpdateIDCombobox;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button UpdateBTN;
         private System.Windows.Forms.Label label14;
@@ -768,5 +862,20 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GameNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn GameTypeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button DeleteResultBTN;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox DeleteResultID;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn eventNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gamePlayedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn teamDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn opposingTeamDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn resultDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox IDtxt;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
     }
 }

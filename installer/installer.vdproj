@@ -15,7 +15,19 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_00B4E0C1A91843098F0DAC4428BAB17B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_11945D61649B45F3A2A2E978A03D1472"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2051DDB0443F418290D246011EB68CC6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -33,7 +45,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_85AA43B2FAF8469F84B111B55B22E3B1"
+        "MsmKey" = "8:_8169ADA90E34454BA1316734B0CDA7A7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -51,25 +63,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B933DD8BC4674BA998FBC4FCBCDEEED1"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C441C7FE6A604E8BB82F28053C55E9E7"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DDF1E9B84D40421488208D6583B346D9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_F67BD30A5BCB455F878BA3EA12320D33"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FB11C1AB1BA142E6B79A226B60DF75DD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -122,6 +122,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -184,12 +192,52 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_00B4E0C1A91843098F0DAC4428BAB17B"
+            {
+            "SourcePath" = "8:..\\ICTPRG430AT2\\Deploy Scripts\\createuser.ps1"
+            "TargetName" = "8:createuser.ps1"
+            "Tag" = "8:"
+            "Folder" = "8:_F4FB45E2E4A848E68BAC2C719F225850"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_11945D61649B45F3A2A2E978A03D1472"
             {
             "SourcePath" = "8:..\\ClassLibrary\\bin\\Release\\ClassLibrary.dll.config"
             "TargetName" = "8:ConnectionSettings"
             "Tag" = "8:"
             "Folder" = "8:_64C7CC9425074D749CA23C3058AF89DE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2051DDB0443F418290D246011EB68CC6"
+            {
+            "SourcePath" = "8:..\\ICTPRG430AT2\\Deploy Scripts\\createdb.ps1"
+            "TargetName" = "8:createdb.ps1"
+            "Tag" = "8:"
+            "Folder" = "8:_F4FB45E2E4A848E68BAC2C719F225850"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -235,12 +283,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_85AA43B2FAF8469F84B111B55B22E3B1"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8169ADA90E34454BA1316734B0CDA7A7"
             {
-            "SourcePath" = "8:..\\ICTPRG430AT2\\Deploy Scripts\\setsql.ps1"
-            "TargetName" = "8:setsql.ps1"
+            "SourcePath" = "8:..\\ICTPRG430AT2\\Deploy Scripts\\deletedb.ps1"
+            "TargetName" = "8:deletedb.ps1"
             "Tag" = "8:"
-            "Folder" = "8:_F607A57855924F1891E505F48A0A7407"
+            "Folder" = "8:_F4FB45E2E4A848E68BAC2C719F225850"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -286,52 +334,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B933DD8BC4674BA998FBC4FCBCDEEED1"
-            {
-            "SourcePath" = "8:..\\ICTPRG430AT2\\Deploy Scripts\\deletedb.ps1"
-            "TargetName" = "8:deletedb.ps1"
-            "Tag" = "8:"
-            "Folder" = "8:_F607A57855924F1891E505F48A0A7407"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C441C7FE6A604E8BB82F28053C55E9E7"
-            {
-            "SourcePath" = "8:..\\ICTPRG430AT2\\Deploy Scripts\\createdb.ps1"
-            "TargetName" = "8:createdb.ps1"
-            "Tag" = "8:"
-            "Folder" = "8:_F607A57855924F1891E505F48A0A7407"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DDF1E9B84D40421488208D6583B346D9"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FB11C1AB1BA142E6B79A226B60DF75DD"
             {
             "SourcePath" = "8:..\\ICTPRG430AT2\\Deploy Scripts\\createtables.ps1"
             "TargetName" = "8:createtables.ps1"
             "Tag" = "8:"
-            "Folder" = "8:_F607A57855924F1891E505F48A0A7407"
+            "Folder" = "8:_F4FB45E2E4A848E68BAC2C719F225850"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -362,13 +370,13 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_F607A57855924F1891E505F48A0A7407"
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_F4FB45E2E4A848E68BAC2C719F225850"
                     {
                     "Name" = "8:Scripts"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
-                    "Property" = "8:_61F5044A3539491FA134476D63C3CFCF"
+                    "Property" = "8:_1AD51D4CC968437E9FCAD95C2ECBF31F"
                         "Folders"
                         {
                         }

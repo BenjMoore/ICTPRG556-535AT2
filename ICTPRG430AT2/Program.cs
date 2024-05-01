@@ -27,14 +27,16 @@ namespace ClassLibrary
             TeamInfoTableAdapter teamInfoTableAdapter = new TeamInfoTableAdapter();
             EventsTableAdapter eventTableAdapter = new EventsTableAdapter();
             GamePlayedTableAdapter gameTableAdapter = new GamePlayedTableAdapter();
-
+            TeamResultsTableAdapter teamResultsTableAdapter = new TeamResultsTableAdapter();
             DataMapper = new DataMapper();
 
             #region Get Counts
             int teamsCount = (int)teamInfoTableAdapter.GetTotalTeamRows();
             int eventCount = (int)eventTableAdapter.GetEventRows();
             int gameCount = (int)gameTableAdapter.GetGameRows();
-            #endregion
+           
+            
+                #endregion
 
             CreateTestDataIfEmptyDB(teamsCount, eventCount, gameCount);
 
@@ -50,9 +52,9 @@ namespace ClassLibrary
             // Add filler data if the table is empty
             if (teamsCount == 0)
             {
-                DataMapper.AddTeamInfo("TeamA", "John Doe", "john.doe@example.com", "100");
-                DataMapper.AddTeamInfo("TeamB", "Jane Smith", "jane.smith@example.com", "150");
-                DataMapper.AddTeamInfo("TeamC", "Mike Johnson", "mike.johnson@example.com", "120");
+                DataMapper.AddTeamInfo("TeamA", "John Doe", "john.doe@example.com", "2");
+                DataMapper.AddTeamInfo("TeamB", "Jane Smith", "jane.smith@example.com", "2");
+                DataMapper.AddTeamInfo("TeamC", "Mike Johnson", "mike.johnson@example.com", "2");
 
 
             }
@@ -69,6 +71,12 @@ namespace ClassLibrary
                 DataMapper.AddGameInfo("FakeGame2", "Duos");
                 DataMapper.AddGameInfo("FakeGame3", "Squads");
             }
+            /*if (resultCount == 0)
+            {
+                DataMapper.AddGameResult("TeamA", "TeamB", "TeamA", "TestEvent", "Solos");
+                DataMapper.AddGameResult("TeamB", "TeamC", "TeamB", "TestEvent1", "Duos");
+                DataMapper.AddGameResult("TeamC", "TeamA", "TeamC", "TestEvent3", "Solos");
+            }*/
         }
     }
 }
