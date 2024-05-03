@@ -193,6 +193,8 @@
             // 
             // teamInfoDataGridView
             // 
+            this.teamInfoDataGridView.AllowUserToAddRows = false;
+            this.teamInfoDataGridView.AllowUserToDeleteRows = false;
             this.teamInfoDataGridView.AllowUserToOrderColumns = true;
             this.teamInfoDataGridView.AutoGenerateColumns = false;
             this.teamInfoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -206,6 +208,7 @@
             this.teamInfoDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.teamInfoDataGridView.Location = new System.Drawing.Point(0, 0);
             this.teamInfoDataGridView.Name = "teamInfoDataGridView";
+            this.teamInfoDataGridView.ReadOnly = true;
             this.teamInfoDataGridView.Size = new System.Drawing.Size(544, 451);
             this.teamInfoDataGridView.TabIndex = 0;
             // 
@@ -214,24 +217,28 @@
             this.teamNameDataGridViewTextBoxColumn.DataPropertyName = "TeamName";
             this.teamNameDataGridViewTextBoxColumn.HeaderText = "TeamName";
             this.teamNameDataGridViewTextBoxColumn.Name = "teamNameDataGridViewTextBoxColumn";
+            this.teamNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // primaryContactDataGridViewTextBoxColumn
             // 
             this.primaryContactDataGridViewTextBoxColumn.DataPropertyName = "PrimaryContact";
             this.primaryContactDataGridViewTextBoxColumn.HeaderText = "PrimaryContact";
             this.primaryContactDataGridViewTextBoxColumn.Name = "primaryContactDataGridViewTextBoxColumn";
+            this.primaryContactDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // contactEmailDataGridViewTextBoxColumn
             // 
             this.contactEmailDataGridViewTextBoxColumn.DataPropertyName = "ContactEmail";
             this.contactEmailDataGridViewTextBoxColumn.HeaderText = "ContactEmail";
             this.contactEmailDataGridViewTextBoxColumn.Name = "contactEmailDataGridViewTextBoxColumn";
+            this.contactEmailDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // pointsDataGridViewTextBoxColumn
             // 
             this.pointsDataGridViewTextBoxColumn.DataPropertyName = "Points";
             this.pointsDataGridViewTextBoxColumn.HeaderText = "Points";
             this.pointsDataGridViewTextBoxColumn.Name = "pointsDataGridViewTextBoxColumn";
+            this.pointsDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // iDDataGridViewTextBoxColumn
             // 

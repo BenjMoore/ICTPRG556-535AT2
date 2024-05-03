@@ -27,6 +27,8 @@ namespace ClassLibrary
             // Set default selection
             GameType.SelectedIndex = 0;
             dataGridView1.CellClick += dataGridView1_CellClick;
+          
+
         }
 
         // Form Load event handler
@@ -63,10 +65,10 @@ namespace ClassLibrary
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
                 // Populate the update section with data from the selected row
-                UpdateIDCombobox.SelectedValue = row.Cells["IDColumn"].Value.ToString();
+                IDtxt.Text = row.Cells["IDColumn"].Value.ToString();
                 UpdateGameNameTXT.Text = row.Cells["GameNameColumn"].Value.ToString();
                 UpdateGameTypeTXT.Text = row.Cells["GameTypeColumn"].Value.ToString();
-              
+
             }
         }
         // Button click event handler for adding a new game
@@ -87,7 +89,7 @@ namespace ClassLibrary
                 string.IsNullOrWhiteSpace(EventName)) // If Empty
             {
                 MessageBox.Show("Please fill in all fields before adding a new team.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; 
+                return;
             }
 
             if (TeamComboBox.SelectedValue == OpposingTeamComboBox.SelectedValue)  // If same teams versing
@@ -95,13 +97,15 @@ namespace ClassLibrary
                 MessageBox.Show("Competing Teams Can Not Be The Same.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            if (TeamComboBox.SelectedValue != WinnerComboBox.SelectedValue) // if winner not competing
+            if (!DrawCheckBox.Checked)
             {
-                if (OpposingTeamComboBox.SelectedValue != WinnerComboBox.SelectedValue)
+                if (TeamComboBox.SelectedValue != WinnerComboBox.SelectedValue) // if winner not competing
                 {
-                    MessageBox.Show("Winner is not competing!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    if (OpposingTeamComboBox.SelectedValue != WinnerComboBox.SelectedValue)
+                    {
+                        MessageBox.Show("Winner is not competing!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
             }
 
@@ -110,7 +114,7 @@ namespace ClassLibrary
             // Refresh the GamesPlayed DataGridView to reflect the changes
             this.gamesPlayedTableAdapter.Fill(this.kiddEsportsData.GamePlayed);
 
-          
+
 
             // Retrieve the selected teams and winner, and the event name
             string team = TeamComboBox.SelectedValue != null ? TeamComboBox.SelectedValue.ToString() : string.Empty;
@@ -124,6 +128,7 @@ namespace ClassLibrary
 
             if (DrawCheckBox.Checked)
             {
+
                 result = "Draw";
                 opposingresult = "Draw";
                 points = 1; // Both teams get 1 point for a draw
@@ -132,37 +137,30 @@ namespace ClassLibrary
             // Determine the result based on the winner
             else if (!DrawCheckBox.Checked)
             {
-                if (team == winner)
-                {
-                    result = "Win";
-                    opposingresult = "Loss";
-                    points = 2; // Winning team gets 2 points
-                    opposingpoints = -2;
-                }
-                else if (opposingTeam == winner)
-                {
-                    result = "Loss";
-                    opposingpoints = -2; // Opposing team gets 2 points
-                    opposingresult = "Win";
-                }
+
+                 result = winner ;
+                 points = 2; // Winning team gets 2 points
+                    
+                
+               
             }
 
-            
+
             // Add the game result to the database for both teams
             Program.DataMapper.AddGameResult(team, opposingTeam, result, eventName, gameName);
-            Program.DataMapper.AddGameResult(opposingTeam, team, opposingresult, eventName, gameName);
+         
             // Refresh the TeamResults DataGridView to reflect the changes
             this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
 
             // Update team points in the database
-            Program.DataMapper.UpdateTeamPoints(team, points);
+            Program.DataMapper.UpdateTeamPoints(winner, points);
             Program.DataMapper.UpdateTeamPoints(opposingTeam, opposingpoints);
 
             // Refresh the TeamInfo DataGridView to reflect the changes
             this.teamInfoTableAdapter.Fill(this.kiddEsportsData.TeamInfo);
 
             // Clear input fields after updating team information
-           
+
             NewGameNameTXT.ResetText();
             TeamComboBox.SelectedIndex = -1;
             OpposingTeamComboBox.SelectedIndex = -1;
@@ -174,12 +172,12 @@ namespace ClassLibrary
         private void UpdateBTN_Click(object sender, EventArgs e)
         {
             var gameIdToUpdate = new int();
-            var updateIdString = UpdateIDCombobox.SelectedValue != null ? UpdateIDCombobox.SelectedValue.ToString() : string.Empty;
+            var updateIdString = IDtxt.Text != null ? IDtxt.Text.ToString() : string.Empty;
 
 
             string GameName = UpdateGameNameTXT.Text;
             string GameType = UpdateGameTypeTXT.Text;
-           
+
 
             if (string.IsNullOrWhiteSpace(GameName) ||
             string.IsNullOrWhiteSpace(GameType))
@@ -209,18 +207,46 @@ namespace ClassLibrary
         // Button click event handler for deleting a game
         private void GameDeleteBTN_Click(object sender, EventArgs e)
         {
-            // Retrieve the game ID to delete
-            int.TryParse(DeleteGameID.Text, out int id);
+           
 
-            if (id == 0) return;
-            
+            // Attempt to parse the DeleteResultID.Text to an integer
           
-            // Delete the game information from the database
-            Program.DataMapper.DeleteGamesPlayedInfo(id);
-            // Refresh the GamesPlayed DataGridView to reflect the changes
+
+            // Get the result information based on the result ID
+            ResultDTO result = Program.DataMapper.GetResultByGameName(DeleteGameID.Text);
+
+            // Check if the result with the specified ID exists
+            if (result == null)
+            {
+                // Show an error message if the result does not exist
+                MessageBox.Show("Result not found for the specified ID... Attempting to delete game record", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Program.DataMapper.DeleteGamesPlayedInfo(DeleteGameID.Text);
+                DeleteGameID.ResetText();
+                this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
+                this.teamInfoTableAdapter.Fill(this.kiddEsportsData.TeamInfo);
+                this.gamesPlayedTableAdapter.Fill(this.kiddEsportsData.GamePlayed);
+                return;
+            }
+            
+            // Retrieve the winner from the result
+            string winner = result.Result;
+
+            // Update team points for the winner
+            Program.DataMapper.UpdateTeamPoints(winner, -2);
+
+            // Delete the result information
+            Program.DataMapper.DeleteGamesPlayedInfo(result.GamePlayed);
+            Program.DataMapper.DeleteResultinfo(result.ID);
+
+            // Refresh the DataGridViews to reflect the changes
+            this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
+            this.teamInfoTableAdapter.Fill(this.kiddEsportsData.TeamInfo);
             this.gamesPlayedTableAdapter.Fill(this.kiddEsportsData.GamePlayed);
+
+            // Reset the text box
             DeleteGameID.ResetText();
         }
+
 
         // Method to get a new game ID
         private int GetNewGameID()
@@ -266,5 +292,69 @@ namespace ClassLibrary
             return newID;
         }
 
+        private void DrawCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (DrawCheckBox.Checked)
+            {
+                // Enable the dropdown
+                WinnerComboBox.Enabled = false;
+            }
+            else
+            {
+                // Disable the dropdown
+                WinnerComboBox.Enabled = true;
+            }
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteResultBTN_Click(object sender, EventArgs e)
+        {
+            int resultIDToDelete;
+
+            // Attempt to parse the DeleteResultID.Text to an integer
+            if (!int.TryParse(DeleteResultID.Text, out resultIDToDelete))
+            {
+                // Show an error message if the conversion fails
+                MessageBox.Show("Invalid result ID. Please enter a valid integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Get the result information based on the result ID
+            ResultDTO result = Program.DataMapper.GetResultByID(resultIDToDelete);
+
+            // Check if the result with the specified ID exists
+            if (result == null)
+            {
+                // Show an error message if the result does not exist
+                MessageBox.Show("Result not found for the specified ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Retrieve the winner from the result
+            string winner = result.Result;
+
+            // Update team points for the winner
+            Program.DataMapper.UpdateTeamPoints(winner, -2);
+
+            // Delete the result information
+            Program.DataMapper.DeleteResultinfo(resultIDToDelete);
+
+            // Refresh the DataGridViews to reflect the changes
+            this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
+            this.teamInfoTableAdapter.Fill(this.kiddEsportsData.TeamInfo);
+
+            // Reset the text box
+            DeleteResultID.ResetText();
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

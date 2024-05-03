@@ -32,15 +32,21 @@ namespace ClassLibrary
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.EventNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventLocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.kiddEsportsDataViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.kiddEsportsData_View = new ICTPRG430AT2.KiddEsportsData_View();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.AddEventBTN = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.EventLocationTXT = new System.Windows.Forms.TextBox();
-            this.EventDateTXT = new System.Windows.Forms.TextBox();
             this.EventNameTXT = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.UpdateBTN = new System.Windows.Forms.Button();
@@ -63,19 +69,13 @@ namespace ClassLibrary
             this.TeamsBTN = new System.Windows.Forms.Button();
             this.ResultsBTN = new System.Windows.Forms.Button();
             this.DeteleBTN = new System.Windows.Forms.Button();
-            this.EventNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EventLocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EventDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kiddEsportsDataViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.kiddEsportsData_View = new ICTPRG430AT2.KiddEsportsData_View();
             this.eventTableAdapter = new ICTPRG430AT2.KiddEsportsData_ViewTableAdapters.EventTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsDataViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData_View)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -96,26 +96,71 @@ namespace ClassLibrary
             this.dataGridView1.Size = new System.Drawing.Size(507, 631);
             this.dataGridView1.TabIndex = 0;
             // 
+            // EventNameColumn
+            // 
+            this.EventNameColumn.DataPropertyName = "EventName";
+            this.EventNameColumn.HeaderText = "EventName";
+            this.EventNameColumn.Name = "EventNameColumn";
+            this.EventNameColumn.ReadOnly = true;
+            // 
+            // EventLocationColumn
+            // 
+            this.EventLocationColumn.DataPropertyName = "EventLocation";
+            this.EventLocationColumn.HeaderText = "EventLocation";
+            this.EventLocationColumn.Name = "EventLocationColumn";
+            this.EventLocationColumn.ReadOnly = true;
+            // 
+            // EventDateColumn
+            // 
+            this.EventDateColumn.DataPropertyName = "EventDate";
+            this.EventDateColumn.HeaderText = "EventDate";
+            this.EventDateColumn.Name = "EventDateColumn";
+            this.EventDateColumn.ReadOnly = true;
+            // 
+            // IDColumn
+            // 
+            this.IDColumn.DataPropertyName = "ID";
+            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.Name = "IDColumn";
+            this.IDColumn.ReadOnly = true;
+            // 
             // eventBindingSource
             // 
             this.eventBindingSource.DataMember = "Event";
             this.eventBindingSource.DataSource = this.kiddEsportsDataViewBindingSource;
             // 
+            // kiddEsportsDataViewBindingSource
+            // 
+            this.kiddEsportsDataViewBindingSource.DataSource = this.kiddEsportsData_View;
+            this.kiddEsportsDataViewBindingSource.Position = 0;
+            // 
+            // kiddEsportsData_View
+            // 
+            this.kiddEsportsData_View.DataSetName = "KiddEsportsData_View";
+            this.kiddEsportsData_View.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.DateTimePicker);
             this.panel2.Controls.Add(this.AddEventBTN);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.EventLocationTXT);
-            this.panel2.Controls.Add(this.EventDateTXT);
             this.panel2.Controls.Add(this.EventNameTXT);
             this.panel2.Location = new System.Drawing.Point(970, 226);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(294, 328);
             this.panel2.TabIndex = 19;
+            // 
+            // DateTimePicker
+            // 
+            this.DateTimePicker.Location = new System.Drawing.Point(48, 189);
+            this.DateTimePicker.Name = "DateTimePicker";
+            this.DateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.DateTimePicker.TabIndex = 23;
             // 
             // AddEventBTN
             // 
@@ -131,7 +176,7 @@ namespace ClassLibrary
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(45, 177);
+            this.label7.Location = new System.Drawing.Point(45, 173);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 13);
             this.label7.TabIndex = 21;
@@ -171,13 +216,6 @@ namespace ClassLibrary
             this.EventLocationTXT.Name = "EventLocationTXT";
             this.EventLocationTXT.Size = new System.Drawing.Size(200, 20);
             this.EventLocationTXT.TabIndex = 14;
-            // 
-            // EventDateTXT
-            // 
-            this.EventDateTXT.Location = new System.Drawing.Point(48, 193);
-            this.EventDateTXT.Name = "EventDateTXT";
-            this.EventDateTXT.Size = new System.Drawing.Size(200, 20);
-            this.EventDateTXT.TabIndex = 15;
             // 
             // EventNameTXT
             // 
@@ -259,6 +297,7 @@ namespace ClassLibrary
             // 
             // ReturnID
             // 
+            this.ReturnID.Enabled = false;
             this.ReturnID.Location = new System.Drawing.Point(44, 172);
             this.ReturnID.Name = "ReturnID";
             this.ReturnID.Size = new System.Drawing.Size(40, 20);
@@ -381,44 +420,6 @@ namespace ClassLibrary
             this.DeteleBTN.UseVisualStyleBackColor = true;
             this.DeteleBTN.Click += new System.EventHandler(this.DeteleBTN_Click);
             // 
-            // EventNameColumn
-            // 
-            this.EventNameColumn.DataPropertyName = "EventName";
-            this.EventNameColumn.HeaderText = "EventName";
-            this.EventNameColumn.Name = "EventNameColumn";
-            this.EventNameColumn.ReadOnly = true;
-            // 
-            // EventLocationColumn
-            // 
-            this.EventLocationColumn.DataPropertyName = "EventLocation";
-            this.EventLocationColumn.HeaderText = "EventLocation";
-            this.EventLocationColumn.Name = "EventLocationColumn";
-            this.EventLocationColumn.ReadOnly = true;
-            // 
-            // EventDateColumn
-            // 
-            this.EventDateColumn.DataPropertyName = "EventDate";
-            this.EventDateColumn.HeaderText = "EventDate";
-            this.EventDateColumn.Name = "EventDateColumn";
-            this.EventDateColumn.ReadOnly = true;
-            // 
-            // IDColumn
-            // 
-            this.IDColumn.DataPropertyName = "ID";
-            this.IDColumn.HeaderText = "ID";
-            this.IDColumn.Name = "IDColumn";
-            this.IDColumn.ReadOnly = true;
-            // 
-            // kiddEsportsDataViewBindingSource
-            // 
-            this.kiddEsportsDataViewBindingSource.DataSource = this.kiddEsportsData_View;
-            this.kiddEsportsDataViewBindingSource.Position = 0;
-            // 
-            // kiddEsportsData_View
-            // 
-            this.kiddEsportsData_View.DataSetName = "KiddEsportsData_View";
-            this.kiddEsportsData_View.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // eventTableAdapter
             // 
             this.eventTableAdapter.ClearBeforeFill = true;
@@ -447,12 +448,12 @@ namespace ClassLibrary
             this.Load += new System.EventHandler(this.Event_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsDataViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData_View)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsDataViewBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kiddEsportsData_View)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -467,7 +468,6 @@ namespace ClassLibrary
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox EventLocationTXT;
-        private System.Windows.Forms.TextBox EventDateTXT;
         private System.Windows.Forms.TextBox EventNameTXT;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label13;
@@ -499,5 +499,6 @@ namespace ClassLibrary
         private System.Windows.Forms.DataGridViewTextBoxColumn EventLocationColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventDateColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
+        private System.Windows.Forms.DateTimePicker DateTimePicker;
     }
 }

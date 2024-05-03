@@ -34,8 +34,10 @@ namespace ClassLibrary
         /// <param name="e">The event arguments.</param>
         private void Events_Load(object sender, EventArgs e)
         {
-            // Load data into the event table from the database
-            this.eventTableAdapter.Fill(this.kiddEsportsData_View.Event);
+
+            // Load data into the Events DataGridView
+            //this.EventTableAdapter.Fill(this.kiddEsportsData.Events);
+
         }
 
         // Method to retrieve a new event ID from the database
@@ -77,15 +79,20 @@ namespace ClassLibrary
 
         private void AddEventBTN_Click(object sender, EventArgs e)
         {
+
+            DateTimePicker.Format = DateTimePickerFormat.Custom;
+            DateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm tt";
+            DateTime selectedDateTime = DateTimePicker.Value;
+
             // Get new event ID, event name, location, and date from text boxes
             int id = GetNewEventID();
             string teamName = EventNameTXT.Text;
             string primaryContact = EventLocationTXT.Text;
-            string contactEmail = EventDateTXT.Text;
+            string contactEmail = selectedDateTime.ToString("MM/dd/yyyy hh:mm tt");
 
             if (string.IsNullOrWhiteSpace(teamName) ||
             string.IsNullOrWhiteSpace(primaryContact) ||
-                string.IsNullOrWhiteSpace(contactEmail) )
+                string.IsNullOrWhiteSpace(contactEmail))
             {
                 MessageBox.Show("Please fill in all fields before adding a new team.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Exit the method early
@@ -94,18 +101,18 @@ namespace ClassLibrary
             Program.DataMapper.AddEventInfo(teamName, primaryContact, contactEmail);
             // Refresh the data in the event table
             this.eventTableAdapter.Fill(this.kiddEsportsData_View.Event);
-
+            
             // Clear the text boxes after adding the event
             EventNameTXT.ResetText();
             EventLocationTXT.ResetText();
-            EventDateTXT.ResetText();
+
         }
 
 
         private void DeteleBTN_Click(object sender, EventArgs e)
         {
             // Get the event ID to delete from the text box
-           
+
             if (string.IsNullOrWhiteSpace(DeleteID.Text))
             {
                 MessageBox.Show("Please provide an Event ID to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -125,7 +132,7 @@ namespace ClassLibrary
             Program.DataMapper.DeleteEventInfo(eventIdToUpdate);
 
             // Refresh the data in the event table
-            this.eventTableAdapter.Fill(this.kiddEsportsData_View.Event);
+            //this.eventTableAdapter.Fill(this.kiddEsportsData_View.Event);
 
             // Clear the text box after deleting the event
             DeleteID.ResetText();
@@ -134,8 +141,8 @@ namespace ClassLibrary
         private void UpdateBTN_Click_1(object sender, EventArgs e)
         {
             // Get the event ID, name, location, and date from text boxes
-           
-             if (string.IsNullOrWhiteSpace(ReturnID.Text))
+
+            if (string.IsNullOrWhiteSpace(ReturnID.Text))
             {
                 MessageBox.Show("Please provide an Event ID to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Exit the method early
@@ -151,7 +158,7 @@ namespace ClassLibrary
             string Name = ReturnName.Text.Trim();
             string Location = ReturnLocation.Text.Trim();
             string Date = ReturnDate.Text.Trim();
-           
+
 
             if (string.IsNullOrWhiteSpace(Name) ||
             string.IsNullOrWhiteSpace(Location) ||
@@ -176,7 +183,7 @@ namespace ClassLibrary
             ReturnLocation.ResetText();
             ReturnDate.ResetText();
             ReturnID.ResetText();
-            this.eventTableAdapter.Fill(this.kiddEsportsData_View.Event);
+            //this.eventTableAdapter.Fill(this.kiddEsportsData_View.Event);
         }
         // Event handler for the "Search" button click event
 
@@ -186,7 +193,7 @@ namespace ClassLibrary
         private void Event_Load(object sender, EventArgs e)
         {
 
-            this.eventTableAdapter.Fill(this.kiddEsportsData_View.Event);
+            // this.eventTableAdapter.Fill(this.kiddEsportsData_View.Event);
 
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -202,7 +209,7 @@ namespace ClassLibrary
                 ReturnName.Text = row.Cells["EventNameColumn"].Value.ToString();
                 ReturnLocation.Text = row.Cells["EventLocationColumn"].Value.ToString();
                 ReturnDate.Text = row.Cells["EventDateColumn"].Value.ToString();
-               
+
             }
         }
 
