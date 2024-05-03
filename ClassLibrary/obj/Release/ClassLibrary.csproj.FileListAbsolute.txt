@@ -1,7 +1,0 @@
-D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\bin\Release\ClassLibrary.dll.config
-D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\bin\Release\ClassLibrary.dll
-D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\bin\Release\ClassLibrary.pdb
-D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\obj\Release\ClassLibrary.csproj.AssemblyReference.cache
-D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\obj\Release\ClassLibrary.csproj.CoreCompileInputs.cache
-D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\obj\Release\ClassLibrary.dll
-D:\Git Repos\ICTPRG556-535AT2\ClassLibrary\obj\Release\ClassLibrary.pdb
