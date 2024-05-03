@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "D:\\Git Repos\\ICTPRG556-535AT2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0C7583A6-EF5B-4D3E-9B4A-CE4B079E74D7}|ICTPRG430AT2\\ICTPRG430AT2.csproj|D:\\Git Repos\\ICTPRG556-535AT2\\ictprg430at2\\results.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0C7583A6-EF5B-4D3E-9B4A-CE4B079E74D7}|ICTPRG430AT2\\ICTPRG430AT2.csproj|d:\\git repos\\ictprg556-535at2\\ictprg430at2\\results.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0C7583A6-EF5B-4D3E-9B4A-CE4B079E74D7}|ICTPRG430AT2\\ICTPRG430AT2.csproj|solutionrelative:ictprg430at2\\results.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9000691E-4F3A-477A-9260-7204B498B149}|ClassLibrary\\ClassLibrary.csproj|d:\\git repos\\ictprg556-535at2\\classlibrary\\sqlconnector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9000691E-4F3A-477A-9260-7204B498B149}|ClassLibrary\\ClassLibrary.csproj|D:\\Git Repos\\ICTPRG556-535AT2\\classlibrary\\sqlconnector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9000691E-4F3A-477A-9260-7204B498B149}|ClassLibrary\\ClassLibrary.csproj|solutionrelative:classlibrary\\sqlconnector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -151,7 +151,7 @@
               "RelativeDocumentMoniker": "ICTPRG430AT2\\Results.cs",
               "ToolTip": "D:\\Git Repos\\ICTPRG556-535AT2\\ICTPRG430AT2\\Results.cs",
               "RelativeToolTip": "ICTPRG430AT2\\Results.cs",
-              "ViewState": "AQIAAM4AAAAAAAAAAADgvw4BAAAIAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAANwAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-16T09:12:50.221Z",
               "IsPinned": true,
@@ -187,8 +187,7 @@
               "ToolTip": "C:\\Users\\Benjm\\AppData\\Local\\Temp\\.vsdbgsrc\\9b1c4965f4a257075b18f048692a7c960f5a36a7330c234f5602855e9e3c0170\\Application.cs",
               "ViewState": "AQIAAB4BAAAAAAAAAAD4v1ABAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T06:49:54.098Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-02T06:49:54.098Z"
             },
             {
               "$type": "Document",
@@ -200,8 +199,7 @@
               "RelativeToolTip": "ClassLibrary\\SQLConnector.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAAACAAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-01T12:18:52.22Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-01T12:18:52.22Z"
             },
             {
               "$type": "Document",
@@ -212,8 +210,7 @@
               "ToolTip": "D:\\Git Repos\\ICTPRG556-535AT2\\ICTPRG430AT2\\Event.cs [Design]",
               "RelativeToolTip": "ICTPRG430AT2\\Event.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T06:40:22.002Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-05-02T06:40:22.002Z"
             },
             {
               "$type": "Document",
@@ -237,8 +234,7 @@
               "RelativeToolTip": "ICTPRG430AT2\\Teams.cs",
               "ViewState": "AQIAAPkAAAAAAAAAAAAwwIsAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-17T10:38:35.466Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-17T10:38:35.466Z"
             },
             {
               "$type": "Document",
@@ -261,8 +257,7 @@
               "ToolTip": "D:\\Git Repos\\ICTPRG556-535AT2\\ICTPRG430AT2\\Teams.cs [Design]",
               "RelativeToolTip": "ICTPRG430AT2\\Teams.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-20T06:47:05.692Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-03-20T06:47:05.692Z"
             },
             {
               "$type": "Document",
@@ -286,8 +281,7 @@
               "RelativeToolTip": "ClassLibrary\\app.config",
               "ViewState": "AQIAABkAAAAAAAAAAAArwCQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-03-14T10:34:17.786Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-14T10:34:17.786Z"
             },
             {
               "$type": "Document",
@@ -311,8 +305,7 @@
               "RelativeToolTip": "ICTPRG430AT2\\Event.cs",
               "ViewState": "AQIAAD8AAAAAAAAAAAAIwFAAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-17T10:36:37.41Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-17T10:36:37.41Z"
             },
             {
               "$type": "Document",
@@ -324,8 +317,7 @@
               "RelativeToolTip": "ICTPRG430AT2\\KiddEsportsData_View.xss",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEQSURBVDhPpZIxDoIwFIYfbsAiNxBu4KKwMnMBmDyCJxFXndy4AHcgunADdGdAE4EwVV4pWqEgiV/y0uZ/7Z\u002B\u002B1wdjlGW5KYoiroN0IsYcEEIkdrZHfchPkmQbRREEQcDUBtd1wbIsMAxjz6Rvsiybp2lKDocjuWcPYfg7n75mxu4IyfOc7fo8WW6sBOI4DugLHVbrNVMbLuczXG9XCMPw2wAvse0bNBkCDXol4IU2pjDagyn0DPBZ/PoLaoC1i\u002BpH0EhkpqoqXWkT244PgQZ83jRN8DzvM0hoYNs2P6rvGNCbUa6ZoUBdOBRFEc5HVVUa5upYyrJ8Qo32oH1et4yurmnanW44/v5GaaiEaaUBvACMFdHTTBiv\u002BAAAAABJRU5ErkJggg==",
-              "WhenOpened": "2024-05-01T12:17:32.554Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-01T12:17:32.554Z"
             },
             {
               "$type": "Document",
@@ -337,8 +329,7 @@
               "RelativeToolTip": "ICTPRG430AT2\\KiddEsportsData_View.xsc",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001612|",
-              "WhenOpened": "2024-05-01T12:17:31.629Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-01T12:17:31.629Z"
             },
             {
               "$type": "Document",
@@ -350,8 +341,7 @@
               "RelativeToolTip": "ICTPRG430AT2\\KiddEsportsData_View.Designer.cs",
               "ViewState": "AQIAAGgAAAAAAAAAAAAwwHQAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-01T12:17:27.713Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-01T12:17:27.713Z"
             },
             {
               "$type": "Document",
@@ -362,8 +352,7 @@
               "ToolTip": "D:\\Git Repos\\ICTPRG556-535AT2\\ICTPRG430AT2\\KiddEsportsData_View.xsd",
               "RelativeToolTip": "ICTPRG430AT2\\KiddEsportsData_View.xsd",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
-              "WhenOpened": "2024-05-01T12:05:47.707Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-01T12:05:47.707Z"
             },
             {
               "$type": "Document",
@@ -374,8 +363,7 @@
               "ToolTip": "D:\\Git Repos\\ICTPRG556-535AT2\\ICTPRG430AT2\\NewGame.cs [Design]",
               "RelativeToolTip": "ICTPRG430AT2\\NewGame.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-01T11:58:43.649Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-05-01T11:58:43.649Z"
             },
             {
               "$type": "Document",
@@ -423,8 +411,7 @@
               "RelativeToolTip": "ICTPRG430AT2\\NewGame.cs",
               "ViewState": "AQIAABYAAAAAAAAAAAAgwCsAAABPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-01T09:47:48.717Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-01T09:47:48.717Z"
             },
             {
               "$type": "Document",
@@ -436,8 +423,7 @@
               "RelativeToolTip": "ICTPRG430AT2\\Program.cs",
               "ViewState": "AQIAAB8AAAAAAAAAAAAAAEcAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T14:28:04.976Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-07T14:28:04.976Z"
             },
             {
               "$type": "Document",
@@ -530,8 +516,7 @@
               "RelativeToolTip": "ICTPRG430AT2\\Event.Designer.cs",
               "ViewState": "AQIAAFMBAAAAAAAAAAAAANsBAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-17T08:11:23.13Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-17T08:11:23.13Z"
             },
             {
               "$type": "Document",
