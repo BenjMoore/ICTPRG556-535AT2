@@ -18,7 +18,7 @@ namespace ClassLibrary
     public partial class Results : Form
     {
         // Constructor
-    
+
         public Results()
         {
             InitializeComponent();
@@ -37,7 +37,7 @@ namespace ClassLibrary
 
         private void Results_Load(object sender, EventArgs e)
         {
-           
+
             this.teamResultsTableAdapter1.Fill(this.kiddEsportsData_View.TeamResults);
             this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
             var team1Data = new KiddEsportsData_View.TeamInfoDataTable();
@@ -58,21 +58,21 @@ namespace ClassLibrary
             Team.ValueMember = "TeamName";
 
             OpposingTeam.DataSource = team2Data;
-            OpposingTeam.DisplayMember = "TeamName"; 
-            OpposingTeam.ValueMember = "TeamName"; 
+            OpposingTeam.DisplayMember = "TeamName";
+            OpposingTeam.ValueMember = "TeamName";
 
             Result.DataSource = resultData;
-            Result.DisplayMember = "TeamName"; 
-            Result.ValueMember = "TeamName"; 
+            Result.DisplayMember = "TeamName";
+            Result.ValueMember = "TeamName";
 
             GamePlayed.DataSource = gameData;
-            GamePlayed.DisplayMember = "GameName"; 
-            GamePlayed.ValueMember = "GameName"; 
+            GamePlayed.DisplayMember = "GameName";
+            GamePlayed.ValueMember = "GameName";
 
 
             EventName.DataSource = eventData;
-            EventName.DisplayMember = "EventName"; 
-            EventName.ValueMember = "EventName"; 
+            EventName.DisplayMember = "EventName";
+            EventName.ValueMember = "EventName";
 
 
         }
@@ -258,7 +258,7 @@ namespace ClassLibrary
                         this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -303,11 +303,13 @@ namespace ClassLibrary
         // triggered when the user clicks a button to export sorted results by event name to a CSV file.
         private void ExportBTNResults_Click(object sender, EventArgs e)
         {
+
             // Retrieve sorted results by event name in ascending order
             List<ResultDTO> sortedResults = Program.DataMapper.SortResultsByEventNameAscending();
 
             // Export the sorted results to a CSV file named "SortedResultsByEventName.csv"
             Program.DataMapper.ExportResultsToCSV(sortedResults, "SortedResultsByEventName.csv");
+            dataGridView1.DataSource = sortedResults;
             MessageBox.Show("Export Completed to desktop", "Notice!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -316,7 +318,7 @@ namespace ClassLibrary
         {
             // Retrieve sorted results by team name in ascending order
             List<ResultDTO> sortedResults = Program.DataMapper.SortResultsByTeamNameAscending();
-
+            dataGridView1.DataSource = sortedResults;
             // Export the sorted results to a CSV file named "SortedResultsByTeamName.csv"
             Program.DataMapper.ExportResultsToCSV(sortedResults, "SortedResultsByTeamName.csv");
             MessageBox.Show("Export Completed to desktop", "Notice!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -325,6 +327,27 @@ namespace ClassLibrary
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void EventReportBTN_Click(object sender, EventArgs e)
+        {
+            List<ResultDTO> sortedResults = Program.DataMapper.SortResultsByTeamNameAscending();
+            dataGridView1.DataSource = sortedResults;
+        }
+
+        private void TeamReportBTN_Click(object sender, EventArgs e)
+        {
+            List<ResultDTO> sortedResults = Program.DataMapper.SortResultsByTeamNameAscending();
+            dataGridView1.DataSource = sortedResults;
+        }
+        private void LoadDataGridView()
+        {
+            // Fetch the data from the database and set it as the data source of the DataGridView
+            this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
+        }
+        private void ClearBTN_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = Program.DataMapper.GetResultsFromDatabase();
         }
     }
 }

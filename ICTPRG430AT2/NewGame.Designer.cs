@@ -59,6 +59,10 @@
             this.button4 = new System.Windows.Forms.Button();
             this.NewGameBTN = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.teamALabel = new System.Windows.Forms.Label();
+            this.teamTwoCheck = new System.Windows.Forms.CheckBox();
+            this.teamOneCheck = new System.Windows.Forms.CheckBox();
             this.GameType = new System.Windows.Forms.ComboBox();
             this.DrawCheckBox = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -68,7 +72,6 @@
             this.eventsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.NewGameNameTXT = new System.Windows.Forms.TextBox();
-            this.WinnerComboBox = new System.Windows.Forms.ComboBox();
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
@@ -81,6 +84,8 @@
             this.teamResultsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.teamResultsTableAdapter = new ClassLibrary.KiddEsportsDataSetTableAdapters.TeamResultsTableAdapter();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.IDtxt = new System.Windows.Forms.TextBox();
             this.UpdateBTN = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -97,8 +102,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.DeleteResultID = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.IDtxt = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource2)).BeginInit();
@@ -205,7 +208,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(23, 201);
+            this.label4.Location = new System.Drawing.Point(84, 168);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 8;
@@ -351,6 +354,10 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label18);
+            this.panel2.Controls.Add(this.teamALabel);
+            this.panel2.Controls.Add(this.teamTwoCheck);
+            this.panel2.Controls.Add(this.teamOneCheck);
             this.panel2.Controls.Add(this.GameType);
             this.panel2.Controls.Add(this.DrawCheckBox);
             this.panel2.Controls.Add(this.label9);
@@ -359,7 +366,6 @@
             this.panel2.Controls.Add(this.NewGameEventDropdown);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.NewGameNameTXT);
-            this.panel2.Controls.Add(this.WinnerComboBox);
             this.panel2.Controls.Add(this.NewGameBTN);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Location = new System.Drawing.Point(609, 135);
@@ -367,11 +373,47 @@
             this.panel2.Size = new System.Drawing.Size(215, 331);
             this.panel2.TabIndex = 12;
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(121, 192);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(82, 13);
+            this.label18.TabIndex = 28;
+            this.label18.Text = "Opposing Team";
+            // 
+            // teamALabel
+            // 
+            this.teamALabel.AutoSize = true;
+            this.teamALabel.Location = new System.Drawing.Point(29, 193);
+            this.teamALabel.Name = "teamALabel";
+            this.teamALabel.Size = new System.Drawing.Size(34, 13);
+            this.teamALabel.TabIndex = 27;
+            this.teamALabel.Text = "Team";
+            // 
+            // teamTwoCheck
+            // 
+            this.teamTwoCheck.AutoSize = true;
+            this.teamTwoCheck.Location = new System.Drawing.Point(100, 192);
+            this.teamTwoCheck.Name = "teamTwoCheck";
+            this.teamTwoCheck.Size = new System.Drawing.Size(15, 14);
+            this.teamTwoCheck.TabIndex = 26;
+            this.teamTwoCheck.UseVisualStyleBackColor = true;
+            // 
+            // teamOneCheck
+            // 
+            this.teamOneCheck.AutoSize = true;
+            this.teamOneCheck.Location = new System.Drawing.Point(16, 193);
+            this.teamOneCheck.Name = "teamOneCheck";
+            this.teamOneCheck.Size = new System.Drawing.Size(15, 14);
+            this.teamOneCheck.TabIndex = 25;
+            this.teamOneCheck.UseVisualStyleBackColor = true;
+            // 
             // GameType
             // 
             this.GameType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.GameType.FormattingEnabled = true;
-            this.GameType.Location = new System.Drawing.Point(25, 163);
+            this.GameType.Location = new System.Drawing.Point(25, 144);
             this.GameType.Name = "GameType";
             this.GameType.Size = new System.Drawing.Size(90, 21);
             this.GameType.TabIndex = 24;
@@ -379,7 +421,7 @@
             // DrawCheckBox
             // 
             this.DrawCheckBox.AutoSize = true;
-            this.DrawCheckBox.Location = new System.Drawing.Point(121, 215);
+            this.DrawCheckBox.Location = new System.Drawing.Point(16, 217);
             this.DrawCheckBox.Name = "DrawCheckBox";
             this.DrawCheckBox.Size = new System.Drawing.Size(57, 17);
             this.DrawCheckBox.TabIndex = 23;
@@ -401,7 +443,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(23, 142);
+            this.label7.Location = new System.Drawing.Point(22, 128);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(71, 13);
             this.label7.TabIndex = 21;
@@ -423,7 +465,7 @@
             this.NewGameEventDropdown.DisplayMember = "EventName";
             this.NewGameEventDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.NewGameEventDropdown.FormattingEnabled = true;
-            this.NewGameEventDropdown.Location = new System.Drawing.Point(26, 58);
+            this.NewGameEventDropdown.Location = new System.Drawing.Point(25, 65);
             this.NewGameEventDropdown.Name = "NewGameEventDropdown";
             this.NewGameEventDropdown.Size = new System.Drawing.Size(158, 21);
             this.NewGameEventDropdown.TabIndex = 18;
@@ -438,11 +480,12 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(22, 42);
+            this.label8.Location = new System.Drawing.Point(23, 49);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(40, 13);
             this.label8.TabIndex = 17;
             this.label8.Text = "Event";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // NewGameNameTXT
             // 
@@ -450,18 +493,6 @@
             this.NewGameNameTXT.Name = "NewGameNameTXT";
             this.NewGameNameTXT.Size = new System.Drawing.Size(158, 20);
             this.NewGameNameTXT.TabIndex = 14;
-            // 
-            // WinnerComboBox
-            // 
-            this.WinnerComboBox.DataSource = this.teamInfoBindingSource1;
-            this.WinnerComboBox.DisplayMember = "TeamName";
-            this.WinnerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.WinnerComboBox.FormattingEnabled = true;
-            this.WinnerComboBox.Location = new System.Drawing.Point(26, 213);
-            this.WinnerComboBox.Name = "WinnerComboBox";
-            this.WinnerComboBox.Size = new System.Drawing.Size(89, 21);
-            this.WinnerComboBox.TabIndex = 12;
-            this.WinnerComboBox.ValueMember = "TeamName";
             // 
             // eventBindingSource
             // 
@@ -566,6 +597,23 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(231, 331);
             this.panel3.TabIndex = 15;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(49, 30);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(142, 13);
+            this.label19.TabIndex = 28;
+            this.label19.Text = "Select a game from the table";
+            // 
+            // IDtxt
+            // 
+            this.IDtxt.Enabled = false;
+            this.IDtxt.Location = new System.Drawing.Point(82, 76);
+            this.IDtxt.Name = "IDtxt";
+            this.IDtxt.Size = new System.Drawing.Size(100, 20);
+            this.IDtxt.TabIndex = 27;
             // 
             // UpdateBTN
             // 
@@ -710,23 +758,6 @@
             this.label17.TabIndex = 40;
             this.label17.Text = "Delete Result";
             // 
-            // IDtxt
-            // 
-            this.IDtxt.Enabled = false;
-            this.IDtxt.Location = new System.Drawing.Point(82, 76);
-            this.IDtxt.Name = "IDtxt";
-            this.IDtxt.Size = new System.Drawing.Size(100, 20);
-            this.IDtxt.TabIndex = 27;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(49, 30);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(142, 13);
-            this.label19.TabIndex = 28;
-            this.label19.Text = "Select a game from the table";
-            // 
             // label20
             // 
             this.label20.AutoSize = true;
@@ -830,7 +861,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
         private System.Windows.Forms.Button NewGameBTN;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox WinnerComboBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.BindingSource teamResultsBindingSource;
@@ -877,5 +907,9 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label teamALabel;
+        private System.Windows.Forms.CheckBox teamTwoCheck;
+        private System.Windows.Forms.CheckBox teamOneCheck;
     }
 }

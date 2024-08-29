@@ -533,6 +533,7 @@ namespace ClassLibrary
             // teams = YourDataAccessLayer.GetTeamsFromDatabase();
             return teams;
         }
+
         public TeamDTO GetTeamByID(int teamID)
         {
             TeamDTO team = null;
@@ -967,6 +968,45 @@ namespace ClassLibrary
             }
 
             return result;
+        }
+        public List<ResultDTO> GetResultsFromDatabase()
+        {
+            List<ResultDTO> results = new List<ResultDTO>();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(dboConnectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT * FROM TeamResults";
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        ResultDTO result = new ResultDTO
+                        {
+                            ID = Convert.ToInt32(reader["ID"]),
+                            EventName = reader["EventName"].ToString(),
+                            GamePlayed = reader["GamePlayed"].ToString(),
+                            Team = reader["Team"].ToString(),
+                            OpposingTeam = reader["OpposingTeam"].ToString(),
+                            Result = reader["Result"].ToString()
+                        };
+
+                        results.Add(result);
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error retrieving results from the database: " + ex.Message);
+            }
+
+            return results;
         }
 
         public void SaveUpdatedResultInfo(ResultDTO result)
@@ -1542,7 +1582,7 @@ namespace ClassLibrary
                 }
             }
         }
-    
+
 
         public void UpdateTeamPoints(string team, int points)
         {
