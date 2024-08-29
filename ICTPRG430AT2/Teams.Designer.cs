@@ -48,7 +48,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.SearchTextBox = new System.Windows.Forms.TextBox();
             this.SearchButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.TeamNameTxt = new System.Windows.Forms.TextBox();
             this.PrimaryContactTxt = new System.Windows.Forms.TextBox();
             this.ContactEmail = new System.Windows.Forms.TextBox();
@@ -63,8 +62,6 @@
             this.DeleteID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.DeleteBTN = new System.Windows.Forms.Button();
-            this.PointsSortBTN = new System.Windows.Forms.Button();
-            this.AlphabeticalSortBTN = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.UpdateBTN = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
@@ -77,6 +74,9 @@
             this.ReturnPoints = new System.Windows.Forms.TextBox();
             this.ReturnEmail = new System.Windows.Forms.TextBox();
             this.ReturnContact = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.PointsSortBTN = new System.Windows.Forms.Button();
+            this.AlphabeticalSortBTN = new System.Windows.Forms.Button();
             this.ExportByPoints = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamInfoBindingSource)).BeginInit();
@@ -246,16 +246,6 @@
             this.SearchButton.UseVisualStyleBackColor = true;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1004, 108);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 20);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Reports";
-            // 
             // TeamNameTxt
             // 
             this.TeamNameTxt.BackColor = System.Drawing.Color.White;
@@ -386,26 +376,6 @@
             this.DeleteBTN.UseVisualStyleBackColor = true;
             this.DeleteBTN.Click += new System.EventHandler(this.DeleteBTN_Click);
             // 
-            // PointsSortBTN
-            // 
-            this.PointsSortBTN.Location = new System.Drawing.Point(895, 142);
-            this.PointsSortBTN.Name = "PointsSortBTN";
-            this.PointsSortBTN.Size = new System.Drawing.Size(294, 23);
-            this.PointsSortBTN.TabIndex = 25;
-            this.PointsSortBTN.Text = "Points";
-            this.PointsSortBTN.UseVisualStyleBackColor = true;
-            this.PointsSortBTN.Click += new System.EventHandler(this.PointsSortBTN_Click);
-            // 
-            // AlphabeticalSortBTN
-            // 
-            this.AlphabeticalSortBTN.Location = new System.Drawing.Point(895, 174);
-            this.AlphabeticalSortBTN.Name = "AlphabeticalSortBTN";
-            this.AlphabeticalSortBTN.Size = new System.Drawing.Size(294, 23);
-            this.AlphabeticalSortBTN.TabIndex = 26;
-            this.AlphabeticalSortBTN.Text = "Alphabetical";
-            this.AlphabeticalSortBTN.UseVisualStyleBackColor = true;
-            this.AlphabeticalSortBTN.Click += new System.EventHandler(this.AlphabeticalSortBTN_Click);
-            // 
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -516,6 +486,36 @@
             this.ReturnContact.Size = new System.Drawing.Size(100, 20);
             this.ReturnContact.TabIndex = 0;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(1004, 108);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 20);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Reports";
+            // 
+            // PointsSortBTN
+            // 
+            this.PointsSortBTN.Location = new System.Drawing.Point(895, 142);
+            this.PointsSortBTN.Name = "PointsSortBTN";
+            this.PointsSortBTN.Size = new System.Drawing.Size(294, 23);
+            this.PointsSortBTN.TabIndex = 25;
+            this.PointsSortBTN.Text = "Points";
+            this.PointsSortBTN.UseVisualStyleBackColor = true;
+            this.PointsSortBTN.Click += new System.EventHandler(this.PointsSortBTN_Click);
+            // 
+            // AlphabeticalSortBTN
+            // 
+            this.AlphabeticalSortBTN.Location = new System.Drawing.Point(895, 174);
+            this.AlphabeticalSortBTN.Name = "AlphabeticalSortBTN";
+            this.AlphabeticalSortBTN.Size = new System.Drawing.Size(294, 23);
+            this.AlphabeticalSortBTN.TabIndex = 26;
+            this.AlphabeticalSortBTN.Text = "Alphabetical";
+            this.AlphabeticalSortBTN.UseVisualStyleBackColor = true;
+            this.AlphabeticalSortBTN.Click += new System.EventHandler(this.AlphabeticalSortBTN_Click);
+            // 
             // ExportByPoints
             // 
             this.ExportByPoints.Location = new System.Drawing.Point(895, 203);
@@ -583,7 +583,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox SearchTextBox;
         private System.Windows.Forms.Button SearchButton;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TeamNameTxt;
         private System.Windows.Forms.TextBox PrimaryContactTxt;
         private System.Windows.Forms.TextBox ContactEmail;
@@ -598,8 +597,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button PointsSortBTN;
-        private System.Windows.Forms.Button AlphabeticalSortBTN;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox ReturnID;
         private System.Windows.Forms.TextBox ReturnPoints;
@@ -611,12 +608,15 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox ReturnName;
-        private System.Windows.Forms.Button ExportByPoints;
         private System.Windows.Forms.Button UpdateBTN;
         private System.Windows.Forms.DataGridViewTextBoxColumn TeamNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrimaryContactColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ContactEmailColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn PointsColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button PointsSortBTN;
+        private System.Windows.Forms.Button AlphabeticalSortBTN;
+        private System.Windows.Forms.Button ExportByPoints;
     }
 }

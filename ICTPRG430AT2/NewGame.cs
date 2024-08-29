@@ -27,7 +27,7 @@ namespace ClassLibrary
             // Set default selection
             GameType.SelectedIndex = 0;
             dataGridView1.CellClick += dataGridView1_CellClick;
-          
+
 
         }
 
@@ -80,7 +80,10 @@ namespace ClassLibrary
             string gameType = GameType.SelectedItem != null ? GameType.SelectedItem.ToString() : string.Empty;
             // Retrieve the entered game name
             string gameName = NewGameNameTXT.Text;
-            string EventName = NewGameEventDropdown.SelectedValue != null ? NewGameEventDropdown.SelectedItem.ToString() : string.Empty;
+            string EventName = NewGameEventDropdown.SelectedItem != null ?
+                   ((DataRowView)NewGameEventDropdown.SelectedItem)["EventName"].ToString() :
+                   string.Empty;
+
 
             // Error Handling
 
@@ -92,21 +95,37 @@ namespace ClassLibrary
                 return;
             }
 
-            if (TeamComboBox.SelectedValue == OpposingTeamComboBox.SelectedValue)  // If same teams versing
+            // Retrieve the selected teams
+            string team = TeamComboBox.SelectedValue != null ? TeamComboBox.SelectedValue.ToString() : string.Empty;
+            string opposingTeam = OpposingTeamComboBox.SelectedValue != null ? OpposingTeamComboBox.SelectedValue.ToString() : string.Empty;
+
+            // Check if both teams are selected
+            if (string.IsNullOrWhiteSpace(team) || string.IsNullOrWhiteSpace(opposingTeam))
             {
-                MessageBox.Show("Competing Teams Can Not Be The Same.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select both teams before adding a new game.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (!DrawCheckBox.Checked)
+
+            // Check if the selected teams are different
+            if (team == opposingTeam)
             {
-                if (TeamComboBox.SelectedValue != WinnerComboBox.SelectedValue) // if winner not competing
-                {
-                    if (OpposingTeamComboBox.SelectedValue != WinnerComboBox.SelectedValue)
-                    {
-                        MessageBox.Show("Winner is not competing!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                }
+                MessageBox.Show("Please select different teams for each side.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if a winner is selected
+            if (!teamOneCheck.Checked && !teamTwoCheck.Checked && !DrawCheckBox.Checked)
+            {
+                MessageBox.Show("Please select a winner or mark the game as a draw.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if more than one winner is selected
+            int winnerCount = (teamOneCheck.Checked ? 1 : 0) + (teamTwoCheck.Checked ? 1 : 0) + (DrawCheckBox.Checked ? 1 : 0);
+            if (winnerCount > 1)
+            {
+                MessageBox.Show("Please select only one winner or mark the game as a draw.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             // Add the new game information to the database
@@ -114,59 +133,31 @@ namespace ClassLibrary
             // Refresh the GamesPlayed DataGridView to reflect the changes
             this.gamesPlayedTableAdapter.Fill(this.kiddEsportsData.GamePlayed);
 
+            // Retrieve the selected winner
+            string result = DrawCheckBox.Checked ? "Draw" : (teamOneCheck.Checked ? team : opposingTeam);
+            int points = DrawCheckBox.Checked ? 1 : 2; // Points for the winning team
 
+            // Add the game result to the database
+            Program.DataMapper.AddGameResult(team, opposingTeam, result, EventName, gameName);
 
-            // Retrieve the selected teams and winner, and the event name
-            string team = TeamComboBox.SelectedValue != null ? TeamComboBox.SelectedValue.ToString() : string.Empty;
-            string opposingTeam = OpposingTeamComboBox.SelectedValue != null ? OpposingTeamComboBox.SelectedValue.ToString() : string.Empty;
-            string winner = WinnerComboBox.SelectedValue != null ? WinnerComboBox.SelectedValue.ToString() : string.Empty;
-            string eventName = NewGameEventDropdown.SelectedValue != null ? NewGameEventDropdown.SelectedValue.ToString() : string.Empty;
-            string result = "Draw";
-            string opposingresult = "Draw";
-            int points = 0; // Initialize points for the winning team
-            int opposingpoints = 0; // Initialize points for the opposing team
-
-            if (DrawCheckBox.Checked)
-            {
-
-                result = "Draw";
-                opposingresult = "Draw";
-                points = 1; // Both teams get 1 point for a draw
-                opposingpoints = 1;
-            }
-            // Determine the result based on the winner
-            else if (!DrawCheckBox.Checked)
-            {
-
-                 result = winner ;
-                 points = 2; // Winning team gets 2 points
-                    
-                
-               
-            }
-
-
-            // Add the game result to the database for both teams
-            Program.DataMapper.AddGameResult(team, opposingTeam, result, eventName, gameName);
-         
             // Refresh the TeamResults DataGridView to reflect the changes
             this.teamResultsTableAdapter.Fill(this.kiddEsportsData.TeamResults);
 
             // Update team points in the database
-            Program.DataMapper.UpdateTeamPoints(winner, points);
-            Program.DataMapper.UpdateTeamPoints(opposingTeam, opposingpoints);
+            Program.DataMapper.UpdateTeamPoints(result, points);
+            Program.DataMapper.UpdateTeamPoints(result == team ? opposingTeam : team, 0); // Losing team gets 0 points
 
             // Refresh the TeamInfo DataGridView to reflect the changes
             this.teamInfoTableAdapter.Fill(this.kiddEsportsData.TeamInfo);
 
             // Clear input fields after updating team information
-
             NewGameNameTXT.ResetText();
             TeamComboBox.SelectedIndex = -1;
             OpposingTeamComboBox.SelectedIndex = -1;
-            WinnerComboBox.SelectedIndex = -1;
             NewGameEventDropdown.SelectedIndex = -1;
         }
+
+
 
         // Button click event handler for updating a game
         private void UpdateBTN_Click(object sender, EventArgs e)
@@ -207,10 +198,10 @@ namespace ClassLibrary
         // Button click event handler for deleting a game
         private void GameDeleteBTN_Click(object sender, EventArgs e)
         {
-           
+
 
             // Attempt to parse the DeleteResultID.Text to an integer
-          
+
 
             // Get the result information based on the result ID
             ResultDTO result = Program.DataMapper.GetResultByGameName(DeleteGameID.Text);
@@ -227,7 +218,7 @@ namespace ClassLibrary
                 this.gamesPlayedTableAdapter.Fill(this.kiddEsportsData.GamePlayed);
                 return;
             }
-            
+
             // Retrieve the winner from the result
             string winner = result.Result;
 
@@ -297,12 +288,14 @@ namespace ClassLibrary
             if (DrawCheckBox.Checked)
             {
                 // Enable the dropdown
-                WinnerComboBox.Enabled = false;
+                teamOneCheck.Enabled = false;
+                teamTwoCheck.Enabled = false;
             }
             else
             {
                 // Disable the dropdown
-                WinnerComboBox.Enabled = true;
+                teamOneCheck.Enabled = true;
+                teamTwoCheck.Enabled = true;
             }
 
         }
@@ -353,6 +346,11 @@ namespace ClassLibrary
         }
 
         private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
         {
 
         }

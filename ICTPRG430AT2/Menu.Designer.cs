@@ -58,6 +58,7 @@
             this.teamInfoTableAdapter1 = new ClassLibrary.KiddEsportsDataSetTableAdapters.TeamInfoTableAdapter();
             this.eventTableAdapter = new ClassLibrary.KiddEsportsDataSetTableAdapters.EventsTableAdapter();
             this.teamInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button3 = new System.Windows.Forms.Button();
             this.toolStripContainer2.ContentPanel.SuspendLayout();
             this.toolStripContainer2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -79,6 +80,7 @@
             // toolStripContainer2.ContentPanel
             // 
             this.toolStripContainer2.ContentPanel.AutoScroll = true;
+            this.toolStripContainer2.ContentPanel.Controls.Add(this.button3);
             this.toolStripContainer2.ContentPanel.Controls.Add(this.Exit);
             this.toolStripContainer2.ContentPanel.Controls.Add(this.label4);
             this.toolStripContainer2.ContentPanel.Controls.Add(this.Results);
@@ -312,6 +314,16 @@
             // 
             this.eventTableAdapter.ClearBeforeFill = true;
             // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(1146, 13);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "Login";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -378,6 +390,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn contactEmailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pointsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button button3;
     }
 }
 
